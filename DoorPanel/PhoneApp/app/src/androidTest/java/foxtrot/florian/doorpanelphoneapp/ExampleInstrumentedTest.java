@@ -22,5 +22,7 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("foxtrot.florian.doorpanelphoneapp", appContext.getPackageName());
+
+        // Just a test to see if i can commit smth... Frank
     }
 }
