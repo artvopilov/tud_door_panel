@@ -9,3 +9,8 @@
 /build
 /captures
 .externalNativeBuild
+
+_linux/
+.idea/
+.gradle/
+codestyles/
