@@ -41,8 +41,8 @@
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:drawableLeft="@android:drawable/ic_menu_my_calendar"
-                android:text="availability"
+                android:drawableLeft="@android:drawable/ic_menu_mylocation"
+                android:text="status"
                 tools:drawableLeft="?android:attr/textCheckMark"
                 tools:layout_editor_absoluteX="19dp"
                 tools:layout_editor_absoluteY="133dp" />
@@ -51,8 +51,8 @@
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:drawableLeft="@android:drawable/ic_menu_mylocation"
-                android:text="location"
+                android:drawableLeft="@android:drawable/ic_dialog_email"
+                android:text="notifications"
                 tools:layout_editor_absoluteX="19dp"
                 tools:layout_editor_absoluteY="233dp" />
 
