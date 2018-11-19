@@ -1,0 +1,4 @@
+#Mon Nov 19 20:33:28 GMT 2018
+base.0=C\:\\Users\\pramo\\AndroidStudioProjects\\iptk-ws18-19-team-foxtrot\\foxtrotdoorpanelmobileapp\\build\\intermediates\\transforms\\dexMerger\\debug\\4
+path.0=classes.dex
+renamed.0=classes.dex
