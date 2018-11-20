@@ -28,7 +28,7 @@
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:drawableLeft="@android:drawable/ic_menu_my_calendar"
+                android:drawableLeft="@drawable/ic_calendar_alt"
                 android:text="Calendar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/scrollView2"
@@ -41,9 +41,8 @@
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:drawableLeft="@android:drawable/ic_menu_mylocation"
+                android:drawableLeft="@drawable/ic_check_square"
                 android:text="status"
-                tools:drawableLeft="?android:attr/textCheckMark"
                 tools:layout_editor_absoluteX="19dp"
                 tools:layout_editor_absoluteY="133dp" />
 
@@ -51,7 +50,7 @@
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:drawableLeft="@android:drawable/ic_dialog_email"
+                android:drawableLeft="@drawable/ic_envelope"
                 android:text="notifications"
                 tools:layout_editor_absoluteX="19dp"
                 tools:layout_editor_absoluteY="233dp" />
@@ -60,7 +59,7 @@
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:drawableLeft="@android:drawable/checkbox_off_background"
+                android:drawableLeft="@drawable/ic_sliders_h"
                 android:text="settings"
                 tools:layout_editor_absoluteX="19dp"
                 tools:layout_editor_absoluteY="233dp" />
