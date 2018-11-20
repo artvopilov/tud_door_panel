@@ -1,7 +1,7 @@
 package de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
