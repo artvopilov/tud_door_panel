@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/listCalendarFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:textSize="25sp"
+        android:id="@+id/listCalendarText"
+        android:textColor="#545455"
+        android:background="#EBF49A"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listCalendarText"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="12:00 - 13:00"
+        android:textColor="#111111"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/timeFirstListCalendar"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeFirstListCalendar"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:text="Meeting with Mr. Vopilov"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:id="@+id/titleFirstListCalendar"
+        android:gravity="center_horizontal"
+        android:background="@drawable/rounded_corner_blue"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleFirstListCalendar"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="14:00 - 14:20"
+        android:textColor="#111111"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/timeSecondListCalendar"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeSecondListCalendar"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="5dp"
+        android:text="Conference IEEE"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:background="@drawable/rounded_corner"
+        android:gravity="center_horizontal"
+        android:id="@+id/titleSecondListCalendar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeSecondListCalendar"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:textSize="25sp"
+        android:textColor="#545455"
+        android:text="Next Day"
+        android:background="#EBF49A"/>
+
+</RelativeLayout>
