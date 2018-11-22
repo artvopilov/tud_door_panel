@@ -1,5 +1,6 @@
 package de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
         calendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_make_appointment);
+                Intent intent = new Intent(v.getContext(), makeAppointment.class);
+                startActivity(intent);
             }
         });
     }
