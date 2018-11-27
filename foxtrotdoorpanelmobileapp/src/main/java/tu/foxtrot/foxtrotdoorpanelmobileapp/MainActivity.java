@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button calendarButton;
+    private Button statusButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +19,19 @@ public class MainActivity extends AppCompatActivity {
 
         calendarButton = (Button) findViewById(R.id.button2);
         calendarButton.setOnClickListener(this::openCalendar);
+
+        statusButton = (Button) findViewById(R.id.button3);
+        statusButton.setOnClickListener(this::openStatus);
     }
 
     public void openCalendar(View view) {
         Intent intent = new Intent(this, CalendarActivity.class);
         startActivity(intent);
     }
+
+    public void openStatus(View view) {
+        Intent intent = new Intent(this, StatusSelection.class);
+        startActivity(intent);
+    }
+
 }
