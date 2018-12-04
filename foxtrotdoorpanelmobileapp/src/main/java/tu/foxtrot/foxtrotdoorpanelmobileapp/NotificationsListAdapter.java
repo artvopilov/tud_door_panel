@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -16,7 +18,17 @@ import java.util.ArrayList;
 public class NotificationsListAdapter extends ArrayAdapter<Notification> {
 
     private Context mContext;
-    int mResource;
+    private int mResource;
+    private int lastPosition = -1;
+
+    static class ViewHolder {
+        TextView date;
+        TextView time;
+        TextView details;
+        TextView type;
+        TextView name;
+        TextView email;
+    }
 
     public NotificationsListAdapter(@NonNull Context context, int resource,
                                     @NonNull ArrayList<Notification> objects) {
@@ -37,19 +49,30 @@ public class NotificationsListAdapter extends ArrayAdapter<Notification> {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         convertView = layoutInflater.inflate(mResource, parent, false);
 
-        TextView tvTime = (TextView) convertView.findViewById(R.id.notification_time);
-        TextView tvType = (TextView) convertView.findViewById(R.id.notification_type);
-        TextView tvDetails = (TextView) convertView.findViewById(R.id.notification_details);
+        ViewHolder holder = new ViewHolder();
+        holder.time = (TextView) convertView.findViewById(R.id.notification_time);
+        holder.type = (TextView) convertView.findViewById(R.id.notification_type);
+        holder.details = (TextView) convertView.findViewById(R.id.notification_details);
 
-        tvTime.setText(time);
-        tvDetails.setText(details);
+        //final View resultView = convertView;
+        convertView.setTag(holder);
+
+        Animation animation = AnimationUtils.loadAnimation(mContext,
+                (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
+
+        //resultView.startAnimation(animation);
+        convertView.startAnimation(animation);
+        lastPosition = position;
+
+        holder.time.setText(time);
+        holder.details.setText(details);
         if (type.equals("Message")) {
             String name = ((MessageNotification) getItem(position)).getName();
             String email = ((MessageNotification) getItem(position)).getEmail();
-            tvType.setText(String.format("%s from %s", type, name));
-            tvType.setTextColor(Color.parseColor("#AABC45"));
+            holder.type.setText(String.format("%s from %s", type, name));
+            holder.type.setTextColor(Color.parseColor("#AABC45"));
         } else {
-            tvType.setText(type);
+            holder.type.setText(type);
         }
 
         return convertView;

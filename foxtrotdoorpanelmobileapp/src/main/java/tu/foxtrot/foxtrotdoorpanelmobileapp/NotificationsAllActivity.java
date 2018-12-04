@@ -40,6 +40,17 @@ public class NotificationsAllActivity extends AppCompatActivity {
                 "Door Info Changed", "Party for everybody");
         Notification notification6 = new Notification("22.07.2018", "12:45",
                 "Door Info Changed", "Don't disturb");
+        MessageNotification messageNotification4 = new MessageNotification("22.02.2018",
+                "10:23", "Message", "Could I come in?",
+                "mister@gmail.com", "Piter Pit222");
+        MessageNotification messageNotification5 = new MessageNotification("22.02.2018",
+                "10:23", "Message", "Could I go home?",
+                "mister@gmail.com", "Piter Brown");
+        MessageNotification messageNotification6 = new MessageNotification("22.02.2018",
+                "10:23", "Message", "Could I come in?",
+                "mister@gmail.com", "Piter Matt");
+        Notification notification7 = new Notification("11.01.2033", "01:45",
+                "Door Info Changed", "Don't disturb");
 
         ArrayList<Notification> notifications = new ArrayList<>();
         notifications.add(notification1);
@@ -51,6 +62,10 @@ public class NotificationsAllActivity extends AppCompatActivity {
         notifications.add(notification4);
         notifications.add(notification5);
         notifications.add(notification6);
+        notifications.add(messageNotification4);
+        notifications.add(messageNotification5);
+        notifications.add(messageNotification6);
+        notifications.add(notification7);
 
         NotificationsListAdapter adapter = new NotificationsListAdapter(this,
                 R.layout.single_notification, notifications);
