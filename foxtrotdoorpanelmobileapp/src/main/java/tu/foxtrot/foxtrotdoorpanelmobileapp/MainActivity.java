@@ -1,7 +1,6 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button calendarButton;
     private Button statusButton;
+    private Button notificationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
         statusButton = (Button) findViewById(R.id.button3);
         statusButton.setOnClickListener(this::openStatus);
+
+        notificationButton = (Button) findViewById(R.id.button4);
+        notificationButton.setOnClickListener(this::openNotifications);
     }
 
     public void openCalendar(View view) {
@@ -34,4 +37,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openNotifications(View view) {
+        Intent intent = new Intent(this, NotificationsAllActivity.class);
+        startActivity(intent);
+    }
 }

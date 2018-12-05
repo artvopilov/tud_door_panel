@@ -21,7 +21,9 @@
             android:label="@string/title_activity_calendar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".StatusSelection" />
-        <activity android:name=".PersonalStatus"></activity>
+        <activity android:name=".PersonalStatus" />
+        <activity android:name=".NotificationsAllActivity" />
+        <activity android:name=".MessageActivity"></activity>
     </application>
 
 </manifest>
