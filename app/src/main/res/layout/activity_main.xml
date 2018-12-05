@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -15,7 +14,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <EditText
+            <TextView
                 android:id="@+id/b1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,12 +25,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
+
+
                 <ImageButton
-                    android:id="@+id/b2"
+
                     android:layout_width="54dp"
                     android:layout_height="45dp"
-                    android:text="Bluetooth icon" />
-
+                    android:id="@+id/landingPagePinButton1"
+                    android:layout_centerHorizontal="false"
+                    android:layout_gravity="center"
+                    android:src="@drawable/bluetooth"
+                    android:clickable="true"
+                    android:minHeight="36dp"
+                    android:minWidth="36dp"
+                    android:background="@android:color/darker_gray"/>
 
 
             </LinearLayout>
@@ -44,51 +51,224 @@
 
     <TableRow
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
+
 
             <ImageButton
-                android:id="@+id/b3"
+
+                android:id="@+id/landingPagePinButton2"
                 android:layout_width="62dp"
                 android:layout_height="match_parent"
-                android:text="icon" />
-
+                android:layout_centerHorizontal="false"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray"
+                android:clickable="true"
+                android:minWidth="36dp"
+                android:minHeight="36dp"
+                android:src="@drawable/person1" />
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <EditText
+                <TextView
                     android:id="@+id/b4"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:layout_marginBottom="20px"
                     android:text="Alexander Seeliger, Msc" />
 
-                <EditText
+                <TextView
                     android:id="@+id/b5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="20px"
                     android:text="Research Assistant" />
 
-                <EditText
+                <TextView
                     android:id="@+id/b6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="20px"
                     android:text="In the Office" />
 
             </LinearLayout>
 
+
             <ImageButton
-                android:id="@+id/b7"
+
+                android:id="@+id/landingPagePinButton3"
                 android:layout_width="56dp"
                 android:layout_height="37dp"
-                android:text="calendar icon" />
+                android:layout_centerHorizontal="false"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray"
+                android:clickable="true"
+                android:minWidth="36dp"
+                android:minHeight="36dp"
+                android:src="@drawable/calendar1" />
+
+        </LinearLayout>
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+
+                android:id="@+id/landingPagePinButton4"
+                android:layout_width="62dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="false"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray"
+                android:clickable="true"
+                android:minWidth="36dp"
+                android:minHeight="36dp"
+                android:src="@drawable/person2" />
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/b9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20px"
+                    android:text="Alexander Seeliger, Msc" />
+
+                <TextView
+                    android:id="@+id/b10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="20px"
+                    android:text="Research Assistant" />
+
+                <TextView
+                    android:id="@+id/b11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="20px"
+                    android:text="In the Office" />
+
+            </LinearLayout>
+
+
+            <ImageButton
+
+                android:id="@+id/landingPagePinButton5"
+                android:layout_width="56dp"
+                android:layout_height="37dp"
+                android:layout_centerHorizontal="false"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray"
+                android:clickable="true"
+                android:minWidth="36dp"
+                android:minHeight="36dp"
+                android:src="@drawable/calendar1" />
+        </LinearLayout>
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageButton
+
+                android:id="@+id/landingPagePinButton6"
+                android:layout_width="62dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="false"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray"
+                android:clickable="true"
+                android:minWidth="36dp"
+                android:minHeight="36dp"
+                android:src="@drawable/person3" />
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/b14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20px"
+                    android:text="Christian Meurisch, Msc" />
+
+                <TextView
+                    android:id="@+id/b15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="20px"
+                    android:text="Research Assistant" />
+
+                <TextView
+                    android:id="@+id/b16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="20px"
+                    android:text="Out of Office" />
+
+            </LinearLayout>
+
+
+            <ImageButton
+
+                android:id="@+id/landingPagePinButton7"
+                android:layout_width="56dp"
+                android:layout_height="37dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray"
+                android:clickable="true"
+                android:minWidth="36dp"
+                android:minHeight="36dp"
+                android:src="@drawable/calendar1" />
         </LinearLayout>
 
 
@@ -98,10 +278,17 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/b8"
+
+                android:id="@+id/landingPagePinButton8"
                 android:layout_width="62dp"
                 android:layout_height="match_parent"
-                android:text="icon" />
+                android:layout_centerHorizontal="false"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray"
+                android:clickable="true"
+                android:minWidth="36dp"
+                android:minHeight="36dp"
+                android:src="@drawable/person4" />
 
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -109,164 +296,90 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/b9"
+                <TextView
+                    android:id="@+id/b19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="20px"
                     android:text="Alexander Seeliger, Msc" />
 
-                <EditText
-                    android:id="@+id/b10"
+                <TextView
+                    android:id="@+id/b20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="20px"
                     android:text="Research Assistant" />
 
-                <EditText
-                    android:id="@+id/b11"
+                <TextView
+                    android:id="@+id/b21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="20px"
                     android:text="In the Office" />
 
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/b12"
+
+                android:id="@+id/landingPagePinButton9"
                 android:layout_width="56dp"
                 android:layout_height="37dp"
-                android:text="calendar icon" />
+                android:layout_centerHorizontal="false"
+                android:layout_gravity="center"
+                android:background="@android:color/darker_gray"
+                android:clickable="true"
+                android:minWidth="36dp"
+                android:minHeight="36dp"
+                android:src="@drawable/calendar1" />
         </LinearLayout>
 
 
     </TableRow>
 
     <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <ImageButton
-                android:id="@+id/b13"
-                android:layout_width="62dp"
-                android:layout_height="match_parent"
-                android:text="icon" />
-
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <EditText
-                    android:id="@+id/b14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Christian Meurisch, Msc" />
-
-                <EditText
-                    android:id="@+id/b15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Research Assistant" />
-
-                <EditText
-                    android:id="@+id/b16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Out of Office(will be back in 5 mins)"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
-            <ImageButton
-                android:id="@+id/b17"
-                android:layout_width="56dp"
-                android:layout_height="37dp"
-                android:text="calendar icon" />
-        </LinearLayout>
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="79dp">
 
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:gravity="center">
 
-            <ImageButton
-                android:id="@+id/b18"
-                android:layout_width="62dp"
-                android:layout_height="match_parent"
-                android:text="icon" />
-
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <EditText
-                    android:id="@+id/b19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alexander Seeliger, Msc" />
-
-                <EditText
-                    android:id="@+id/b20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Research Assistant" />
-
-                <EditText
-                    android:id="@+id/b21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="In the Office"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
-            <ImageButton
-                android:id="@+id/b22"
-                android:layout_width="56dp"
-                android:layout_height="37dp"
-                android:text="calendar icon" />
-
-        </LinearLayout>
-
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
-
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <EditText
+            <TextView
                 android:id="@+id/b23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_marginTop="24px"
+                android:textColor="@android:color/holo_red_light"
                 android:text="Please Do Not Disturb" />
 
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/b24"
+
+                    android:id="@+id/landingPagePinButton10"
                     android:layout_width="56dp"
                     android:layout_height="37dp"
-                    android:text="calendar icon" />
-
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:background="@android:color/darker_gray"
+                    android:clickable="true"
+                    android:minWidth="36dp"
+                    android:minHeight="36dp"
+                    android:src="@drawable/calendar" />
 
 
             </LinearLayout>
