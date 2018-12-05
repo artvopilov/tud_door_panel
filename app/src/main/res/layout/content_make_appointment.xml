@@ -29,6 +29,7 @@
             app:hourHeight="60dp"
             app:noOfVisibleDays="7"
             app:textSize="12sp"
+            app:eventTextSize="8sp"
             app:todayBackgroundColor="#1848adff" />
 
         <android.support.constraint.ConstraintLayout

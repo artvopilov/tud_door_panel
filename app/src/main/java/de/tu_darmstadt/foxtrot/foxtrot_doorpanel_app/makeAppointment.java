@@ -62,6 +62,18 @@ public class makeAppointment extends AppCompatActivity {
         testEvent2.setColor(getResources().getColor(R.color.colorSlot));
         events.add(testEvent2);
 
+        WeekViewEvent testEvent3 = new WeekViewEvent();
+        Calendar start3 = Calendar.getInstance();
+        start3.add(Calendar.DATE,1);
+        testEvent3.setStartTime(start3);
+        testEvent3.setName("team meeting");
+        Calendar end3 = Calendar.getInstance();
+        end3.add(Calendar.HOUR,1);
+        end3.add(Calendar.DATE,1);
+        testEvent3.setEndTime(end3);
+        testEvent3.setColor(getResources().getColor(R.color.colorEvent));
+        events.add(testEvent3);
+
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,17 +93,23 @@ public class makeAppointment extends AppCompatActivity {
             @Override
             public void onEventClick(WeekViewEvent event, RectF eventRect) {
 
-                Log.v("DoorPanel", "slot clicked" );
 
-                if (! (activeEvent == null)) {
-                    activeEvent.setColor(getResources().getColor(R.color.colorSlot));
-                }
-                activeEvent = event;
-                activeEvent.setColor(getResources().getColor(R.color.colorSlotActive) );
+                if (event.getColor()==getResources().getColor(R.color.colorSlot)) {
 
-                if (nameEdited && mailEdited && messageEdited){
-                    fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlotActive)));
-                    fab.setEnabled(true);
+                    if (!(activeEvent == null)) {
+                        activeEvent.setColor(getResources().getColor(R.color.colorSlot));
+                    }
+                    activeEvent = event;
+                    activeEvent.setColor(getResources().getColor(R.color.colorSlotActive));
+                    mWeekView.notifyDatasetChanged();
+
+
+                    if (nameEdited && mailEdited && messageEdited) {
+
+                        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlotActive)));
+                        fab.setEnabled(true);
+                    }
+
                 }
 
 
@@ -102,6 +120,7 @@ public class makeAppointment extends AppCompatActivity {
         ((EditText) findViewById(R.id.editName)).addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 nameEdited = true;
+                Log.v("DoorPanel", "name edited" );
                 if (activeEvent != null && mailEdited && messageEdited){
                     fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlotActive)));
                     fab.setEnabled(true);
@@ -120,6 +139,7 @@ public class makeAppointment extends AppCompatActivity {
         ((EditText) findViewById(R.id.editEMail)).addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 mailEdited = true;
+                Log.v("DoorPanel", "mail edited" );
                 if (activeEvent != null && nameEdited && messageEdited){
                     fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlotActive)));
                     fab.setEnabled(true);
@@ -137,7 +157,8 @@ public class makeAppointment extends AppCompatActivity {
 
         ((EditText) findViewById(R.id.editMessage)).addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
-                nameEdited = true;
+                messageEdited = true;
+                Log.v("DoorPanel", "message edited" );
                 if (activeEvent != null && mailEdited && nameEdited){
                     fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlotActive)));
                     fab.setEnabled(true);
@@ -159,7 +180,15 @@ public class makeAppointment extends AppCompatActivity {
             @Override
             public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
 
-                return events;
+                List<WeekViewEvent> theseEvents = new ArrayList<WeekViewEvent>();
+
+                for (WeekViewEvent event: events) {
+                    if (event.getStartTime().get(Calendar.YEAR)==newYear && event.getStartTime().get(Calendar.MONTH)==newMonth){
+                        theseEvents.add(event);
+                    }
+                }
+
+                return theseEvents;
             }
         });
 
