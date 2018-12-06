@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tu.foxtrot.foxtrotdoorpanelmobileapp">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,7 +25,13 @@
         <activity android:name=".StatusSelection" />
         <activity android:name=".PersonalStatus" />
         <activity android:name=".NotificationsAllActivity" />
-        <activity android:name=".MessageActivity"></activity>
+        <activity android:name=".MessageActivity" />
+        <activity android:name=".Settings" />
+        <activity android:name=".PersonalRoom" />
+        <activity android:name=".PersonalEmail" />
+        <activity android:name=".PersonalPhone" />
+        <activity android:name=".PersonalSummary" />
+        <activity android:name=".PersonalPhoto"></activity>
     </application>
 
 </manifest>

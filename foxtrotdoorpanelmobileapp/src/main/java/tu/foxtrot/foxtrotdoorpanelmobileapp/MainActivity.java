@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private Button calendarButton;
     private Button statusButton;
     private Button notificationButton;
+    private Button settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
         notificationButton = (Button) findViewById(R.id.button4);
         notificationButton.setOnClickListener(this::openNotifications);
+
+        settingsButton = (Button) findViewById(R.id.button5);
+        settingsButton.setOnClickListener(this::openSettings);
     }
 
     public void openCalendar(View view) {
@@ -39,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openNotifications(View view) {
         Intent intent = new Intent(this, NotificationsAllActivity.class);
+        startActivity(intent);
+    }
+
+    public void openSettings(View view) {
+        Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
 }
