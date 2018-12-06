@@ -1,280 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="5">
 
-
+        <TextView
+            android:id="@+id/b1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="OFFICE NO: 217A" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <EditText
-                android:id="@+id/b1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OFFICE NO: 217A" />
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <ImageButton
-                    android:id="@+id/b2"
-                    android:layout_width="54dp"
-                    android:layout_height="45dp"
-                    android:text="Bluetooth icon" />
+            android:orientation="vertical">
 
 
+            <ImageButton
 
-            </LinearLayout>
+                android:id="@+id/landingPagePinButton1"
+                android:layout_width="54dp"
+                android:layout_height="45dp"
+                android:layout_centerHorizontal="false"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:clickable="true"
+                android:minWidth="36dp"
+                android:minHeight="36dp"
+                android:src="@drawable/ic_bluetooth" />
 
 
         </LinearLayout>
 
 
-    </TableRow>
+    </LinearLayout>
 
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+
+        android:layout_weight="2">
+
+        <GridView
+            android:id="@+id/workersGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:gravity="center">
+
+
+        </GridView>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_weight="5">
+
+        <TextView
+            android:id="@+id/b23"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/b3"
-                android:layout_width="62dp"
-                android:layout_height="match_parent"
-                android:text="icon" />
-
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/b4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alexander Seeliger, Msc" />
-
-                <EditText
-                    android:id="@+id/b5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Research Assistant" />
-
-                <EditText
-                    android:id="@+id/b6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="In the Office" />
-
-            </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/b7"
-                android:layout_width="56dp"
-                android:layout_height="37dp"
-                android:text="calendar icon" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_marginTop="4px"
+            android:text="Please Do Not Disturb"
+            android:textColor="@android:color/holo_red_light"
+            android:gravity="center"
+            android:textSize="25sp" />
 
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/b8"
-                android:layout_width="62dp"
-                android:layout_height="match_parent"
-                android:text="icon" />
 
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/b9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alexander Seeliger, Msc" />
-
-                <EditText
-                    android:id="@+id/b10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Research Assistant" />
-
-                <EditText
-                    android:id="@+id/b11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="In the Office" />
-
-            </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/b12"
-                android:layout_width="56dp"
-                android:layout_height="37dp"
-                android:text="calendar icon" />
-        </LinearLayout>
-
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <ImageButton
-                android:id="@+id/b13"
-                android:layout_width="62dp"
-                android:layout_height="match_parent"
-                android:text="icon" />
-
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <EditText
-                    android:id="@+id/b14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Christian Meurisch, Msc" />
-
-                <EditText
-                    android:id="@+id/b15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Research Assistant" />
-
-                <EditText
-                    android:id="@+id/b16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Out of Office(will be back in 5 mins)"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
-            <ImageButton
-                android:id="@+id/b17"
-                android:layout_width="56dp"
-                android:layout_height="37dp"
-                android:text="calendar icon" />
-        </LinearLayout>
-
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <ImageButton
-                android:id="@+id/b18"
-                android:layout_width="62dp"
-                android:layout_height="match_parent"
-                android:text="icon" />
-
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <EditText
-                    android:id="@+id/b19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alexander Seeliger, Msc" />
-
-                <EditText
-                    android:id="@+id/b20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Research Assistant" />
-
-                <EditText
-                    android:id="@+id/b21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="In the Office"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
-            <ImageButton
-                android:id="@+id/b22"
-                android:layout_width="56dp"
-                android:layout_height="37dp"
-                android:text="calendar icon" />
-
-        </LinearLayout>
-
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
-
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <EditText
-                android:id="@+id/b23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Please Do Not Disturb" />
-
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <ImageButton
-                    android:id="@+id/b24"
-                    android:layout_width="56dp"
-                    android:layout_height="37dp"
-                    android:text="calendar icon" />
-
-
-
-            </LinearLayout>
+                android:id="@+id/landingPagePinButton10"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonbackground"
+                android:clickable="true"
+                android:minWidth="36dp"
+                android:minHeight="36dp"
+                android:src="@drawable/ic_calendar_alt" />
 
 
         </LinearLayout>
 
 
-    </TableRow>
-</TableLayout>
+    </LinearLayout>
+
+</LinearLayout>
 
