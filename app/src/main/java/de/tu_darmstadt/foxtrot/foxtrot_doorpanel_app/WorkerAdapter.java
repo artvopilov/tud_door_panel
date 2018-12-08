@@ -18,7 +18,7 @@ public class WorkerAdapter extends BaseAdapter {
     private Context context;
     @Override
     public int getCount() {
-        return 4;
+        return 14;
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //
+
         GridView gridView = (GridView) findViewById(R.id.workersGrid);
         gridView.setAdapter(new WorkerAdapter(this));
-        /**/
+
     }
 }

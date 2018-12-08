@@ -46,26 +46,26 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
 
-
-
-
-        android:layout_weight="2">
 
         <GridView
             android:id="@+id/workersGrid"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:numColumns="auto_fit"
             android:stretchMode="columnWidth"
-            android:gravity="center">
+            android:layout_weight="2"
+
+
+            android:overScrollMode="never"
+            android:requiresFadingEdge="vertical"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="150dp"
+            android:fillViewport="true">
 
 
         </GridView>
-    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
