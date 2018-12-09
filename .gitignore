@@ -14,3 +14,7 @@ _linux/
 .idea/
 .gradle/
 codestyles/
+
+#server
+node_modules/
+*/package-lock.json
