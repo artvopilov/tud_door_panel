@@ -53,7 +53,9 @@ public class addWorker extends AppCompatActivity {
         Log.d("DoorPanel", "send1 ");
         Retrofit.Builder temp = new Retrofit.Builder();
         Log.d("DoorPanel", "send1.5 ");
-        Retrofit.Builder builder = temp.baseUrl("http://10.0.2.2:5000/employees").addConverterFactory(GsonConverterFactory.create());
+        temp = temp.baseUrl("http://10.0.2.2:5000/");
+        Log.d("DoorPanel", "send1.8 ");
+        Retrofit.Builder builder   =     temp.addConverterFactory(GsonConverterFactory.create());
         Log.d("DoorPanel", "send2 ");
         Retrofit retrofit =builder.build();
         Log.d("DoorPanel", "send3 ");

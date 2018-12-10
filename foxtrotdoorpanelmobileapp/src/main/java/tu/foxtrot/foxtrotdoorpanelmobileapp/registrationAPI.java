@@ -8,7 +8,7 @@ import retrofit2.http.POST;
 public interface registrationAPI {
 
 
-    @POST("e1")
+    @POST("employees")
     Call<employee> createEmployee(@Body employee e1);
 }
 
