@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,13 +15,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageButton calendarButton = findViewById(R.id.landingPagePinButton3);//b7
-        calendarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), makeAppointment.class);
-                startActivity(intent);
-            }
-        });
+
+        GridView gridView = (GridView) findViewById(R.id.workersGrid);
+        gridView.setAdapter(new WorkerAdapter(this));
+
     }
 }
