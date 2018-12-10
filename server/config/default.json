@@ -1,0 +1,5 @@
+{
+  "mongo":{
+    "uri": "mongodb://Foxtrot_Artem:12345a@ds163103.mlab.com:63103/foxtrot_db"
+  }
+}
