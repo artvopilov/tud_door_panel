@@ -1,8 +1,8 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 public class employee {
-private String Name;
-private String Email;
+private String name;
+private String email;
 private int age;
 private String room;
 
@@ -25,19 +25,19 @@ private String room;
 
     public String getEmail() {
 
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
     public String getName() {
 
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 }
