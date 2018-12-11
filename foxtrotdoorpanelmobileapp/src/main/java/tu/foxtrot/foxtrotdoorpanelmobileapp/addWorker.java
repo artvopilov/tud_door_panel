@@ -17,25 +17,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import retrofit2.Retrofit;
 
+import static java.lang.Integer.parseInt;
+
 public class addWorker extends AppCompatActivity {
 
     employee e;
+    EditText editName;
+    EditText editMail;
+    EditText editAge;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_worker);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Log.d("DoorPanel", "open ");
+        editName = findViewById(R.id.editText);
+        editAge = findViewById(R.id.editText2);
+        editMail = findViewById(R.id.editText3);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("DoorPanel", "onClick ");
-                String name = "testname";
-                String email = "testmail";
-                int age = 42;
+                String name = editName.getText().toString();
+                String email = editMail.getText().toString();
+                Log.d("DoorPanel", "parsed strings ");
+                int age = parseInt( editAge.getText().toString());
+                Log.d("DoorPanel", "parsed age ");
                e=new employee();
                e.setAge(age);
                e.setName(name);
