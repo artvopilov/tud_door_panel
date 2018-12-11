@@ -14,6 +14,7 @@ public class Settings extends AppCompatActivity {
     private Button phoneButton;
     private Button summaryButton;
     private Button defTimeSlotsButton;
+    private Button addWorkerButton;
 
 
     @Override
@@ -26,6 +27,7 @@ public class Settings extends AppCompatActivity {
         openCustomizedEmail();
         openCustomizedPhone();
         openCustomizedSummary();
+        openAddWorker();
 
 
     }
@@ -80,6 +82,17 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Settings.this, PersonalSummary.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void openAddWorker() {
+        addWorkerButton = (Button) findViewById(R.id.button7);
+        addWorkerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, addWorker.class);
                 startActivity(intent);
             }
         });

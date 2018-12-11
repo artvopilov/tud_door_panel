@@ -70,5 +70,14 @@
             android:text="define available time slots"
             android:textAlignment="center"
             android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:drawableLeft="@drawable/ic_clock_regular"
+            android:text="add new worker"
+            android:textAlignment="center"
+            android:textSize="18sp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
