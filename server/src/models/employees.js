@@ -21,7 +21,7 @@ class Employee extends DbModel {
         throw new Error('Employee is invalid');
     }
 
-    async remode(id) {
+    async remove(id) {
         const employee = this.getById(id);
         if (!employee) {
             throw Error(`Employee with id ${id} not found`);

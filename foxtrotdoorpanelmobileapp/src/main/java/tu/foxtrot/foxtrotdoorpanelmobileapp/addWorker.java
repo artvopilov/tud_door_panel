@@ -2,13 +2,11 @@ package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -16,12 +14,14 @@ import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import retrofit2.Retrofit;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Employee;
 
 import static java.lang.Integer.parseInt;
 
 public class addWorker extends AppCompatActivity {
 
-    employee e;
+    Employee e;
     EditText editName;
     EditText editMail;
     EditText editAge;
@@ -45,7 +45,7 @@ public class addWorker extends AppCompatActivity {
                 Log.d("DoorPanel", "parsed strings ");
                 int age = parseInt( editAge.getText().toString());
                 Log.d("DoorPanel", "parsed age ");
-               e=new employee();
+               e=new Employee();
                e.setAge(age);
                e.setName(name);
                e.setEmail(email);
@@ -56,7 +56,7 @@ public class addWorker extends AppCompatActivity {
         });
     }
 
-    public void sendNetworkRequest(employee e1)
+    public void sendNetworkRequest(Employee e1)
     {
 
         Log.d("DoorPanel", "send1 ");
@@ -69,17 +69,17 @@ public class addWorker extends AppCompatActivity {
         Retrofit retrofit =builder.build();
         Log.d("DoorPanel", "send3 ");
 
-        registrationAPI client = retrofit.create(registrationAPI.class);
-        Call <employee> call= client.createEmployee(e1);
+        EmployeesAPI client = retrofit.create(EmployeesAPI.class);
+        Call <Employee> call= client.createEmployee(e1);
         client.createEmployee(e1);
-        call.enqueue(new Callback<employee>() {
+        call.enqueue(new Callback<Employee>() {
             @Override
-            public void onResponse(Call<employee> call, Response<employee> response) {
+            public void onResponse(Call<Employee> call, Response<Employee> response) {
                 Log.d("DoorPanel", "onResponse: "+response);
             }
 
             @Override
-            public void onFailure(Call<employee> call, Throwable t) {
+            public void onFailure(Call<Employee> call, Throwable t) {
                 Log.d("DoorPanel", "onFailure: "+t.getMessage());
             }
         });
