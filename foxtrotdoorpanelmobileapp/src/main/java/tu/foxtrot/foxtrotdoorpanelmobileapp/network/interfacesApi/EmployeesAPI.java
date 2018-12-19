@@ -18,8 +18,8 @@ public interface EmployeesAPI {
     Call<Employee> getEmployeeById(@Path("id") int employeeId);
 
     @FormUrlEncoded
-    @POST("employees/{id}")
-    Call<Employee> updateEmployeeStatus(@Path("id") int employeeId, @Field("status") String status);
+    @POST("employees/{id}/status")
+    Call<String> updateEmployeeStatus(@Path("id") int employeeId, @Field("status") String status);
 }
 
 

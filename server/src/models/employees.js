@@ -14,20 +14,16 @@ class Employee extends DbModel {
         if (isEmployeeValid) {
             employee.id = await this._generate_id();
 
-            await this.MongooseModel.create(employee);
-            return employee
+            return await this._insert(employee);
         }
 
         throw new Error('Employee is invalid');
     }
 
-    async remove(id) {
-        const employee = this.getById(id);
-        if (!employee) {
-            throw Error(`Employee with id ${id} not found`);
-        }
-        await this.MongooseModel.remove({id});
+    async changeStatus(status, id) {
+        await this._updateById(id, {status})
     }
+
 }
 
 module.exports = Employee;

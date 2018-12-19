@@ -7,6 +7,7 @@ public class Employee {
     private String email;
     private String room;
     private String phoneNumber;
+    private String status;
 
     public int getId() {
         return id;
@@ -54,5 +55,13 @@ public class Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

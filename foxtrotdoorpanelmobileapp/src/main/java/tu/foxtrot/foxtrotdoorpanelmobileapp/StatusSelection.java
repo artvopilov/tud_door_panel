@@ -71,21 +71,21 @@ public class StatusSelection extends AppCompatActivity {
 
     private void updateStatus(Button button) {
         String status = button.getText().toString();
-        Call<Employee> call = employeesApi.updateEmployeeStatus(1, status);
+        Call<String> call = employeesApi.updateEmployeeStatus(1, status);
 
-        call.enqueue(new Callback<Employee>() {
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<Employee> call, Response<Employee> response) {
-                Employee employee = response.body();
+            public void onResponse(Call<String> call, Response<String> response) {
+                String newStatus = response.body();
 
                 Context context = getApplicationContext();
-                Toast toast = Toast.makeText(context, "Status updated: " + status,
+                Toast toast = Toast.makeText(context, "Status updated: " + newStatus,
                         Toast.LENGTH_SHORT);
                 toast.show();
             }
 
             @Override
-            public void onFailure(Call<Employee> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.d(TAG, t.getMessage());
             }
         });
