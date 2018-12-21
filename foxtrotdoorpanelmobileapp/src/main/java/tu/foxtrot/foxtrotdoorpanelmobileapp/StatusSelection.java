@@ -18,7 +18,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Employee;
 
 public class StatusSelection extends AppCompatActivity {
 
