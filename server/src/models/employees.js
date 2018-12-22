@@ -1,7 +1,7 @@
 const DbModel = require('./common/dbModel');
 
 
-class Employee extends DbModel {
+class Employees extends DbModel {
     constructor() {
         super('employee');
     }
@@ -24,6 +24,10 @@ class Employee extends DbModel {
         await this._updateById(id, {status})
     }
 
+    async changeRoom(room, id) {
+        await this._updateById(id, {room})
+    }
+
 }
 
-module.exports = Employee;
+module.exports = Employees;

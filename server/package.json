@@ -6,6 +6,7 @@
   "devDependencies": {
     "babel": "^6.23.0",
     "config": "^3.0.0",
+    "firebase-admin": "^6.4.0",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",

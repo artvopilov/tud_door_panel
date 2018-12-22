@@ -11,6 +11,6 @@ import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Tablet;
 
 public interface TabletsAPI {
     @FormUrlEncoded
-    @POST("tablets/{id}")
+    @POST("tablets/{id}/token")
     Call<String> registerTablet(@Path("id") int tabletId, @Field("token") String token);
 }
