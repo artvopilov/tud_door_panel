@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
+
+import java.util.List;
+
 import retrofit2.Retrofit;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,27 +24,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         GridView gridView = (GridView) findViewById(R.id.workersGrid);
-        gridView.setAdapter(new WorkerAdapter(this));
+        //gridView.setAdapter(new WorkerAdapter(this));
+        getIndividualEmployee(gridView);
 
     }
 
     public void getIndividualEmployee(View v){
         Retrofit r= new Retrofit.Builder().baseUrl("http://10.0.2.2:5000/").addConverterFactory(GsonConverterFactory.create()).build();
         retrieveEmployee employee_=r.create(retrieveEmployee.class);
-        Call<employee> call= employee_.getIndividualEmployee();
-                call.enqueue(new Callback<employee>() {
-                    @Override
-                    public void onResponse(Call<employee> call, Response<employee> response) {
-                        employee e= response.body();
-                        GridView gridView = (GridView) findViewById(R.id.workersGrid);
-                        gridView.setAdapter(new WorkerAdapter(MainActivity.this,e));
-                    }
+        Call<List<employee_single>> call= employee_.getIndividualEmployee();
+        call.enqueue(new Callback<List<employee_single>>() {
+            @Override
+            public void onResponse(Call<List<employee_single>> call, Response<List<employee_single>> response) {
+                List<employee_single> e= response.body();
+                GridView gridView = (GridView) findViewById(R.id.workersGrid);
+                gridView.setAdapter(new WorkerAdapter(MainActivity.this,e));
+            }
 
-                    @Override
-                    public void onFailure(Call<employee> call, Throwable t) {
+            @Override
+            public void onFailure(Call<List<employee_single>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
 
-                    }
-                });
 
     }
 }

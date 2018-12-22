@@ -10,9 +10,11 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class WorkerAdapter extends BaseAdapter {
     MainActivity mActivity;
-    employee e;
+    List<employee_single> e;
 
     int N; // total number of textviews to add
 
@@ -25,14 +27,14 @@ public class WorkerAdapter extends BaseAdapter {
 
     private Context context;
 
-    public WorkerAdapter(MainActivity mainActivity, employee e) {
-        this.mActivity=mainActivity;
+    public WorkerAdapter(MainActivity mainActivity, List<employee_single> e) {
+        this.context=mainActivity;
         this.e=e;
     }
 
     @Override
     public int getCount() {
-        return e.getList().size();
+        return e.size();
     }
 
     @Override
@@ -58,9 +60,9 @@ public class WorkerAdapter extends BaseAdapter {
 
 
             // set some properties of rowTextView or something
-            tv1.setText(e.getList().get(position).getAge());
-            tv2.setText(e.getList().get(position).getEmail());
-            tv3.setText(e.getList().get(position).getName());
+            tv1.setText(String.valueOf(e.get(position).getAge()));
+            tv2.setText(e.get(position).getEmail());
+            tv3.setText(e.get(position).getName());
 
 
 
