@@ -6,13 +6,17 @@ const Employee = mongoose.model('Employee', new mongoose.Schema({
     name: String,
     age: Number,
     email: String,
+    status: {
+        type: String,
+        default: 'Available'
+    },
     room: {
         type: String,
-        required: false
+        default: 0
     },
     phoneNumber: {
         type: String,
-        required: false
+        default: ""
     }
 }));
 

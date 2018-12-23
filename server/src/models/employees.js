@@ -1,7 +1,7 @@
 const DbModel = require('./common/dbModel');
 
 
-class Employee extends DbModel {
+class Employees extends DbModel {
     constructor() {
         super('employee');
     }
@@ -14,20 +14,20 @@ class Employee extends DbModel {
         if (isEmployeeValid) {
             employee.id = await this._generate_id();
 
-            await this.MongooseModel.create(employee);
-            return employee
+            return await this._insert(employee);
         }
 
         throw new Error('Employee is invalid');
     }
 
-    async remode(id) {
-        const employee = this.getById(id);
-        if (!employee) {
-            throw Error(`Employee with id ${id} not found`);
-        }
-        await this.MongooseModel.remove({id});
+    async changeStatus(status, id) {
+        await this._updateById(id, {status})
     }
+
+    async changeRoom(room, id) {
+        await this._updateById(id, {room})
+    }
+
 }
 
-module.exports = Employee;
+module.exports = Employees;

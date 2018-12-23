@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "437104014539",
+    "firebase_url": "https://foxtrottabletproject.firebaseio.com",
+    "project_id": "foxtrottabletproject",
+    "storage_bucket": "foxtrottabletproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437104014539:android:d44512d00ebc8f7f",
+        "android_client_info": {
+          "package_name": "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437104014539-luj98jphc01m0l2u6tdi0ae7o8bisup7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app",
+            "certificate_hash": "1db472dac10a140401712cc24cff7fdc7a2f8635"
+          }
+        },
+        {
+          "client_id": "437104014539-8t03hrkob5jdb45ogrmgdcsbtcuvi9hp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANfBqLoVna2LQ-Y2tEYxPTMpXrU0BqlFE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437104014539-8t03hrkob5jdb45ogrmgdcsbtcuvi9hp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

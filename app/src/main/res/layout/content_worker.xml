@@ -48,7 +48,7 @@ android:orientation="horizontal">
         android:layout_height="wrap_content"
         android:layout_marginBottom="20px"
         android:layout_weight="1"
-        android:text="In the Office"
+        android:text="@string/status"
         android:textSize="20sp" />
 
 </LinearLayout>

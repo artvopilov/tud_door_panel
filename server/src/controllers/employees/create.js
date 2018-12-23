@@ -1,6 +1,5 @@
 module.exports = async ctx => {
     const employee = ctx.request.body;
-    console.log(employee);
     try {
         const newEmployee = await ctx.employeeModel.create(employee);
         ctx.status = 201;
