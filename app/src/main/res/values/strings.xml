@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Foxtrot-DoorPanel-App</string>
+    <string name="title_activity_make_appointment">Make Appointment</string>
+    <string name="status">Available</string>
 </resources>
