@@ -70,7 +70,7 @@ public class StatusSelection extends AppCompatActivity {
 
     private void updateStatus(Button button) {
         String status = button.getText().toString();
-        Call<String> call = employeesApi.updateEmployeeStatus(1, status);
+        Call<String> call = employeesApi.updateEmployeeStatus(17, status);
 
         call.enqueue(new Callback<String>() {
             @Override

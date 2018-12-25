@@ -6,19 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Tablet;
+
 public class WorkerAdapter extends BaseAdapter {
-    MainActivity mActivity;
-    List<employee_single> e;
-
-    int N; // total number of textviews to add
-
-    final TextView[] myTextViews = new TextView[N]; // create an empty array;
 
 
     public WorkerAdapter(Context context) {
@@ -27,14 +24,13 @@ public class WorkerAdapter extends BaseAdapter {
 
     private Context context;
 
-    public WorkerAdapter(MainActivity mainActivity, List<employee_single> e) {
+    public WorkerAdapter(MainActivity mainActivity, List<Worker> e) {
         this.context=mainActivity;
-        this.e=e;
     }
 
     @Override
     public int getCount() {
-        return e.size();
+        return ((Tablet)context.getApplicationContext()).getWorkerNum();
     }
 
     @Override
@@ -49,7 +45,7 @@ public class WorkerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        N=getCount();
+        Worker worker = ((Tablet)context.getApplicationContext()).getWorker(position);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.content_worker, null);
         TextView tv1= linearLayout.findViewById(R.id.b19);
@@ -59,10 +55,10 @@ public class WorkerAdapter extends BaseAdapter {
 
 
 
-            // set some properties of rowTextView or something
-            tv1.setText(String.valueOf(e.get(position).getAge()));
-            tv2.setText(e.get(position).getEmail());
-            tv3.setText(e.get(position).getName());
+        // set some properties of rowTextView or something
+        tv1.setText(worker.getName());
+        tv2.setText(worker.getPosition());
+        tv3.setText(worker.getStatus());
 
 
 

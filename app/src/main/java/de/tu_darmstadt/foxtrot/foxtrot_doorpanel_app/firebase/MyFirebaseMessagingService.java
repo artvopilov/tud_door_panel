@@ -8,9 +8,12 @@ import com.google.firebase.messaging.RemoteMessage;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.R;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.TabletsAPI;
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Tablet;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static java.lang.Integer.parseInt;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
@@ -24,11 +27,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             String status = remoteMessage.getData().get("status");
             Log.d(TAG, "Message status: " + status);
+
+            String id = remoteMessage.getData().get("employeeId");
+
+            Log.d(TAG, "worker id: " + id);
+
+            if (status != null && id != null){
+                ((Tablet)getApplicationContext()).updateWorker(parseInt(id),"status", status);
+            }
         }
 
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
+
+
     }
 
     @Override

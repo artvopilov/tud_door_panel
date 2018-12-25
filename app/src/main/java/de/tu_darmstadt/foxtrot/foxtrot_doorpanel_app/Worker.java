@@ -1,12 +1,13 @@
 package de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app;
 
-public class employee_single {
+public class Worker {
     private String name;
     private String email;
     private int age;
     private String room;
     private String position;
     private String status;
+    private int id;
 
     public String getRoom() {
         return room;
@@ -57,6 +58,14 @@ public class employee_single {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 
