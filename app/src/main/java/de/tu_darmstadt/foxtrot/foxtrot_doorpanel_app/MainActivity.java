@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.UpdateReceiver;
 
 import java.util.List;
 
@@ -23,29 +24,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String UPDATE_GUI = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateGUI";
+    final String UPDATE_GUI_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateGUI";
 
     GridView gridView;
 
-    class UpdateReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            gridView.invalidateViews();
-        }
-    }
-
-        @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        IntentFilter intentFilter = new IntentFilter(UPDATE_GUI);
-        registerReceiver(new UpdateReceiver(),intentFilter);
+        registerReceiver(new UpdateReceiver(), new IntentFilter(UPDATE_GUI_FILTER));
 
         gridView = (GridView) findViewById(R.id.workersGrid);
         gridView.setAdapter(new WorkerAdapter(this));
-        ((Tablet)getApplicationContext()).pullEmployees();
+        ((TabletApplication)getApplicationContext()).pullEmployees();
 
     }
 

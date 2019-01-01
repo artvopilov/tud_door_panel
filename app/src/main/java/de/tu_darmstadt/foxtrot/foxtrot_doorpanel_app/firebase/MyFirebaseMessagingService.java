@@ -6,6 +6,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.R;
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.TabletApplication;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.TabletsAPI;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Tablet;
@@ -33,15 +34,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "worker id: " + id);
 
             if (status != null && id != null){
-                ((Tablet)getApplicationContext()).updateWorker(parseInt(id),"status", status);
+                ((TabletApplication)getApplicationContext()).updateWorker(parseInt(id),"status", status);
             }
         }
 
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
-
-
     }
 
     @Override

@@ -30,7 +30,7 @@ public class WorkerAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return ((Tablet)context.getApplicationContext()).getWorkerNum();
+        return ((TabletApplication)context.getApplicationContext()).getWorkerNum();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class WorkerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Worker worker = ((Tablet)context.getApplicationContext()).getWorker(position);
+        Worker worker = ((TabletApplication)context.getApplicationContext()).getWorker(position);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.content_worker, null);
         TextView tv1= linearLayout.findViewById(R.id.b19);
