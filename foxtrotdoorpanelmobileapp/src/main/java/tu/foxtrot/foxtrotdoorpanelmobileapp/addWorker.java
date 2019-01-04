@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import retrofit2.Retrofit;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Employee;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.Employee;
 
 import static java.lang.Integer.parseInt;
 

@@ -20,7 +20,6 @@ passport.use('local', new LocalStrategy(localStrategyOptions, (email, password, 
                 return done(null, false, {message: 'bad username or password'})
             }
             const user = users[0];
-            console.log('User found');
             return done(null, user);
         })
         .catch(err => {
@@ -30,14 +29,13 @@ passport.use('local', new LocalStrategy(localStrategyOptions, (email, password, 
 
 const jwtStrategyOptions = {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey   : 'secret'
+    secretOrKey   : 'very_secret'
 };
 
 passport.use('jwt', new JWTStrategy(jwtStrategyOptions, (jwtPayload, done) => {
     const employeeModel = new EmployeeModel();
     employeeModel.getById(jwtPayload.id)
         .then(user => {
-            console.log(user);
             return done(null, user);
         })
         .catch(err => {
