@@ -6,6 +6,7 @@ const Employee = mongoose.model('Employee', new mongoose.Schema({
     name: String,
     age: Number,
     email: String,
+    password: String,
     status: {
         type: String,
         default: 'Available'
