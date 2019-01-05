@@ -60,6 +60,14 @@ public class WorkerAdapter extends BaseAdapter {
         tv2.setText(worker.getPosition());
         tv3.setText(worker.getStatus());
 
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), BioActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
 
 
         calendarButton.setOnClickListener(new View.OnClickListener() {
