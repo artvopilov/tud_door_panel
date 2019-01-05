@@ -24,7 +24,7 @@ public class addWorker extends AppCompatActivity {
     Employee e;
     EditText editName;
     EditText editMail;
-    EditText editAge;
+    EditText editRoom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class addWorker extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         editName = findViewById(R.id.editText);
-        editAge = findViewById(R.id.editText2);
+        editRoom = findViewById(R.id.editText2);
         editMail = findViewById(R.id.editText3);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -43,10 +43,10 @@ public class addWorker extends AppCompatActivity {
                 String name = editName.getText().toString();
                 String email = editMail.getText().toString();
                 Log.d("DoorPanel", "parsed strings ");
-                int age = parseInt( editAge.getText().toString());
+                String room = editRoom.getText().toString();
                 Log.d("DoorPanel", "parsed age ");
                e=new Employee();
-               e.setAge(age);
+               e.setRoom(room);
                e.setName(name);
                e.setEmail(email);
 
