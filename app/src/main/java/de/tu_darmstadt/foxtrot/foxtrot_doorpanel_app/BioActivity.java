@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
@@ -29,6 +30,18 @@ public class BioActivity extends AppCompatActivity {
 
         employeesApi = RetrofitClient.getRetrofitInstance().create(EmployeesAPI.class);
 
+        int workerID = getIntent().getIntExtra("workerID",0);
+
+        Worker worker = ((TabletApplication)getApplicationContext()).getWorkerByID(workerID);
+
+        if (worker != null) {
+            TextView nameView = findViewById(R.id.b19);
+            nameView.setText(worker.getName());
+            TextView positionView = findViewById(R.id.b20);
+            positionView.setText(worker.getPosition());
+            TextView statusView = findViewById(R.id.b21);
+            statusView.setText(worker.getStatus());
+        }
 
         Button sendButton = findViewById(R.id.button);
 

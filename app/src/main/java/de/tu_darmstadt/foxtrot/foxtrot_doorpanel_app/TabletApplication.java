@@ -23,6 +23,15 @@ public class TabletApplication extends Application {
         return workerList.get(position);
     }
 
+    public Worker getWorkerByID(int id){
+        for (Worker worker : workerList){
+            if (worker.getId()==id){
+                return worker;
+            }
+        }
+        return null;
+    }
+
     public int getWorkerNum(){
         return workerList.size();
     }

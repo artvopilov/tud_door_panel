@@ -1,11 +1,17 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp.firebase;
 
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 //import tu.foxtrot.foxtrotdoorpanelmobileapp.TabletApplication;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.MessageNotification;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.MobileApplication;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.Notification;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.R;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
 import retrofit2.Call;
@@ -17,6 +23,8 @@ import static java.lang.Integer.parseInt;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
+    private static final String CHANNEL_ID = "FoxtrottNotifications";
+    private int notificationID = 0;
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -25,16 +33,32 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
 
-            String status = remoteMessage.getData().get("status");
-            Log.d(TAG, "Message status: " + status);
+            String message = remoteMessage.getData().get("message");
+            Log.d(TAG, "Message: " + message);
 
             String id = remoteMessage.getData().get("employeeId");
 
             Log.d(TAG, "worker id: " + id);
 
-            /*if (status != null && id != null){
-                ((TabletApplication)getApplicationContext()).updateWorker(parseInt(id),"status", status);
-            }*/
+            Notification notification = new MessageNotification("22.02.2018",
+                    "10:23", "Message", message,
+                    "mister@gmail.com", "Anon");
+
+            ((MobileApplication)getApplicationContext()).addNotification(notification);
+
+            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                    .setSmallIcon(R.drawable.ic_envelope)
+                    .setContentTitle("new message from door panel")
+                    .setContentText(message)
+                    .setStyle(new NotificationCompat.BigTextStyle()
+                            .bigText(message))
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+            // notificationId is a unique int for each notification that you must define
+            notificationManager.notify(notificationID, mBuilder.build());
+            notificationID++;
         }
 
         if (remoteMessage.getNotification() != null) {

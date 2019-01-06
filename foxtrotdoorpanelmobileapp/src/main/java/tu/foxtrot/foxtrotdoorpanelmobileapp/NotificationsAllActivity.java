@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NotificationsAllActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class NotificationsAllActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_notifications);
         ListView mListView = (ListView) findViewById(R.id.notifications_list);
 
-        Notification notification1 = new Notification("20.12.2018", "12:20",
+        /*Notification notification1 = new Notification("20.12.2018", "12:20",
                 "New Meeting", "Blablabla");
         Notification notification2 = new Notification("13.01.2018", "09:20",
                 "New Meeting", "tatatatata");
@@ -50,10 +51,10 @@ public class NotificationsAllActivity extends AppCompatActivity {
                 "10:23", "Message", "Could I come in?",
                 "mister@gmail.com", "Piter Matt");
         Notification notification7 = new Notification("11.01.2033", "01:45",
-                "Door Info Changed", "Don't disturb");
+                "Door Info Changed", "Don't disturb");*/
 
-        ArrayList<Notification> notifications = new ArrayList<>();
-        notifications.add(notification1);
+        List<Notification> notifications = ((MobileApplication)getApplicationContext()).getNotificationsList();
+        /*notifications.add(notification1);
         notifications.add(notification2);
         notifications.add(notification3);
         notifications.add(messageNotification1);
@@ -65,7 +66,7 @@ public class NotificationsAllActivity extends AppCompatActivity {
         notifications.add(messageNotification4);
         notifications.add(messageNotification5);
         notifications.add(messageNotification6);
-        notifications.add(notification7);
+        notifications.add(notification7);*/
 
         NotificationsListAdapter adapter = new NotificationsListAdapter(this,
                 R.layout.single_notification, notifications);
