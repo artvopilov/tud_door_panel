@@ -1,5 +1,7 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp.firebase;
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
@@ -8,6 +10,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 //import tu.foxtrot.foxtrotdoorpanelmobileapp.TabletApplication;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.MessageActivity;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.MessageNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.MobileApplication;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.Notification;
@@ -19,6 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.MobilesAPI;
 
+import static android.app.Notification.VISIBILITY_PUBLIC;
 import static java.lang.Integer.parseInt;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -40,9 +44,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             Log.d(TAG, "worker id: " + id);
 
+
+
             Notification notification = new MessageNotification("22.02.2018",
                     "10:23", "Message", message,
                     "mister@gmail.com", "Anon");
+
+            // Create an explicit intent for an Activity in your app
+            Intent intent = new Intent(this, MessageActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.putExtra("Name", ((MessageNotification) notification).getName());
+            intent.putExtra("Email", ((MessageNotification) notification).getEmail());
+            intent.putExtra("Details", ((MessageNotification) notification).getDetails());
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             ((MobileApplication)getApplicationContext()).addNotification(notification);
 
@@ -52,7 +66,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     .setContentText(message)
                     .setStyle(new NotificationCompat.BigTextStyle()
                             .bigText(message))
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
+                    .setVisibility(VISIBILITY_PUBLIC);
 
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
