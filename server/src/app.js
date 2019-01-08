@@ -4,8 +4,7 @@ const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const config = require('config');
 const admin = require('firebase-admin');
-const serviceAccount = require('./../foxtrottabletproject-firebase-adminsdk.json');
-const serviceAccount2 = require('./../foxtrotmobiles-firebase-adminsdk.json');
+const serviceAccount = require('./../foxtrotdoorpanel-firebase-adminsdk.json');
 
 const getEmployeesController = require('./controllers/employees/get-emplyees');
 const getEmployeesByRoomController = require('./controllers/employees/get-emplyees-by-room');
@@ -34,13 +33,9 @@ mongoose.Promise = global.Promise;
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://foxtrottabletproject.firebaseio.com'
+    databaseURL: 'https://foxtrotdoorpanel.firebaseio.com'
 });
 
-const mobileApp = admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount2),
-    databaseURL: 'https://foxtrotmobiles.firebaseio.com/'
-},'mobiles');
 
 const app = new Koa();
 
@@ -68,7 +63,6 @@ app.use(async (ctx, next) => {
     ctx.tabletModel = new TabletModel();
     ctx.mobileModel = new MobileModel();
     ctx.admin = admin;
-    ctx.mobileApp = mobileApp;
     await next();
 });
 

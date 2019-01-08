@@ -11,7 +11,7 @@ module.exports = async (ctx) => {
         token: token
     };
     ctx.body = message;
-    ctx.mobileApp.messaging().send(messageToTablet)
+    ctx.admin.messaging().send(messageToTablet)
         .then((response) => {
             console.log('Successfully sent message:', response);
         })
