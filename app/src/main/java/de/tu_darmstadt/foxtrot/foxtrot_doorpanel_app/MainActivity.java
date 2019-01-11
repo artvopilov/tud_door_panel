@@ -7,7 +7,10 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
+
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.UpdateReceiver;
 
 import java.util.List;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     final String UPDATE_GUI_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateGUI";
 
     GridView gridView;
+    private ImageButton calendarButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,19 @@ public class MainActivity extends AppCompatActivity {
         gridView.setAdapter(new WorkerAdapter(this));
         ((TabletApplication)getApplicationContext()).pullEmployees();
 
+        openCreateEvent();
+
+    }
+
+    public void openCreateEvent() {
+        calendarButton = findViewById(R.id.landingPagePinButton10);
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
