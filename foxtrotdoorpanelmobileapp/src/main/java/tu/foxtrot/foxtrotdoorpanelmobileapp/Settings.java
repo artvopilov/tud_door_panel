@@ -13,6 +13,7 @@ public class Settings extends AppCompatActivity {
     private Button emailButton;
     private Button phoneButton;
     private Button summaryButton;
+    private Button calendarButton;
     private Button defTimeSlotsButton;
     private Button addWorkerButton;
 
@@ -27,6 +28,7 @@ public class Settings extends AppCompatActivity {
         openCustomizedEmail();
         openCustomizedPhone();
         openCustomizedSummary();
+        openSetCalendar();
         openAddWorker();
 
 
@@ -87,8 +89,19 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    public void openSetCalendar() {
+        calendarButton = (Button) findViewById(R.id.button7);
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, SetCalendarActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     public void openAddWorker() {
-        addWorkerButton = (Button) findViewById(R.id.button7);
+        addWorkerButton = (Button) findViewById(R.id.button8);
         addWorkerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

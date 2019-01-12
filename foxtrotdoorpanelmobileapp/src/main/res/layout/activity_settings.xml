@@ -76,6 +76,15 @@
             android:layout_width="match_parent"
             android:layout_height="@android:dimen/notification_large_icon_height"
             android:drawableLeft="@drawable/ic_clock_regular"
+            android:text="set calendar"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="match_parent"
+            android:layout_height="@android:dimen/notification_large_icon_height"
+            android:drawableLeft="@drawable/ic_clock_regular"
             android:text="add new worker"
             android:textAlignment="center"
             android:textSize="18sp" />
