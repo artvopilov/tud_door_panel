@@ -10,6 +10,7 @@ class Employees extends DbModel {
         const isEmployeeValid = employee
             && Object.prototype.hasOwnProperty.call(employee, 'name')
             && Object.prototype.hasOwnProperty.call(employee, 'age')
+            && Object.prototype.hasOwnProperty.call(employee, 'password')
             && Object.prototype.hasOwnProperty.call(employee, 'email');
         if (isEmployeeValid) {
             employee.id = await this._generate_id();

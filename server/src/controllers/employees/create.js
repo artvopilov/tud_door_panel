@@ -7,5 +7,6 @@ module.exports = async ctx => {
     } catch (e) {
         console.log(`Error caught in create controller: ${e.message}: `);
         ctx.status = 400;
+        ctx.body = { status: 'error' };
     }
 };

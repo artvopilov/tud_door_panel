@@ -1,12 +1,16 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 public class Settings extends AppCompatActivity {
+    private final String TAG = "SettingsActivity";
 
     private Button photoButton;
     private Button roomButton;
@@ -15,12 +19,14 @@ public class Settings extends AppCompatActivity {
     private Button summaryButton;
     private Button defTimeSlotsButton;
     private Button addWorkerButton;
+    private Button logoutButton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        logoutButton = (Button) findViewById(R.id.logoutButton);
 
         openCustomizedPhoto();
         openCustomizedRoom();
@@ -28,8 +34,18 @@ public class Settings extends AppCompatActivity {
         openCustomizedPhone();
         openCustomizedSummary();
         openAddWorker();
+        logoutWorker();
+    }
 
-
+    private void logoutWorker() {
+        logoutButton.setOnClickListener(v -> {
+            SharedPreferences.Editor sharedPrefEditor = getSharedPreferences(
+                    getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
+            sharedPrefEditor.remove("token");
+            sharedPrefEditor.apply();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        });
     }
 
     public void openCustomizedPhoto() {

@@ -2,6 +2,7 @@ package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +16,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Employee;
 
 public class PersonalStatus extends AppCompatActivity {
 
@@ -41,7 +41,11 @@ public class PersonalStatus extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String status = statusTextView.getText().toString();
-                Call<String> call = employeesApi.updateEmployeeStatus(1, status);
+                SharedPreferences sharedPreferences = getSharedPreferences(
+                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                String token = sharedPreferences.getString("token", null);
+                Call<String> call = employeesApi.updateEmployeeStatus("Bearer " + token,
+                        status);
 
                 call.enqueue(new Callback<String>() {
                     @Override
