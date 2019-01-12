@@ -335,7 +335,7 @@ public class CalendarActivity extends AppCompatActivity implements EasyPermissio
             // List the next 10 events from the primary calendar.
             DateTime now = new DateTime(System.currentTimeMillis());
             List<String> eventStrings = new ArrayList<String>();
-            Events events = mService.events().list("primary")
+            Events events = mService.events().list("mlgh7qd6skb30ppnvogghbk2pc@group.calendar.google.com")
                     .setMaxResults(10)
                     .setTimeMin(now)
                     .setOrderBy("startTime")
