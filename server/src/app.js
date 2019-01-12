@@ -3,6 +3,7 @@ const router = require('koa-router')();
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const config = require('config');
+const passport = require('passport');
 const admin = require('firebase-admin');
 const serviceAccount = require('./../foxtrottabletproject-firebase-adminsdk.json');
 
@@ -12,6 +13,7 @@ const createEmployeesController = require('./controllers/employees/create');
 const changeEmployeeStatusController = require('./controllers/employees/change-status');
 const getEmployeeByIdController = require('./controllers/employees/get-by-id');
 const changeEmployeeRoomController = require('./controllers/employees/change-room');
+const authenticateEmployeeController = require('./controllers/employees/auth');
 
 const getTabletsController = require('./controllers/tablets/get-tablets');
 const registerTabletTokenController = require('./controllers/tablets/register-token');
@@ -31,16 +33,24 @@ admin.initializeApp({
 });
 
 const app = new Koa();
+require('./passport');
+app.use(passport.initialize());
 
 router.param('id', (id, ctx, next) => next());
 router.param('room', (room, ctx, next) => next());
 
 router.get('/employees/', getEmployeesController);
 router.get('/employees/room/:room', getEmployeesByRoomController);
-router.get('/employees/:id', getEmployeeByIdController);
+router.get('/employees/:id/', getEmployeeByIdController);
 router.post('/employees/', createEmployeesController);
-router.post('/employees/:id/status', changeEmployeeStatusController);
+router.post('/employees/status', passport.authenticate('jwt', {session: false}),
+    changeEmployeeStatusController);
 router.post('/employees/:id/room', changeEmployeeRoomController);
+router.post('/employees/login/', authenticateEmployeeController);
+router.get('/test-employee-token/', passport.authenticate('jwt', {session: false}),
+    async ctx => {
+        ctx.body = "Authenticated route reached";
+});
 
 router.get('/tablets/', getTabletsController);
 router.post('/tablets/', createTabletController);

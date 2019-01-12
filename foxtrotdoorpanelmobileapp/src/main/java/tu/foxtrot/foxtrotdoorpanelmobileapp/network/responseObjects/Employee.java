@@ -1,4 +1,4 @@
-package tu.foxtrot.foxtrotdoorpanelmobileapp.network.models;
+package tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects;
 
 public class Employee {
     private int id;
