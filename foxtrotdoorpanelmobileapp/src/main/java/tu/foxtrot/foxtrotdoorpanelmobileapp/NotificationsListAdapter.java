@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NotificationsListAdapter extends ArrayAdapter<Notification> {
 
@@ -31,7 +32,7 @@ public class NotificationsListAdapter extends ArrayAdapter<Notification> {
     }
 
     public NotificationsListAdapter(@NonNull Context context, int resource,
-                                    @NonNull ArrayList<Notification> objects) {
+                                    @NonNull List<Notification> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
