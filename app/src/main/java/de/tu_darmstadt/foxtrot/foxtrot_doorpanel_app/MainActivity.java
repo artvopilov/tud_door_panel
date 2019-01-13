@@ -38,8 +38,5 @@ public class MainActivity extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.workersGrid);
         gridView.setAdapter(new WorkerAdapter(this));
         ((TabletApplication)getApplicationContext()).pullEmployees();
-
     }
-
-
 }
