@@ -13,6 +13,7 @@ const changeEmployeeStatusController = require('./controllers/employees/change-s
 const sendEmployeeMessageController = require('./controllers/employees/send-message');
 const getEmployeeByIdController = require('./controllers/employees/get-by-id');
 const changeEmployeeRoomController = require('./controllers/employees/change-room');
+const addEmployeeTimeslotController = require('./controllers/employees/add-timeslot');
 
 const getTabletsController = require('./controllers/tablets/get-tablets');
 const registerTabletTokenController = require('./controllers/tablets/register-token');
@@ -49,6 +50,7 @@ router.post('/employees/', createEmployeesController);
 router.post('/employees/:id/status', changeEmployeeStatusController);
 router.post('/employees/:id/message', sendEmployeeMessageController);
 router.post('/employees/:id/room', changeEmployeeRoomController);
+router.post('/employees/:id/timeslot', addEmployeeTimeslotController);
 
 router.get('/tablets/', getTabletsController);
 router.post('/tablets/', createTabletController);

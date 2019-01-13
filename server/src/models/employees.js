@@ -28,6 +28,10 @@ class Employees extends DbModel {
         await this._updateById(id, {room})
     }
 
+    async addTimeslot(event, id) {
+        await this._MongooseModel.updateOne({id}, {$addToSet:{timeslots:event}});
+    }
+
 }
 
 module.exports = Employees;
