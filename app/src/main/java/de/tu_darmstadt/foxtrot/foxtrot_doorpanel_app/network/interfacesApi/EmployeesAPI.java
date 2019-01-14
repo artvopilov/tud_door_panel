@@ -24,6 +24,12 @@ public interface EmployeesAPI {
     @FormUrlEncoded
     @POST("employees/{id}/message")
     Call<String> sendEmployeeMessage(@Path("id") int employeeId, @Field("message") String message);
+
+    @FormUrlEncoded
+    @POST("employees/{id}/book")
+    Call<String> bookEmployeeTimeslot(@Path("id") int employeeId, @Field("timeslot") int timeslot,
+                                      @Field("name") String name, @Field("number") String number,
+                                      @Field("email") String email, @Field("message") String message);
 }
 
 

@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
@@ -56,15 +57,23 @@ import java.util.List;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.adapter.EventListAdapter;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.model.ScheduledEvents;
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.EmployeesAPI;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class makeAppointment extends AppCompatActivity {
 
     ProgressDialog mProgress;
 
+    private final String TAG = "make appointment";
 
     private WeekView mWeekView;
+
+    private EmployeesAPI employeesApi;
 
 
     private WeekViewEvent activeEvent = null;
@@ -75,6 +84,11 @@ public class makeAppointment extends AppCompatActivity {
     private  boolean mailEdited = false;
     private  boolean messageEdited = false;
 
+    private EditText editName;
+    private EditText editNumber;
+    private EditText editMail;
+    private EditText editMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -84,9 +98,16 @@ public class makeAppointment extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        employeesApi = RetrofitClient.getRetrofitInstance().create(EmployeesAPI.class);
+
         int workerID = getIntent().getIntExtra("workerID",0);
 
         Worker worker = ((TabletApplication)getApplicationContext()).getWorkerByID(workerID);
+
+        editName = ((EditText) findViewById(R.id.editName));
+        editNumber = ((EditText) findViewById(R.id.editPhone));
+        editMail = ((EditText) findViewById(R.id.editEMail));
+        editMessage = ((EditText) findViewById(R.id.editMessage));
 
         events = new ArrayList<WeekViewEvent>();
 
@@ -100,6 +121,7 @@ public class makeAppointment extends AppCompatActivity {
             wvEvent.setEndTime(calEnd);
             wvEvent.setName(event.getName());
             wvEvent.setColor(getResources().getColor(R.color.colorSlot));
+            wvEvent.setId(event.getId());
             events.add(wvEvent);
         }
 
@@ -113,6 +135,29 @@ public class makeAppointment extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Call<String> call = employeesApi.bookEmployeeTimeslot(17,
+                        (int) activeEvent.getId(),editName.getText().toString(),
+                        editNumber.getText().toString(), editMail.getText().toString(),
+                        editMessage.getText().toString());
+
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        String newStatus = response.body();
+
+                        Context context = getApplicationContext();
+                        Toast toast = Toast.makeText(context, "Status updated: " + newStatus,
+                                Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Log.d(TAG, t.getMessage());
+                    }
+                });
+
                 finish();
             }
         });
@@ -151,7 +196,7 @@ public class makeAppointment extends AppCompatActivity {
             }
         });
 
-        ((EditText) findViewById(R.id.editName)).addTextChangedListener(new TextWatcher() {
+        editName.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 nameEdited = true;
                 Log.v("DoorPanel", "name edited" );
@@ -170,7 +215,7 @@ public class makeAppointment extends AppCompatActivity {
             }
         });
 
-        ((EditText) findViewById(R.id.editEMail)).addTextChangedListener(new TextWatcher() {
+        editMail.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 mailEdited = true;
                 Log.v("DoorPanel", "mail edited" );
@@ -189,7 +234,7 @@ public class makeAppointment extends AppCompatActivity {
             }
         });
 
-        ((EditText) findViewById(R.id.editMessage)).addTextChangedListener(new TextWatcher() {
+        editMessage.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 messageEdited = true;
                 Log.v("DoorPanel", "message edited" );
