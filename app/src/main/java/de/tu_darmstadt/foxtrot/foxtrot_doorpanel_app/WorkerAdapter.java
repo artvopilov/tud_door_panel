@@ -17,7 +17,7 @@ import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Tablet;
 
 public class WorkerAdapter extends BaseAdapter {
 
-    private Worker worker;
+
 
     public WorkerAdapter(Context context) {
         this.context = context;
@@ -46,7 +46,7 @@ public class WorkerAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        worker = ((TabletApplication)context.getApplicationContext()).getWorker(position);
+        Worker worker = ((TabletApplication)context.getApplicationContext()).getWorker(position);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.content_worker, null);
         TextView tv1= linearLayout.findViewById(R.id.b19);
