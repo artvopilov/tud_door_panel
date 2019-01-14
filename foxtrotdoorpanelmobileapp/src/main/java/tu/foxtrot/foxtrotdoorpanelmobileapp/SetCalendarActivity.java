@@ -12,6 +12,8 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -51,6 +53,7 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
 
     private TextView mOutputText;
     private RadioGroup radioGroup;
+    private Button submitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +62,28 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
 
         mOutputText = findViewById(R.id.textView3);
         radioGroup = findViewById(R.id.radioGroup);
+        submitButton = findViewById(R.id.button);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveCalendar();
+            }
+        });
 
         // Initialize credentials and service object.
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
         getResultsFromApi();
+    }
+
+    private void saveCalendar() {
+        ((MobileApplication)getApplicationContext()).mCredential = mCredential;
+        RadioButton activeButton = radioGroup.findViewById(radioGroup.getCheckedRadioButtonId());
+        ((MobileApplication)getApplicationContext()).mCalendar = activeButton.getText().toString();
+        Intent intent = new Intent(SetCalendarActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void getResultsFromApi() {

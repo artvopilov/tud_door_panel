@@ -20,4 +20,5 @@ public class MobileApplication extends Application {
     }
 
     public GoogleAccountCredential mCredential; //TODO: this needs to be encapsulated
+    public String mCalendar; //TODO: this needs to be encapsulated
 }

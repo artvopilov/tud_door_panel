@@ -229,18 +229,8 @@ public class Settings extends AppCompatActivity {
         event.setRecurrence(Arrays.asList(recurrence));
 
 
-        event.setAttendees(Arrays.asList(eventAttendees));
 
-        EventReminder[] reminderOverrides = new EventReminder[] {
-                new EventReminder().setMethod("email").setMinutes(24 * 60),
-                new EventReminder().setMethod("popup").setMinutes(10),
-        };
-        Event.Reminders reminders = new Event.Reminders()
-                .setUseDefault(false)
-                .setOverrides(Arrays.asList(reminderOverrides));
-        event.setReminders(reminders);
-
-        String calendarId = "primary";
+        String calendarId = ((MobileApplication)getApplicationContext()).mCalendar;
 
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
