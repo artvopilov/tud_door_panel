@@ -98,37 +98,25 @@ public class makeAppointment extends AppCompatActivity implements EasyPermission
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        events = new ArrayList<WeekViewEvent>();
-        WeekViewEvent testEvent = new WeekViewEvent();
-        testEvent.setStartTime(Calendar.getInstance());
-        testEvent.setName("free slot");
-        Calendar end = Calendar.getInstance();
-        end.add(Calendar.HOUR,1);
-        testEvent.setEndTime(end);
-        testEvent.setColor(getResources().getColor(R.color.colorSlot));
-        events.add(testEvent);
-        WeekViewEvent testEvent2 = new WeekViewEvent();
-        Calendar start2 = Calendar.getInstance();
-        start2.add(Calendar.HOUR,2);
-        testEvent2.setStartTime(start2);
-        testEvent2.setName("free slot");
-        Calendar end2 = Calendar.getInstance();
-        end2.add(Calendar.HOUR,3);
-        testEvent2.setEndTime(end2);
-        testEvent2.setColor(getResources().getColor(R.color.colorSlot));
-        events.add(testEvent2);
+        int workerID = getIntent().getIntExtra("workerID",0);
 
-        WeekViewEvent testEvent3 = new WeekViewEvent();
-        Calendar start3 = Calendar.getInstance();
-        start3.add(Calendar.DATE,1);
-        testEvent3.setStartTime(start3);
-        testEvent3.setName("team meeting");
-        Calendar end3 = Calendar.getInstance();
-        end3.add(Calendar.HOUR,1);
-        end3.add(Calendar.DATE,1);
-        testEvent3.setEndTime(end3);
-        testEvent3.setColor(getResources().getColor(R.color.colorEvent));
-        events.add(testEvent3);
+        Worker worker = ((TabletApplication)getApplicationContext()).getWorkerByID(workerID);
+
+        events = new ArrayList<WeekViewEvent>();
+
+        for (de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Event event:worker.getTimeslots()) {
+            WeekViewEvent wvEvent = new WeekViewEvent();
+            Calendar calStart = Calendar.getInstance();
+            calStart.setTime(event.getStart());
+            wvEvent.setStartTime(calStart);
+            Calendar calEnd = Calendar.getInstance();
+            calStart.setTime(event.getEnd());
+            wvEvent.setEndTime(calEnd);
+            wvEvent.setName(event.getName());
+            wvEvent.setColor(getResources().getColor(R.color.colorSlot));
+            events.add(wvEvent);
+        }
+
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -261,14 +249,14 @@ public class makeAppointment extends AppCompatActivity implements EasyPermission
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("Syncing with calendar..");
 
-
+/*
         // Initialize credentials and service object.
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
         getResultsFromApi();
 
-
+*/
     }
 
     private void getResultsFromApi() {
