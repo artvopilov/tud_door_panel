@@ -20,13 +20,8 @@ const getTabletsController = require('./controllers/tablets/get-tablets');
 const registerTabletTokenController = require('./controllers/tablets/register-token');
 const createTabletController = require('./controllers/tablets/create');
 
-const getMobilesController = require('./controllers/mobiles/get-mobiles');
-const registerMobileTokenController = require('./controllers/mobiles/register-token');
-const createMobileController = require('./controllers/mobiles/create');
-
 const EmployeeModel = require('./models/employees');
 const TabletModel = require('./models/tablets');
-const MobileModel = require('./models/mobiles');
 
 mongoose.connect(config.get('mongo.uri'), { useNewUrlParser: true })
     .then(() => console.log("Successfully connected to db"))
@@ -64,14 +59,9 @@ router.get('/tablets/', getTabletsController);
 router.post('/tablets/', createTabletController);
 router.post('/tablets/:id/token', registerTabletTokenController);
 
-router.get('/mobiles/', getMobilesController);
-router.post('/mobiles/', createMobileController);
-router.post('/mobiles/:id/token', registerMobileTokenController);
-
 app.use(async (ctx, next) => {
     ctx.employeeModel = new EmployeeModel();
     ctx.tabletModel = new TabletModel();
-    ctx.mobileModel = new MobileModel();
     ctx.admin = admin;
     await next();
 });

@@ -14,7 +14,7 @@ module.exports = async (ctx) => {
             });
             const token = jwt.sign(user, 'very_secret');
             ctx.status = 200;
-            ctx.body = {employee: user, token, status: 'ok'};
+            ctx.body = {worker: user, token, status: 'ok'};
         } else {
             console.log(err);
             ctx.status = 400;

@@ -8,16 +8,16 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.Employee;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.Worker;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.LoginResponse;
 
-public interface EmployeesAPI {
+public interface WorkersAPI {
 
     @POST("employees")
-    Call<Employee> createEmployee(@Body Employee e1);
+    Call<Worker> createEmployee(@Body Worker e1);
 
     @GET("employees/{id}")
-    Call<Employee> getEmployeeById(@Path("id") int employeeId);
+    Call<Worker> getEmployeeById(@Path("id") int employeeId);
 
     @FormUrlEncoded
     @POST("employees/status")

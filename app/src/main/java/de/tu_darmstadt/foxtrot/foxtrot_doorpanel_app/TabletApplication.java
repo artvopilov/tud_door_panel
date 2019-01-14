@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
-import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.EmployeesAPI;
-import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.TabletsAPI;
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.WorkerAPI;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TabletApplication extends Application {
 
@@ -56,8 +53,8 @@ public class TabletApplication extends Application {
     }
 
     public void pullEmployees(){
-        EmployeesAPI employeesAPI = RetrofitClient.getRetrofitInstance().create(EmployeesAPI.class);
-        Call<List<Worker>> call= employeesAPI.getAllEmployees();
+        WorkerAPI workerAPI = RetrofitClient.getRetrofitInstance().create(WorkerAPI.class);
+        Call<List<Worker>> call= workerAPI.getAllEmployees();
         call.enqueue(new Callback<List<Worker>>() {
             @Override
             public void onResponse(Call<List<Worker>> call, Response<List<Worker>> response) {

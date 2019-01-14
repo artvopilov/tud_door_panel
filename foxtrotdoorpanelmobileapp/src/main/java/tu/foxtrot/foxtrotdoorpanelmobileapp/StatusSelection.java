@@ -18,21 +18,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
 public class StatusSelection extends AppCompatActivity {
 
     private final String TAG = "StatusSelectionActivity";
     private List<Button> statusButtons = new ArrayList<>();
     private Button statusCustomButton;
-    private EmployeesAPI employeesApi;
+    private WorkersAPI workersApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status_selection);
 
-        employeesApi = RetrofitClient.getRetrofitInstance().create(EmployeesAPI.class);
+        workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
 
         statusButtons.add((Button) findViewById(R.id.button1));
         statusButtons.add((Button) findViewById(R.id.button2));
@@ -74,7 +74,7 @@ public class StatusSelection extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
-        Call<String> call = employeesApi.updateEmployeeStatus("Bearer " + token,
+        Call<String> call = workersApi.updateEmployeeStatus("Bearer " + token,
                 status);
 
         call.enqueue(new Callback<String>() {

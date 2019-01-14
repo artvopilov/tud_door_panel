@@ -12,7 +12,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Employee;
 
-public interface EmployeesAPI {
+public interface WorkerAPI {
     @GET("employees")
     Call<List<Worker>> getAllEmployees();
 

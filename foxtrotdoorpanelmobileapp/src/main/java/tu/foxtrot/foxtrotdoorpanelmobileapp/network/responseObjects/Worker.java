@@ -1,6 +1,6 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects;
 
-public class Employee {
+public class Worker {
     private int id;
     private String name;
     private int age;
