@@ -58,7 +58,7 @@ import java.util.List;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.adapter.EventListAdapter;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.model.ScheduledEvents;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
-import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.EmployeesAPI;
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.WorkerAPI;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
@@ -73,7 +73,7 @@ public class makeAppointment extends AppCompatActivity {
 
     private WeekView mWeekView;
 
-    private EmployeesAPI employeesApi;
+    private WorkerAPI employeesApi;
 
 
     private WeekViewEvent activeEvent = null;
@@ -98,7 +98,7 @@ public class makeAppointment extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        employeesApi = RetrofitClient.getRetrofitInstance().create(EmployeesAPI.class);
+        employeesApi = RetrofitClient.getRetrofitInstance().create(WorkerAPI.class);
 
         int workerID = getIntent().getIntExtra("workerID",0);
 

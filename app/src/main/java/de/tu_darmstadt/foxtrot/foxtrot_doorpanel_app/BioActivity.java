@@ -2,7 +2,6 @@ package de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,14 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
-import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.EmployeesAPI;
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.WorkerAPI;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BioActivity extends AppCompatActivity {
 
-    private EmployeesAPI employeesApi;
+    private WorkerAPI workerApi;
     private final String TAG = "BioActivity";
 
     @Override
@@ -28,7 +27,7 @@ public class BioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bio);
 
-        employeesApi = RetrofitClient.getRetrofitInstance().create(EmployeesAPI.class);
+        workerApi = RetrofitClient.getRetrofitInstance().create(WorkerAPI.class);
 
         int workerID = getIntent().getIntExtra("workerID",0);
 
@@ -50,7 +49,7 @@ public class BioActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText textEdit = findViewById(R.id.editText);
                 String message = textEdit.getText().toString();
-                Call<String> call = employeesApi.sendEmployeeMessage(17, message);
+                Call<String> call = workerApi.sendEmployeeMessage(workerID, message);
 
                 call.enqueue(new Callback<String>() {
                     @Override

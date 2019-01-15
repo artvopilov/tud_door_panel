@@ -14,14 +14,14 @@ import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import retrofit2.Retrofit;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Employee;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.Worker;
 
 import static java.lang.Integer.parseInt;
 
 public class addWorker extends AppCompatActivity {
 
-    Employee e;
+    Worker e;
     EditText editName;
     EditText editMail;
     EditText editRoom;
@@ -45,7 +45,7 @@ public class addWorker extends AppCompatActivity {
                 Log.d("DoorPanel", "parsed strings ");
                 String room = editRoom.getText().toString();
                 Log.d("DoorPanel", "parsed age ");
-               e=new Employee();
+               e=new Worker();
                e.setRoom(room);
                e.setName(name);
                e.setEmail(email);
@@ -56,7 +56,7 @@ public class addWorker extends AppCompatActivity {
         });
     }
 
-    public void sendNetworkRequest(Employee e1)
+    public void sendNetworkRequest(Worker e1)
     {
 
         Log.d("DoorPanel", "send1 ");
@@ -69,17 +69,17 @@ public class addWorker extends AppCompatActivity {
         Retrofit retrofit =builder.build();
         Log.d("DoorPanel", "send3 ");
 
-        EmployeesAPI client = retrofit.create(EmployeesAPI.class);
-        Call <Employee> call= client.createEmployee(e1);
+        WorkersAPI client = retrofit.create(WorkersAPI.class);
+        Call <Worker> call= client.createEmployee(e1);
         client.createEmployee(e1);
-        call.enqueue(new Callback<Employee>() {
+        call.enqueue(new Callback<Worker>() {
             @Override
-            public void onResponse(Call<Employee> call, Response<Employee> response) {
+            public void onResponse(Call<Worker> call, Response<Worker> response) {
                 Log.d("DoorPanel", "onResponse: "+response);
             }
 
             @Override
-            public void onFailure(Call<Employee> call, Throwable t) {
+            public void onFailure(Call<Worker> call, Throwable t) {
                 Log.d("DoorPanel", "onFailure: "+t.getMessage());
             }
         });

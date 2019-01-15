@@ -14,6 +14,7 @@ const Employee = mongoose.model('Employee', new mongoose.Schema({
     age: Number,
     email: String,
     timeslots: [EventsSchema],
+    password: String,
     status: {
         type: String,
         default: 'Available'

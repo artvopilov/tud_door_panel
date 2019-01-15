@@ -1,8 +1,10 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
+import android.content.Context;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
 
 public class Settings extends AppCompatActivity {
+    private final String TAG = "SettingsActivity";
 
     private Button photoButton;
     private Button roomButton;
@@ -42,6 +45,7 @@ public class Settings extends AppCompatActivity {
     private Button calendarButton;
     private Button defTimeSlotsButton;
     private Button addWorkerButton;
+    private Button logoutButton;
 
     private EmployeesAPI employeesApi;
 
@@ -52,6 +56,7 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        logoutButton = (Button) findViewById(R.id.logoutButton);
 
         openCustomizedPhoto();
         openCustomizedRoom();
@@ -60,10 +65,12 @@ public class Settings extends AppCompatActivity {
         openCustomizedSummary();
         openSetCalendar();
         openAddWorker();
+        logoutWorker();
+
 
         employeesApi = RetrofitClient.getRetrofitInstance().create(EmployeesAPI.class);
 
-        defTimeSlotsButton = (Button)findViewById(R.id.button6);
+        defTimeSlotsButton = (Button) findViewById(R.id.button6);
         defTimeSlotsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,7 +83,18 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+    }
 
+
+    private void logoutWorker() {
+        logoutButton.setOnClickListener(v -> {
+            SharedPreferences.Editor sharedPrefEditor = getSharedPreferences(
+                    getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
+            sharedPrefEditor.remove("token");
+            sharedPrefEditor.apply();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        });
     }
 
     public void openCustomizedPhoto() {

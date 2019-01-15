@@ -1,5 +1,8 @@
 package de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi;
 
+import java.util.List;
+
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.Worker;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -9,17 +12,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Employee;
 
-public interface EmployeesAPI {
-
-    @POST("employees")
-    Call<Employee> createEmployee(@Body Employee e1);
-
-    @GET("employees/{id}")
-    Call<Employee> getEmployeeById(@Path("id") int employeeId);
-
-    @FormUrlEncoded
-    @POST("employees/{id}/status")
-    Call<String> updateEmployeeStatus(@Path("id") int employeeId, @Field("status") String status);
+public interface WorkerAPI {
+    @GET("employees")
+    Call<List<Worker>> getAllEmployees();
 
     @FormUrlEncoded
     @POST("employees/{id}/message")

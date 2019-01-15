@@ -18,7 +18,6 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.Notification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.NotificationsAllActivity;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.R;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

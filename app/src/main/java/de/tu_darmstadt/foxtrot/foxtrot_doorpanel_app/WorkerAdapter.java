@@ -65,7 +65,7 @@ public class WorkerAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), BioActivity.class);
-                intent.putExtra("workerID",worker.getId());
+                intent.putExtra("workerID", worker.getId());
                 context.startActivity(intent);
             }
         });

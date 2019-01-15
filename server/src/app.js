@@ -3,6 +3,7 @@ const router = require('koa-router')();
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const config = require('config');
+const passport = require('passport');
 const admin = require('firebase-admin');
 const serviceAccount = require('./../foxtrotdoorpanel-firebase-adminsdk.json');
 
@@ -15,18 +16,14 @@ const getEmployeeByIdController = require('./controllers/employees/get-by-id');
 const changeEmployeeRoomController = require('./controllers/employees/change-room');
 const addEmployeeTimeslotController = require('./controllers/employees/add-timeslot');
 const bookEmployeeTimeslotController = require('./controllers/employees/book-timeslot');
+const authenticateEmployeeController = require('./controllers/employees/auth');
 
 const getTabletsController = require('./controllers/tablets/get-tablets');
 const registerTabletTokenController = require('./controllers/tablets/register-token');
 const createTabletController = require('./controllers/tablets/create');
 
-const getMobilesController = require('./controllers/mobiles/get-mobiles');
-const registerMobileTokenController = require('./controllers/mobiles/register-token');
-const createMobileController = require('./controllers/mobiles/create');
-
 const EmployeeModel = require('./models/employees');
 const TabletModel = require('./models/tablets');
-const MobileModel = require('./models/mobiles');
 
 mongoose.connect(config.get('mongo.uri'), { useNewUrlParser: true })
     .then(() => console.log("Successfully connected to db"))
@@ -40,32 +37,35 @@ admin.initializeApp({
 
 
 const app = new Koa();
+require('./passport');
+app.use(passport.initialize());
 
 router.param('id', (id, ctx, next) => next());
 router.param('room', (room, ctx, next) => next());
 
 router.get('/employees/', getEmployeesController);
 router.get('/employees/room/:room', getEmployeesByRoomController);
-router.get('/employees/:id', getEmployeeByIdController);
+router.get('/employees/:id/', getEmployeeByIdController);
 router.post('/employees/', createEmployeesController);
-router.post('/employees/:id/status', changeEmployeeStatusController);
+router.post('/employees/status', passport.authenticate('jwt', {session: false}),
+    changeEmployeeStatusController);
 router.post('/employees/:id/message', sendEmployeeMessageController);
 router.post('/employees/:id/room', changeEmployeeRoomController);
 router.post('/employees/:id/timeslot', addEmployeeTimeslotController);
 router.post('/employees/:id/book', bookEmployeeTimeslotController);
+router.post('/employees/login/', authenticateEmployeeController);
+router.get('/test-employee-token/', passport.authenticate('jwt', {session: false}),
+    async ctx => {
+        ctx.body = "Authenticated route reached";
+});
 
 router.get('/tablets/', getTabletsController);
 router.post('/tablets/', createTabletController);
 router.post('/tablets/:id/token', registerTabletTokenController);
 
-router.get('/mobiles/', getMobilesController);
-router.post('/mobiles/', createMobileController);
-router.post('/mobiles/:id/token', registerMobileTokenController);
-
 app.use(async (ctx, next) => {
     ctx.employeeModel = new EmployeeModel();
     ctx.tabletModel = new TabletModel();
-    ctx.mobileModel = new MobileModel();
     ctx.admin = admin;
     await next();
 });
