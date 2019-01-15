@@ -17,7 +17,6 @@ const changeEmployeeRoomController = require('./controllers/employees/change-roo
 const authenticateEmployeeController = require('./controllers/employees/auth');
 
 const getTabletsController = require('./controllers/tablets/get-tablets');
-const registerTabletTokenController = require('./controllers/tablets/register-token');
 const createTabletController = require('./controllers/tablets/create');
 
 const EmployeeModel = require('./models/employees');
@@ -57,7 +56,6 @@ router.get('/test-employee-token/', passport.authenticate('jwt', {session: false
 
 router.get('/tablets/', getTabletsController);
 router.post('/tablets/', createTabletController);
-router.post('/tablets/:id/token', registerTabletTokenController);
 
 app.use(async (ctx, next) => {
     ctx.employeeModel = new EmployeeModel();

@@ -70,8 +70,8 @@ public class addWorker extends AppCompatActivity {
         Log.d("DoorPanel", "send3 ");
 
         WorkersAPI client = retrofit.create(WorkersAPI.class);
-        Call <Worker> call= client.createEmployee(e1);
-        client.createEmployee(e1);
+        Call <Worker> call= client.createWorker(e1);
+        client.createWorker(e1);
         call.enqueue(new Callback<Worker>() {
             @Override
             public void onResponse(Call<Worker> call, Response<Worker> response) {

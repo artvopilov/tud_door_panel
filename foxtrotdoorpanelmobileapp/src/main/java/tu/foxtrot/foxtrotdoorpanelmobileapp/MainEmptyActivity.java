@@ -10,13 +10,10 @@ import android.util.Log;
 
 public class MainEmptyActivity extends AppCompatActivity {
     private final String TAG = "MainEmptyActivity";
-    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key),
-                Context.MODE_PRIVATE);
         Intent activityIntent;
 
         // go straight to main if a token is stored
@@ -32,6 +29,8 @@ public class MainEmptyActivity extends AppCompatActivity {
     }
 
     private String getToken() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE);
         return sharedPreferences.getString("token", null);
     }
 }

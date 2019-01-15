@@ -15,11 +15,6 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.MessageNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.MobileApplication;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.Notification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.R;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.MobilesAPI;
 
 import static android.app.Notification.VISIBILITY_PUBLIC;
 import static java.lang.Integer.parseInt;
@@ -100,21 +95,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(String token) {
         Log.d(TAG, "Refreshed token: " + token);
-        MobilesAPI tabletsAPI = RetrofitClient.getRetrofitInstance().create(MobilesAPI.class);
-        Call<String> call = tabletsAPI.registerMobile(1, token);
-        call.enqueue(new Callback<String>() {
-
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String resp = response.body();
-                Log.d(TAG, "Token registration: " + resp);
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d(TAG, "Token registration: " + t.getMessage());
-            }
-        });
     }
 
     private void sendRegistrationToServer(String token) {
