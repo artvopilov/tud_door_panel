@@ -19,6 +19,8 @@ public class MobileApplication extends Application {
         notificationsList.add(notification);
     }
 
+    public int workerID; //TODO: encapsulate
+
     public GoogleAccountCredential mCredential; //TODO: this needs to be encapsulated
     public String mCalendar; //TODO: this needs to be encapsulated
 }

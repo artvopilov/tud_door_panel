@@ -214,7 +214,9 @@ public class Settings extends AppCompatActivity {
         ourEvent.setName(summary);
         ourEvent.setId(ourEvent.hashCode()); //TODO: this is probably not the best solution
 
-        Call<String> call = employeesApi.addEmployeeTimeslot(21, ourEvent);
+        int workerID = ((MobileApplication)getApplicationContext()).workerID;
+
+        Call<String> call = employeesApi.addEmployeeTimeslot(workerID, ourEvent);
 
         call.enqueue(new Callback<String>() {
             @Override
