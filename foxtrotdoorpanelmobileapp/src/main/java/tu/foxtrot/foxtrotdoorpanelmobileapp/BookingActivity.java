@@ -1,7 +1,9 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +14,9 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
 
 import java.io.IOException;
@@ -55,14 +59,14 @@ public class BookingActivity extends AppCompatActivity {
         int notificationID = intent.getIntExtra("notificationID",0);
         BookingNotification notification = (BookingNotification) ((MobileApplication)getApplicationContext()).notificationsList.get(notificationID);
         String slotID = notification.getTimeslot();
-        try {
+        /*try {
             timeslot = mService.events().get(calendarId,slotID).execute();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        name.setText(intent.getStringExtra("Name").toString());
-        email.setText(intent.getStringExtra("Email").toString());
-        text.setText(intent.getStringExtra("Details").toString());
+        }*/
+        name.setText(notification.getName());
+        email.setText(notification.getEmail());
+        text.setText(notification.getMessage());
 
         buttonAcceptBooking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,5 +108,32 @@ public class BookingActivity extends AppCompatActivity {
                 startActivity(gmail);
             }
         });
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public void getEventAsync(String slotID) {
+
+        new AsyncTask<Void, Void, String>() {
+            private com.google.api.services.calendar.Calendar mService = null;
+            private Exception mLastError = null;
+            private boolean FLAG = false;
+
+
+            @Override
+            protected String doInBackground (Void...voids){
+                try {
+                    timeslot = mService.events().get(calendarId,slotID).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute (String s){
+                super.onPostExecute(s);
+                //getResultsFromApi();
+            }
+        }.execute();
     }
 }

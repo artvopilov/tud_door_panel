@@ -38,6 +38,12 @@ public class NotificationsAllActivity extends AppCompatActivity {
                     intent.putExtra("Details", notification.getDetails());
                     startActivity(intent);
                 }
+                if (notification.getType().equals("booking")) {
+                    Intent intent = new Intent(NotificationsAllActivity.this,
+                            BookingActivity.class);
+                    intent.putExtra("notificationID", position);
+                    startActivity(intent);
+                }
             }
         });
     }

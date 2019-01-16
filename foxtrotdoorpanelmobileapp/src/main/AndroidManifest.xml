@@ -26,6 +26,7 @@
         <activity android:name=".PersonalStatus" />
         <activity android:name=".NotificationsAllActivity" />
         <activity android:name=".MessageActivity" />
+        <activity android:name=".BookingActivity" />
         <activity android:name=".Settings" />
         <activity android:name=".PersonalRoom" />
         <activity android:name=".PersonalEmail" />
