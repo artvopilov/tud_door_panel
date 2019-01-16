@@ -18,6 +18,8 @@ public class TabletApplication extends Application {
 
     final String UPDATE_GUI_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateGUI";
 
+    public String room = "0";
+
     public Worker getWorker(int position) {
         return workerList.get(position);
     }
@@ -54,7 +56,7 @@ public class TabletApplication extends Application {
 
     public void pullEmployees(){
         WorkerAPI workerAPI = RetrofitClient.getRetrofitInstance().create(WorkerAPI.class);
-        Call<List<Worker>> call= workerAPI.getAllEmployees();
+        Call<List<Worker>> call= workerAPI.getAllEmployees(room);
         call.enqueue(new Callback<List<Worker>>() {
             @Override
             public void onResponse(Call<List<Worker>> call, Response<List<Worker>> response) {
