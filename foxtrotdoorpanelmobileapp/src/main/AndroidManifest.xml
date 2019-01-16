@@ -31,7 +31,7 @@
         <activity android:name=".PersonalSummary" />
         <activity android:name=".PersonalPhoto" />
         <activity
-            android:name=".addWorker"
+            android:name=".CreatingWorkerActivity"
             android:label="@string/title_activity_add_worker"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

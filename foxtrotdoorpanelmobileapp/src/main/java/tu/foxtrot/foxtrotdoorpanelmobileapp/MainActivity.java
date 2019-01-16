@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button statusButton;
     private Button notificationButton;
     private Button settingsButton;
+    private TextView workerNameMain;
 
     private static final String CHANNEL_ID = "FoxtrottNotifications";
 
@@ -26,15 +28,17 @@ public class MainActivity extends AppCompatActivity {
 
         calendarButton = (Button) findViewById(R.id.button2);
         calendarButton.setOnClickListener(this::openCalendar);
-
         statusButton = (Button) findViewById(R.id.button3);
         statusButton.setOnClickListener(this::openStatus);
-
         notificationButton = (Button) findViewById(R.id.button4);
         notificationButton.setOnClickListener(this::openNotifications);
-
         settingsButton = (Button) findViewById(R.id.button5);
         settingsButton.setOnClickListener(this::openSettings);
+
+        workerNameMain = findViewById(R.id.workerNameMain);
+//        ((MobileApplication)getApplicationContext()).pullWorkerName();
+//        String workerName = ((MobileApplication)getApplicationContext()).getWorkerName();
+//        workerNameMain.setText(workerName);
     }
 
     public void openCalendar(View view) {

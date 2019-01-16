@@ -8,6 +8,7 @@ public class Worker {
     private String room;
     private String phoneNumber;
     private String status;
+    private String password;
 
     public int getId() {
         return id;
@@ -63,5 +64,13 @@ public class Worker {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

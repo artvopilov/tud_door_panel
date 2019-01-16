@@ -14,10 +14,10 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.LoginRespons
 public interface WorkersAPI {
 
     @POST("employees")
-    Call<Worker> createWorker(@Body Worker e1);
+    Call<Worker> createWorker(@Body Worker worker);
 
     @GET("employees/{id}")
-    Call<Worker> getEmployeeById(@Path("id") int employeeId);
+    Call<Worker> getWorkerById(@Path("id") int employeeId);
 
     @FormUrlEncoded
     @POST("employees/status")
