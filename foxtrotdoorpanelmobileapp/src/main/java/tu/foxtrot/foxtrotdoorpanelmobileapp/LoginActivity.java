@@ -69,6 +69,16 @@ public class LoginActivity extends AppCompatActivity {
                 LoginResponse loginResponse = response.body();
                 if (loginResponse.getStatus().equals("ok")) {
                     int workerId = loginResponse.getWorker().getId();
+                    SharedPreferences sharedPreferences = getSharedPreferences(
+                            getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                    int previousWorkerId = sharedPreferences.getInt("workerId", 0);
+                    if (previousWorkerId != 0) {
+                        unsubscribeFromTopic(String.valueOf(previousWorkerId));
+                    }
+                    subscribeToTopic(String.valueOf(workerId));
+
+                    ((MobileApplication)getApplicationContext()).workerID = workerId;
+
                     String token = loginResponse.getToken();
 
                     updateSubscriptions(workerId);

@@ -14,6 +14,8 @@ const changeEmployeeStatusController = require('./controllers/employees/change-s
 const sendEmployeeMessageController = require('./controllers/employees/send-message');
 const getEmployeeByIdController = require('./controllers/employees/get-by-id');
 const changeEmployeeRoomController = require('./controllers/employees/change-room');
+const addEmployeeTimeslotController = require('./controllers/employees/add-timeslot');
+const bookEmployeeTimeslotController = require('./controllers/employees/book-timeslot');
 const authenticateEmployeeController = require('./controllers/employees/auth');
 
 const getTabletsController = require('./controllers/tablets/get-tablets');
@@ -48,6 +50,8 @@ router.post('/employees/status', passport.authenticate('jwt', {session: false}),
     changeEmployeeStatusController);
 router.post('/employees/:id/message', sendEmployeeMessageController);
 router.post('/employees/:id/room', changeEmployeeRoomController);
+router.post('/employees/:id/timeslot', addEmployeeTimeslotController);
+router.post('/employees/:id/book', bookEmployeeTimeslotController);
 router.post('/employees/login/', authenticateEmployeeController);
 router.get('/test-employee-token/', passport.authenticate('jwt', {session: false}),
     async ctx => {

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,4 +55,9 @@ public class MobileApplication extends Application {
     public String getWorkerName() {
         return workerName;
     }
+
+    public int workerID; //TODO: encapsulate
+
+    public GoogleAccountCredential mCredential; //TODO: this needs to be encapsulated
+    public String mCalendar; //TODO: this needs to be encapsulated
 }

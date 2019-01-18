@@ -18,6 +18,7 @@ import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Tablet;
 public class WorkerAdapter extends BaseAdapter {
 
 
+
     public WorkerAdapter(Context context) {
         this.context = context;
     }
@@ -75,6 +76,7 @@ public class WorkerAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), makeAppointment.class);
+                intent.putExtra("workerID",worker.getId());
                 context.startActivity(intent);
             }
         });
