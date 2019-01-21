@@ -32,7 +32,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.dialog.EventDialog;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
 public class Settings extends AppCompatActivity {
     private final String TAG = "SettingsActivity";
@@ -47,7 +47,7 @@ public class Settings extends AppCompatActivity {
     private Button addWorkerButton;
     private Button logoutButton;
 
-    private EmployeesAPI employeesApi;
+    private WorkersAPI workersApi;
 
     private com.google.api.services.calendar.Calendar mService = null;
 
@@ -68,7 +68,7 @@ public class Settings extends AppCompatActivity {
         logoutWorker();
 
 
-        employeesApi = RetrofitClient.getRetrofitInstance().create(EmployeesAPI.class);
+        workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
 
         defTimeSlotsButton = (Button) findViewById(R.id.button6);
         defTimeSlotsButton.setOnClickListener(new View.OnClickListener() {
@@ -216,7 +216,7 @@ public class Settings extends AppCompatActivity {
 
         int workerID = ((MobileApplication)getApplicationContext()).workerID;
 
-        Call<String> call = employeesApi.addEmployeeTimeslot(workerID, ourEvent);
+        Call<String> call = workersApi.addWorkerTimeslot(workerID, ourEvent);
 
         call.enqueue(new Callback<String>() {
             @Override

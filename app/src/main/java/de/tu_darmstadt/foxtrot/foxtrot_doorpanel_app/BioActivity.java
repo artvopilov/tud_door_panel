@@ -49,7 +49,7 @@ public class BioActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EditText textEdit = findViewById(R.id.editText);
                 String message = textEdit.getText().toString();
-                Call<String> call = workerApi.sendEmployeeMessage(workerID, message);
+                Call<String> call = workerApi.sendWorkerMessage(workerID, message);
 
                 call.enqueue(new Callback<String>() {
                     @Override

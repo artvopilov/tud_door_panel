@@ -10,22 +10,21 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Employee;
 
 public interface WorkerAPI {
     @GET("employees")
-    Call<List<Worker>> getAllEmployees();
+    Call<List<Worker>> getAllWorkers();
 
     @GET("employees/room/{room}")
-    Call<List<Worker>> getAllEmployees(@Path("room") String room);
+    Call<List<Worker>> getAllWorkers(@Path("room") String room);
 
     @FormUrlEncoded
     @POST("employees/{id}/message")
-    Call<String> sendEmployeeMessage(@Path("id") int employeeId, @Field("message") String message);
+    Call<String> sendWorkerMessage(@Path("id") int employeeId, @Field("message") String message);
 
     @FormUrlEncoded
     @POST("employees/{id}/book")
-    Call<String> bookEmployeeTimeslot(@Path("id") int employeeId, @Field("timeslot") int timeslot,
+    Call<String> bookWorkerTimeslot(@Path("id") int employeeId, @Field("timeslot") int timeslot,
                                       @Field("name") String name, @Field("phone") String number,
                                       @Field("email") String email, @Field("message") String message);
 }

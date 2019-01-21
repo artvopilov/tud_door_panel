@@ -73,7 +73,7 @@ public class makeAppointment extends AppCompatActivity {
 
     private WeekView mWeekView;
 
-    private WorkerAPI employeesApi;
+    private WorkerAPI workersApi;
 
 
     private WeekViewEvent activeEvent = null;
@@ -98,7 +98,7 @@ public class makeAppointment extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        employeesApi = RetrofitClient.getRetrofitInstance().create(WorkerAPI.class);
+        workersApi = RetrofitClient.getRetrofitInstance().create(WorkerAPI.class);
 
         int workerID = getIntent().getIntExtra("workerID",0);
 
@@ -136,7 +136,7 @@ public class makeAppointment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Call<String> call = employeesApi.bookEmployeeTimeslot(workerID,
+                Call<String> call = workersApi.bookWorkerTimeslot(workerID,
                         (int) activeEvent.getId(),editName.getText().toString(),
                         editNumber.getText().toString(), editMail.getText().toString(),
                         editMessage.getText().toString());
