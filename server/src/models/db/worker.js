@@ -8,7 +8,7 @@ var EventsSchema = new mongoose.Schema({
                    });
 
 
-const Employee = mongoose.model('Employee', new mongoose.Schema({
+const Worker = mongoose.model('Worker', new mongoose.Schema({
     id: Number,
     name: String,
     age: Number,
@@ -29,4 +29,4 @@ const Employee = mongoose.model('Employee', new mongoose.Schema({
     }
 }));
 
-module.exports = Employee;
+module.exports = Worker;

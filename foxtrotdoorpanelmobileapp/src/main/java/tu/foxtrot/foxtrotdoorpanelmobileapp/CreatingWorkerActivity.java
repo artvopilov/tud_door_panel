@@ -40,6 +40,7 @@ public class CreatingWorkerActivity extends AppCompatActivity {
         roomEdit = findViewById(R.id.newWorkerRoom);
 
         createWorkerButton = (FloatingActionButton) findViewById(R.id.fab);
+
         createWorkerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
