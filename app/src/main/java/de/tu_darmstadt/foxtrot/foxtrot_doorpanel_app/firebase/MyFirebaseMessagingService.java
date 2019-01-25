@@ -29,7 +29,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             String status = remoteMessage.getData().get("status");
             Log.d(TAG, "Message status: " + status);
 
-            String id = remoteMessage.getData().get("employeeId");
+            String id = remoteMessage.getData().get("workerId");
 
             Log.d(TAG, "worker id: " + id);
 
