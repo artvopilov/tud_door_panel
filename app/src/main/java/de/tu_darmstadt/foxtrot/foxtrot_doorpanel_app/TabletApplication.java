@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
-import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.EmployeesAPI;
-import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.TabletsAPI;
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.WorkerAPI;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TabletApplication extends Application {
 
@@ -21,8 +18,19 @@ public class TabletApplication extends Application {
 
     final String UPDATE_GUI_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateGUI";
 
+    public String room = "80b";
+
     public Worker getWorker(int position) {
         return workerList.get(position);
+    }
+
+    public Worker getWorkerByID(int id){
+        for (Worker worker : workerList){
+            if (worker.getId()==id){
+                return worker;
+            }
+        }
+        return null;
     }
 
     public int getWorkerNum(){
@@ -46,9 +54,9 @@ public class TabletApplication extends Application {
         }
     }
 
-    public void pullEmployees(){
-        EmployeesAPI employeesAPI = RetrofitClient.getRetrofitInstance().create(EmployeesAPI.class);
-        Call<List<Worker>> call= employeesAPI.getAllEmployees();
+    public void pullWorkers(){
+        WorkerAPI workerAPI = RetrofitClient.getRetrofitInstance().create(WorkerAPI.class);
+        Call<List<Worker>> call= workerAPI.getAllWorkers(room);
         call.enqueue(new Callback<List<Worker>>() {
             @Override
             public void onResponse(Call<List<Worker>> call, Response<List<Worker>> response) {

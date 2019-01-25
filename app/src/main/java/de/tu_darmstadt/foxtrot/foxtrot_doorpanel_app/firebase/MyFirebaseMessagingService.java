@@ -61,6 +61,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(String token) {
         Log.d(TAG, "Refreshed token: " + token);
+        // from now we don't use tokens, but topics for Cloud Messaging
+        // sendRegistrationToServer(token);
+    }
+
+    private void sendRegistrationToServer(String token) {
         TabletsAPI tabletsAPI = RetrofitClient.getRetrofitInstance().create(TabletsAPI.class);
         Call<String> call = tabletsAPI.registerTablet(1, token);
         call.enqueue(new Callback<String>() {
@@ -76,9 +81,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 Log.d(TAG, "Token registration: " + t.getMessage());
             }
         });
-    }
-
-    private void sendRegistrationToServer(String token) {
-
     }
 }

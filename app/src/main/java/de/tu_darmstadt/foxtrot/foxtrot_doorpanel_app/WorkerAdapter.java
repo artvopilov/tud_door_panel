@@ -18,6 +18,7 @@ import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Tablet;
 public class WorkerAdapter extends BaseAdapter {
 
 
+
     public WorkerAdapter(Context context) {
         this.context = context;
     }
@@ -60,12 +61,22 @@ public class WorkerAdapter extends BaseAdapter {
         tv2.setText(worker.getPosition());
         tv3.setText(worker.getStatus());
 
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), BioActivity.class);
+                intent.putExtra("workerID", worker.getId());
+                context.startActivity(intent);
+            }
+        });
+
 
 
         calendarButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), makeAppointment.class);
+                intent.putExtra("workerID",worker.getId());
                 context.startActivity(intent);
             }
         });

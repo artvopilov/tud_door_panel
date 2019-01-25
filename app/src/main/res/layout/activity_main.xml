@@ -50,7 +50,7 @@
     <GridView
         android:id="@+id/workersGrid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="2"
         android:fadingEdge="vertical"
         android:fadingEdgeLength="150dp"
@@ -93,7 +93,7 @@
 
                 android:id="@+id/landingPagePinButton10"
                 android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:background="@drawable/buttonbackground"

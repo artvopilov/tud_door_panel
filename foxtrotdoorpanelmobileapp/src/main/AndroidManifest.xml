@@ -4,8 +4,11 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
+        android:name=".MobileApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,6 +26,7 @@
         <activity android:name=".PersonalStatus" />
         <activity android:name=".NotificationsAllActivity" />
         <activity android:name=".MessageActivity" />
+        <activity android:name=".BookingActivity" />
         <activity android:name=".Settings" />
         <activity android:name=".PersonalRoom" />
         <activity android:name=".PersonalEmail" />
@@ -30,7 +34,7 @@
         <activity android:name=".PersonalSummary" />
         <activity android:name=".PersonalPhoto" />
         <activity
-            android:name=".addWorker"
+            android:name=".CreatingWorkerActivity"
             android:label="@string/title_activity_add_worker"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -38,15 +42,22 @@
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <service android:name=".firebase.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".MainEmptyActivity"
             android:theme="@android:style/Theme.NoDisplay">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SetCalendarActivity"></activity>
     </application>
 
 </manifest>

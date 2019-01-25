@@ -15,21 +15,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.EmployeesAPI;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.Utils;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
 public class PersonalStatus extends AppCompatActivity {
 
     private final String TAG = "PersonalStatusActivity";
     private Button submitButton;
     private TextView statusTextView;
-    private EmployeesAPI employeesApi;
+    private WorkersAPI workersApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_status);
 
-        employeesApi = RetrofitClient.getRetrofitInstance().create(EmployeesAPI.class);
+        workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
         submitButton = (Button) findViewById(R.id.submitPersonalStatusButton);
         statusTextView = (TextView) findViewById(R.id.personalStatusTextView);
 
@@ -44,25 +45,7 @@ public class PersonalStatus extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences(
                         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
                 String token = sharedPreferences.getString("token", null);
-                Call<String> call = employeesApi.updateEmployeeStatus("Bearer " + token,
-                        status);
-
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String > call, Response<String> response) {
-                        String newStatus = response.body();
-
-                        Context context = getApplicationContext();
-                        Toast toast = Toast.makeText(context, "Status updated: " + newStatus,
-                                Toast.LENGTH_SHORT);
-                        toast.show();
-                    }
-
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-                        Log.d(TAG, t.getMessage());
-                    }
-                });
+                Utils.updateWorkerStatus(getApplicationContext(), token, status);
 
                 Intent intent = new Intent(PersonalStatus.this, MainActivity.class);
                 startActivity(intent);

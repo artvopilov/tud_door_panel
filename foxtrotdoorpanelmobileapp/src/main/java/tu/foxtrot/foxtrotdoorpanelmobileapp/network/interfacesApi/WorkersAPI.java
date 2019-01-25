@@ -8,21 +8,25 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.Employee;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.Worker;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.LoginResponse;
 
-public interface EmployeesAPI {
+public interface WorkersAPI {
 
     @POST("employees")
-    Call<Employee> createEmployee(@Body Employee e1);
+    Call<Worker> createWorker(@Body Worker worker);
 
     @GET("employees/{id}")
-    Call<Employee> getEmployeeById(@Path("id") int employeeId);
+    Call<Worker> getWorkerById(@Path("id") int employeeId);
 
     @FormUrlEncoded
     @POST("employees/status")
-    Call<String> updateEmployeeStatus(@Header("Authorization") String token,
-                                      @Field("status") String status);
+    Call<String> updateWorkerStatus(@Header("Authorization") String token,
+                                    @Field("status") String status);
+
+    @POST("employees/{id}/timeslot")
+    Call<String> addWorkerTimeslot(@Path("id") int employeeId, @Body Event timeslot);
 
     @FormUrlEncoded
     @POST("/employees/login/")

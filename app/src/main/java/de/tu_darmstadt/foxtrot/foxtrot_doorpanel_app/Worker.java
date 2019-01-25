@@ -1,5 +1,9 @@
 package de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app;
 
+import java.util.List;
+
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Event;
+
 public class Worker {
     private String name;
     private String email;
@@ -8,6 +12,7 @@ public class Worker {
     private String position;
     private String status;
     private int id;
+    private List<Event> timeslots;
 
     public String getRoom() {
         return room;
@@ -66,6 +71,14 @@ public class Worker {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Event> getTimeslots() {
+        return timeslots;
+    }
+
+    public void setTimeslots(List<Event> timeslots) {
+        this.timeslots = timeslots;
     }
 }
 

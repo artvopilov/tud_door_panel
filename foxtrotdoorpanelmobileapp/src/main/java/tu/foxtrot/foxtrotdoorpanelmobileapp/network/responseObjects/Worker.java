@@ -1,6 +1,6 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects;
 
-public class Employee {
+public class Worker {
     private int id;
     private String name;
     private int age;
@@ -8,6 +8,7 @@ public class Employee {
     private String room;
     private String phoneNumber;
     private String status;
+    private String password;
 
     public int getId() {
         return id;
@@ -63,5 +64,13 @@ public class Employee {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

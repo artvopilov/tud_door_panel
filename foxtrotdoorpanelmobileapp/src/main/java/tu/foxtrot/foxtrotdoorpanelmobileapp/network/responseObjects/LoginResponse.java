@@ -1,7 +1,7 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects;
 
 public class LoginResponse {
-    private Employee employee;
+    private Worker worker;
     private String token;
 
     public String getStatus() {
@@ -14,12 +14,12 @@ public class LoginResponse {
 
     private String status;
 
-    public Employee getEmployee() {
-        return employee;
+    public Worker getWorker() {
+        return worker;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setWorker(Worker worker) {
+        this.worker = worker;
     }
 
     public String getToken() {
