@@ -22,8 +22,8 @@ public class PersonalPhoto extends AppCompatActivity {
     private static final int PERMISSION_REQUEST = 0;
     private static final int RESULT_LOAD_IMAGE = 1;
 
-    ImageView imageView;
-    Button button;
+    private ImageView imageView;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

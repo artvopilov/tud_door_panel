@@ -21,7 +21,7 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.Worker;
 
 public class MobileApplication extends Application {
 
-    List<Notification> notificationsList = new ArrayList<Notification>();
+    private List<Notification> notificationsList = new ArrayList<Notification>();
     private String workerName;
 
     public List<Notification> getNotificationsList() {
@@ -56,8 +56,32 @@ public class MobileApplication extends Application {
         return workerName;
     }
 
-    public int workerID; //TODO: encapsulate
+    private int workerID;
 
-    public GoogleAccountCredential mCredential; //TODO: this needs to be encapsulated
-    public String mCalendar; //TODO: this needs to be encapsulated
+    private GoogleAccountCredential mCredential;
+    private String mCalendar;
+
+    public int getWorkerID() {
+        return workerID;
+    }
+
+    public void setWorkerID(int workerID) {
+        this.workerID = workerID;
+    }
+
+    public GoogleAccountCredential getmCredential() {
+        return mCredential;
+    }
+
+    public void setmCredential(GoogleAccountCredential mCredential) {
+        this.mCredential = mCredential;
+    }
+
+    public String getmCalendar() {
+        return mCalendar;
+    }
+
+    public void setmCalendar(String mCalendar) {
+        this.mCalendar = mCalendar;
+    }
 }

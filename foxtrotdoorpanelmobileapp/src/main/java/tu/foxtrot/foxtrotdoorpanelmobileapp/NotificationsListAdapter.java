@@ -22,6 +22,7 @@ public class NotificationsListAdapter extends ArrayAdapter<Notification> {
     private int mResource;
     private int lastPosition = -1;
 
+    @SuppressWarnings({"PackageVisibleField", "PackageVisibleInnerClass"})
     static class ViewHolder {
         TextView date;
         TextView time;
