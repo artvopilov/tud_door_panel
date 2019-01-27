@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     subscribeToTopic(String.valueOf(workerId));
 
-                    ((MobileApplication)getApplicationContext()).workerID = workerId;
+                    ((MobileApplication) getApplicationContext()).setWorkerID(workerId);
 
                     String token = loginResponse.getToken();
 

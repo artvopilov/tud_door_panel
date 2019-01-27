@@ -12,19 +12,19 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface WorkerAPI {
-    @GET("employees")
+    @GET("workers")
     Call<List<Worker>> getAllWorkers();
 
-    @GET("employees/room/{room}")
+    @GET("workers/room/{room}")
     Call<List<Worker>> getAllWorkers(@Path("room") String room);
 
     @FormUrlEncoded
-    @POST("employees/{id}/message")
-    Call<String> sendWorkerMessage(@Path("id") int employeeId, @Field("message") String message);
+    @POST("workers/{id}/message")
+    Call<String> sendWorkerMessage(@Path("id") int workerId, @Field("message") String message);
 
     @FormUrlEncoded
-    @POST("employees/{id}/book")
-    Call<String> bookWorkerTimeslot(@Path("id") int employeeId, @Field("timeslot") int timeslot,
+    @POST("workers/{id}/book")
+    Call<String> bookWorkerTimeslot(@Path("id") int workerId, @Field("timeslot") int timeslot,
                                       @Field("name") String name, @Field("phone") String number,
                                       @Field("email") String email, @Field("message") String message);
 }

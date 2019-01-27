@@ -14,15 +14,10 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.Event;
-import com.google.api.services.calendar.model.EventAttendee;
-import com.google.api.services.calendar.model.EventDateTime;
 
 import java.io.IOException;
 import java.util.Arrays;
-
-import tu.foxtrot.foxtrotdoorpanelmobileapp.R;
 
 public class BookingActivity extends AppCompatActivity {
 
@@ -40,7 +35,7 @@ public class BookingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
-        calendarId = ((MobileApplication)getApplicationContext()).mCalendar;
+        calendarId = ((MobileApplication) getApplicationContext()).getmCalendar();
 
         name = (TextView) findViewById(R.id.message_name);
         email = (TextView) findViewById(R.id.message_email);
@@ -51,13 +46,13 @@ public class BookingActivity extends AppCompatActivity {
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
 
         mService = new com.google.api.services.calendar.Calendar.Builder(
-                transport, jsonFactory, ((MobileApplication)getApplicationContext()).mCredential)
+                transport, jsonFactory, ((MobileApplication) getApplicationContext()).getmCredential())
                 .setApplicationName("Google Calendar API Android Quickstart")
                 .build();
 
         Intent intent = getIntent();
         int notificationID = intent.getIntExtra("notificationID",0);
-        BookingNotification notification = (BookingNotification) ((MobileApplication)getApplicationContext()).notificationsList.get(notificationID);
+        BookingNotification notification = (BookingNotification) ((MobileApplication)getApplicationContext()).getNotificationsList().get(notificationID);
         String slotID = notification.getTimeslot();
         /*try {
             timeslot = mService.events().get(calendarId,slotID).execute();
