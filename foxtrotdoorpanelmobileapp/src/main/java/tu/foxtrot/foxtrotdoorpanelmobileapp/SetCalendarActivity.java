@@ -51,7 +51,8 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
     private static final String[] SCOPES = { CalendarScopes.CALENDAR_READONLY, CalendarScopes.CALENDAR };
 
     private TextView mOutputText;
-    private RadioGroup radioGroup;
+    private RadioGroup radioGroupTimeslots;
+    private RadioGroup radioGroupMain;
     private Button submitButton;
 
     @Override
@@ -60,7 +61,8 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
         setContentView(R.layout.activity_set_calendar);
 
         mOutputText = findViewById(R.id.textView3);
-        radioGroup = findViewById(R.id.radioGroup);
+        radioGroupMain = findViewById(R.id.radioGroupMain);
+        radioGroupTimeslots = findViewById(R.id.radioGroupTimeslots);
         submitButton = findViewById(R.id.button);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -79,8 +81,10 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
 
     private void saveCalendar() {
         ((MobileApplication) getApplicationContext()).setmCredential(mCredential);
-        RadioButton activeButton = radioGroup.findViewById(radioGroup.getCheckedRadioButtonId());
-        ((MobileApplication) getApplicationContext()).setmCalendar(activeButton.getText().toString());
+        RadioButton mainActiveButton = radioGroupMain.findViewById(radioGroupMain.getCheckedRadioButtonId());
+        ((MobileApplication) getApplicationContext()).setmCalendar(mainActiveButton.getText().toString());
+        RadioButton timeslotsActiveButton = radioGroupMain.findViewById(radioGroupTimeslots.getCheckedRadioButtonId());
+        ((MobileApplication) getApplicationContext()).setTimeslotsCalendar(mainActiveButton.getText().toString());
         Intent intent = new Intent(SetCalendarActivity.this, MainActivity.class);
         startActivity(intent);
     }
@@ -300,7 +304,10 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
             for (String id:ids) {
                 RadioButton radioButton = new RadioButton(context);
                 radioButton.setText(id);
-                radioGroup.addView(radioButton);
+                radioGroupMain.addView(radioButton);
+                radioButton = new RadioButton(context);
+                radioButton.setText(id);
+                radioGroupTimeslots.addView(radioButton);
             }
 
         }

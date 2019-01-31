@@ -14,7 +14,12 @@
         android:text="TextView" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioGroupTimeslots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

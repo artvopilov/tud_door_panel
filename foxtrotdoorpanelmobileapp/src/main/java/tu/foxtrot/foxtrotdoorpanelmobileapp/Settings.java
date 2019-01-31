@@ -200,10 +200,8 @@ public class Settings extends AppCompatActivity {
         }.execute();
     }
     void insertEvent(String summary, String location, String des, DateTime startDate, DateTime endDate, EventAttendee[] eventAttendees) throws IOException {
-        Event event = new Event()
-                .setSummary(summary)
-                .setLocation(location)
-                .setDescription(des);
+
+
 
         tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event ourEvent = new tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event();
 
@@ -233,6 +231,11 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+        Event event = new Event()
+                .setSummary(summary)
+                .setLocation(location)
+                .setDescription(des);
+
         EventDateTime start = new EventDateTime()
                 .setDateTime(startDate)
                 .setTimeZone("America/Los_Angeles");
@@ -246,6 +249,8 @@ public class Settings extends AppCompatActivity {
         String[] recurrence = new String[] {"RRULE:FREQ=DAILY;COUNT=1"};
         event.setRecurrence(Arrays.asList(recurrence));
 
+        event.setId(Integer.toString(ourEvent.getId()));
+
 
 
         String calendarId = ((MobileApplication) getApplicationContext()).getmCalendar();
@@ -257,10 +262,10 @@ public class Settings extends AppCompatActivity {
                 .setApplicationName("Google Calendar API Android Quickstart")
                 .build();
 
+
         //event.send
         if(mService!=null)
-            mService.events().insert(calendarId, event).setSendNotifications(true).execute();
-
+            event =  mService.events().insert(calendarId, event).setSendNotifications(true).execute();
 
     }
 }

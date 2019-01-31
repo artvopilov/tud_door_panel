@@ -60,6 +60,7 @@ public class MobileApplication extends Application {
 
     private GoogleAccountCredential mCredential;
     private String mCalendar;
+    private String timeslotsCalendar;
 
     public int getWorkerID() {
         return workerID;
@@ -77,11 +78,20 @@ public class MobileApplication extends Application {
         this.mCredential = mCredential;
     }
 
+    public String getTimeslotsCalendar() {
+        return timeslotsCalendar;
+    }
+
+
     public String getmCalendar() {
         return mCalendar;
     }
 
     public void setmCalendar(String mCalendar) {
         this.mCalendar = mCalendar;
+    }
+
+    public void setTimeslotsCalendar(String timeslotsCalendar) {
+        this.timeslotsCalendar = timeslotsCalendar;
     }
 }

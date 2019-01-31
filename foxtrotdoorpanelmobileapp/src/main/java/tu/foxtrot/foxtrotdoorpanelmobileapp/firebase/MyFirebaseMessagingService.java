@@ -99,7 +99,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String message = remoteMessage.getData().get("message");
         String id = remoteMessage.getData().get("employeeId");
         String timeslot = remoteMessage.getData().get("timeslot");
-        String mail = remoteMessage.getData().get("mail");
+        String mail = remoteMessage.getData().get("email");
         String number = remoteMessage.getData().get("number");
         String name = remoteMessage.getData().get("name");
 
