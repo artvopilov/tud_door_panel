@@ -1,0 +1,19 @@
+Setup development:
+
+Because we use Google APIs for accessing the Google Calendar, we need to follow the Google authentication procedure.
+Google requires that developers provide the key that is used for compiling in the Google Developer Console.
+To do so, visit the following website:
+https://console.developers.google.com/apis/credentials?folder=&organizationId=&project=winter-time-228212
+Login with email "doorpaneltest@gmail.com" and password "FoxtroTT"
+There click on "Create Credentials" and then on "OAuth Client ID". Next select "Android".
+Then you are asked to select a name, here you could use anything, but please be so kind and state your real name here, so it is easier for us to manage.
+Also you need to provide your key. Google tells you to run
+keytool -exportcert -keystore path-to-debug-or-production-keystore -list -v
+the path to the keystor should usually be ~/.android/debug.keystore
+however I got an error that I can't give 2 commands at the same time, so I removed the -exportcert
+So my total command was the following:
+keytool -alias androiddebugkey -keystore ~/.android/debug.keystore -list -v
+More information is under:
+https://support.google.com/cloud/answer/6158849?hl=en-GB#installedapplications&android
+alternatively you can run the gradle task signingReport
+Finally you have to choose de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app as Package name
