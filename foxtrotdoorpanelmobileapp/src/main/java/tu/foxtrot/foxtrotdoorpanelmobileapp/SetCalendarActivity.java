@@ -83,8 +83,8 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
         ((MobileApplication) getApplicationContext()).setmCredential(mCredential);
         RadioButton mainActiveButton = radioGroupMain.findViewById(radioGroupMain.getCheckedRadioButtonId());
         ((MobileApplication) getApplicationContext()).setmCalendar(mainActiveButton.getText().toString());
-        RadioButton timeslotsActiveButton = radioGroupMain.findViewById(radioGroupTimeslots.getCheckedRadioButtonId());
-        ((MobileApplication) getApplicationContext()).setTimeslotsCalendar(mainActiveButton.getText().toString());
+        RadioButton timeslotsActiveButton = radioGroupTimeslots.findViewById(radioGroupTimeslots.getCheckedRadioButtonId());
+        ((MobileApplication) getApplicationContext()).setTimeslotsCalendar(timeslotsActiveButton.getText().toString());
         Intent intent = new Intent(SetCalendarActivity.this, MainActivity.class);
         startActivity(intent);
     }

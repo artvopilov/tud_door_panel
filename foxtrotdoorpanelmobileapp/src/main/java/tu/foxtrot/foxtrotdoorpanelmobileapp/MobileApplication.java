@@ -21,6 +21,7 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.Worker;
 
 public class MobileApplication extends Application {
 
+    private static final String MyPREFERENCES = "Foxtrot";
     private List<Notification> notificationsList = new ArrayList<Notification>();
     private String workerName;
 
@@ -79,19 +80,22 @@ public class MobileApplication extends Application {
     }
 
     public String getTimeslotsCalendar() {
-        return timeslotsCalendar;
+        return getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).getString("timeslotsCalendar",timeslotsCalendar);
     }
 
 
     public String getmCalendar() {
-        return mCalendar;
+        return getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).getString("mCalendar",mCalendar);
+
     }
 
     public void setmCalendar(String mCalendar) {
+        getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit().putString("mCalendar",mCalendar).apply();
         this.mCalendar = mCalendar;
     }
 
     public void setTimeslotsCalendar(String timeslotsCalendar) {
+        getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit().putString("timeslotsCalendar",timeslotsCalendar).apply();
         this.timeslotsCalendar = timeslotsCalendar;
     }
 }
