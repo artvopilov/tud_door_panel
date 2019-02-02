@@ -1,14 +1,17 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.http.HttpTransport;
@@ -18,6 +21,12 @@ import com.google.api.services.calendar.model.Event;
 
 import java.io.IOException;
 import java.util.Arrays;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
 public class BookingActivity extends AppCompatActivity {
 
@@ -86,6 +95,24 @@ public class BookingActivity extends AppCompatActivity {
 
                 //event.send
                 setEventAsync(event);
+
+                WorkersAPI workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
+
+                int myID = ((MobileApplication)getApplicationContext()).getWorkerID();
+
+                Call<String> call = workersApi.removeWorkerTimeslot(myID, notification.getTimeslot());
+
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Log.d("remove Timeslot", t.getMessage());
+                    }
+                });
 
                 Intent gmail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                         "mailto",notification.getEmail(), null));

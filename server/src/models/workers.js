@@ -33,6 +33,11 @@ class Workers extends DbModel {
         await this._MongooseModel.updateOne({id}, {$addToSet:{timeslots:event}});
     }
 
+    async removeTimeslot(eventId, id) {
+        console.log(eventId)
+        await this._MongooseModel.updateOne({id}, {$pull:{timeslots:{id:eventId}}});
+    }
+
 }
 
 module.exports = Workers;
