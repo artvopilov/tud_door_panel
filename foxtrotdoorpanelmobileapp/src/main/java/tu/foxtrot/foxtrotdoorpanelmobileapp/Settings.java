@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -199,9 +200,12 @@ public class Settings extends AppCompatActivity {
             }
         }.execute();
     }
+
+    Event event;
+    String calendarId;
+
+
     void insertEvent(String summary, String location, String des, DateTime startDate, DateTime endDate, EventAttendee[] eventAttendees) throws IOException {
-
-
 
         tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event ourEvent = new tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event();
 
@@ -231,7 +235,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        Event event = new Event()
+        event = new Event()
                 .setSummary(summary)
                 .setLocation(location)
                 .setDescription(des);
@@ -253,19 +257,50 @@ public class Settings extends AppCompatActivity {
 
 
 
-        String calendarId = ((MobileApplication) getApplicationContext()).getmCalendar();
+        calendarId = ((MobileApplication) getApplicationContext()).getmCalendar();
 
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-        mService = new com.google.api.services.calendar.Calendar.Builder(
-                transport, jsonFactory, ((MobileApplication) getApplicationContext()).getmCredential())
-                .setApplicationName("Google Calendar API Android Quickstart")
-                .build();
+
+        if (((MobileApplication) getApplicationContext()).isCredentialReady(this)){
+            GoogleAccountCredential credential = ((MobileApplication) getApplicationContext()).getmCredential();
+            mService = new com.google.api.services.calendar.Calendar.Builder(
+                    transport, jsonFactory, credential)
+                    .setApplicationName("Google Calendar API Android Quickstart")
+                    .build();
+            //event.send
+            if(mService!=null)
+                event =  mService.events().insert(calendarId, event).setSendNotifications(true).execute();
+
+        }
 
 
-        //event.send
-        if(mService!=null)
-            event =  mService.events().insert(calendarId, event).setSendNotifications(true).execute();
 
+
+    }
+
+    @Override
+    protected void onActivityResult(
+            int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("add Timeslot",((MobileApplication) getApplicationContext()).processActivityResult(requestCode,resultCode,data)); //TODO: show this to the user somehow
+        HttpTransport transport = AndroidHttp.newCompatibleTransport();
+        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+        if (((MobileApplication) getApplicationContext()).isCredentialReady(this)){
+            GoogleAccountCredential credential = ((MobileApplication) getApplicationContext()).getmCredential();
+            mService = new com.google.api.services.calendar.Calendar.Builder(
+                    transport, jsonFactory, credential)
+                    .setApplicationName("Google Calendar API Android Quickstart")
+                    .build();
+            //event.send
+            if(mService!=null) {
+                try {
+                    event =  mService.events().insert(calendarId, event).setSendNotifications(true).execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 }

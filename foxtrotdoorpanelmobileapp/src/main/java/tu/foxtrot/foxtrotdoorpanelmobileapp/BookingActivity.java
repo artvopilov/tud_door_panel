@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -39,6 +40,7 @@ public class BookingActivity extends AppCompatActivity {
     private Event timeslot;
     private String calendarId;
     private String timeslotCalendarId;
+    private String slotID;
 
     private com.google.api.services.calendar.Calendar mService = null;
 
@@ -60,17 +62,25 @@ public class BookingActivity extends AppCompatActivity {
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
 
-        mService = new com.google.api.services.calendar.Calendar.Builder(
-                transport, jsonFactory, ((MobileApplication) getApplicationContext()).getmCredential())
-                .setApplicationName("Google Calendar API Android Quickstart")
-                .build();
+
+
+
 
         Intent intent = getIntent();
         int notificationID = intent.getIntExtra("notificationID",0);
         BookingNotification notification = (BookingNotification) ((MobileApplication)getApplicationContext()).getNotificationsList().get(notificationID);
-        String slotID = notification.getTimeslot();
+        slotID = notification.getTimeslot();
 
-        getEventAsync(slotID);
+
+        if (((MobileApplication) getApplicationContext()).isCredentialReady(this)){
+            GoogleAccountCredential credential = ((MobileApplication) getApplicationContext()).getmCredential();
+            mService = new com.google.api.services.calendar.Calendar.Builder(
+                    transport, jsonFactory, credential)
+                    .setApplicationName("Google Calendar API Android Quickstart")
+                    .build();
+            getEventAsync(slotID);
+        }
+
         name.setText(notification.getName());
         email.setText(notification.getEmail());
         text.setText(notification.getMessage());
@@ -186,5 +196,22 @@ public class BookingActivity extends AppCompatActivity {
                 //getResultsFromApi();
             }
         }.execute();
+    }
+
+    @Override
+    protected void onActivityResult(
+            int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        name.setText(((MobileApplication) getApplicationContext()).processActivityResult(requestCode,resultCode,data));
+        HttpTransport transport = AndroidHttp.newCompatibleTransport();
+        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+        if (((MobileApplication) getApplicationContext()).isCredentialReady(this)){
+            GoogleAccountCredential credential = ((MobileApplication) getApplicationContext()).getmCredential();
+            mService = new com.google.api.services.calendar.Calendar.Builder(
+                    transport, jsonFactory, credential)
+                    .setApplicationName("Google Calendar API Android Quickstart")
+                    .build();
+            getEventAsync(slotID);
+        }
     }
 }

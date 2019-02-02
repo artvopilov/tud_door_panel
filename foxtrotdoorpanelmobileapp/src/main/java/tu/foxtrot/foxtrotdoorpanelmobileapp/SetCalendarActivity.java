@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -74,11 +75,11 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
             }
         });
 
-        // Initialize credentials and service object.
-        mCredential = GoogleAccountCredential.usingOAuth2(
-                getApplicationContext(), Arrays.asList(SCOPES))
-                .setBackOff(new ExponentialBackOff());
-        getResultsFromApi();
+        if (((MobileApplication) getApplicationContext()).isCredentialReady(this)){
+            mCredential = ((MobileApplication) getApplicationContext()).getmCredential();
+            new SetCalendarActivity.MakeRequestTask(mCredential,this).execute();
+        }
+
     }
 
     private void saveCalendar() {
@@ -94,78 +95,15 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
         startActivity(intent);
     }
 
-    private void getResultsFromApi() {
-        if (!isGooglePlayServicesAvailable()) {
-            acquireGooglePlayServices();
-        } else if (mCredential.getSelectedAccountName() == null) {
-            chooseAccount();
-        } else if (!isDeviceOnline()) {
-            mOutputText.setText("No network connection available.");
-        } else {
-            new SetCalendarActivity.MakeRequestTask(mCredential,this).execute();
-        }
-    }
-
-    @AfterPermissionGranted(REQUEST_PERMISSION_GET_ACCOUNTS)
-    private void chooseAccount() {
-        if (EasyPermissions.hasPermissions(
-                this, Manifest.permission.GET_ACCOUNTS)) {
-            String accountName = getPreferences(Context.MODE_PRIVATE)
-                    .getString(PREF_ACCOUNT_NAME, null);
-            if (accountName != null) {
-                mCredential.setSelectedAccountName(accountName);
-                getResultsFromApi();
-            } else {
-                // Start a dialog from which the user can choose an account
-                startActivityForResult(
-                        mCredential.newChooseAccountIntent(),
-                        REQUEST_ACCOUNT_PICKER);
-            }
-        } else {
-            // Request the GET_ACCOUNTS permission via a user dialog
-            EasyPermissions.requestPermissions(
-                    this,
-                    "This app needs to access your Google account (via Contacts).",
-                    REQUEST_PERMISSION_GET_ACCOUNTS,
-                    Manifest.permission.GET_ACCOUNTS);
-        }
-    }
 
     @Override
     protected void onActivityResult(
             int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case REQUEST_GOOGLE_PLAY_SERVICES:
-                if (resultCode != RESULT_OK) {
-                    mOutputText.setText(
-                            "This app requires Google Play Services. Please install " +
-                                    "Google Play Services on your device and relaunch this app.");
-                } else {
-                    getResultsFromApi();
-                }
-                break;
-            case REQUEST_ACCOUNT_PICKER:
-                if (resultCode == RESULT_OK && data != null &&
-                        data.getExtras() != null) {
-                    String accountName =
-                            data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-                    if (accountName != null) {
-                        SharedPreferences settings =
-                                getPreferences(Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = settings.edit();
-                        editor.putString(PREF_ACCOUNT_NAME, accountName);
-                        editor.apply();
-                        mCredential.setSelectedAccountName(accountName);
-                        getResultsFromApi();
-                    }
-                }
-                break;
-            case REQUEST_AUTHORIZATION:
-                if (resultCode == RESULT_OK) {
-                    getResultsFromApi();
-                }
-                break;
+        mOutputText.setText(((MobileApplication) getApplicationContext()).processActivityResult(requestCode,resultCode,data));
+        if (((MobileApplication) getApplicationContext()).isCredentialReady(this)){
+            mCredential = ((MobileApplication) getApplicationContext()).getmCredential();
+            new SetCalendarActivity.MakeRequestTask(mCredential,this).execute();
         }
     }
 
@@ -191,57 +129,7 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
         // Do nothing.
     }
 
-    /**
-     * Checks whether the device currently has a network connection.
-     *
-     * @return true if the device has a network connection, false otherwise.
-     */
-    private boolean isDeviceOnline() {
-        ConnectivityManager connMgr =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        return (networkInfo != null && networkInfo.isConnected());
-    }
 
-
-    private boolean isGooglePlayServicesAvailable() {
-        GoogleApiAvailability apiAvailability =
-                GoogleApiAvailability.getInstance();
-        final int connectionStatusCode =
-                apiAvailability.isGooglePlayServicesAvailable(this);
-        return connectionStatusCode == ConnectionResult.SUCCESS;
-    }
-
-    /**
-     * Attempt to resolve a missing, out-of-date, invalid or disabled Google
-     * Play Services installation via a user dialog, if possible.
-     */
-    private void acquireGooglePlayServices() {
-        GoogleApiAvailability apiAvailability =
-                GoogleApiAvailability.getInstance();
-        final int connectionStatusCode =
-                apiAvailability.isGooglePlayServicesAvailable(this);
-        if (apiAvailability.isUserResolvableError(connectionStatusCode)) {
-            showGooglePlayServicesAvailabilityErrorDialog(connectionStatusCode);
-        }
-    }
-
-    /**
-     * Display an error dialog showing that Google Play Services is missing
-     * or out of date.
-     *
-     * @param connectionStatusCode code describing the presence (or lack of)
-     *                             Google Play Services on this device.
-     */
-    void showGooglePlayServicesAvailabilityErrorDialog(
-            final int connectionStatusCode) {
-        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-        Dialog dialog = apiAvailability.getErrorDialog(
-                SetCalendarActivity.this,
-                connectionStatusCode,
-                REQUEST_GOOGLE_PLAY_SERVICES);
-        dialog.show();
-    }
 
     /**
      * An asynchronous task that handles the Google Calendar API call.
