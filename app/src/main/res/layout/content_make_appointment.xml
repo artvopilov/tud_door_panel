@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="3">
 
         <com.alamkanak.weekview.WeekView
             android:id="@+id/weekView"
@@ -21,6 +22,7 @@
             app:columnGap="8dp"
             app:dayBackgroundColor="#05000000"
             app:eventTextColor="@android:color/white"
+            app:eventTextSize="8sp"
             app:headerColumnBackground="#ffffffff"
             app:headerColumnPadding="8dp"
             app:headerColumnTextColor="#8f000000"
@@ -29,22 +31,21 @@
             app:hourHeight="60dp"
             app:noOfVisibleDays="7"
             app:textSize="12sp"
-            app:eventTextSize="8sp"
             app:todayBackgroundColor="#1848adff" />
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_weight="1">
 
             <EditText
                 android:id="@+id/editName"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:ems="10"
+                android:hint="Name"
                 android:inputType="textPersonName"
-                android:text="Name"
                 app:layout_constraintBottom_toTopOf="@+id/editEMail"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,8 +54,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:ems="10"
+                android:hint="Email"
                 android:inputType="textPersonName"
-                android:text="Email"
                 app:layout_constraintBottom_toTopOf="@+id/editPhone"
                 app:layout_constraintStart_toStartOf="@+id/editName"
                 app:layout_constraintTop_toBottomOf="@+id/editName" />
@@ -64,19 +65,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:ems="10"
+                android:hint="Phone"
                 android:inputType="textPersonName"
-                android:text="Phone"
                 app:layout_constraintBottom_toTopOf="@+id/editMessage"
                 app:layout_constraintStart_toStartOf="@+id/editEMail"
                 app:layout_constraintTop_toBottomOf="@+id/editEMail" />
 
             <EditText
                 android:id="@+id/editMessage"
-                android:layout_width="365dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:ems="10"
+                android:hint="Message"
                 android:inputType="textMultiLine"
-                android:text="Message"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/editPhone"
                 app:layout_constraintTop_toBottomOf="@+id/editPhone" />

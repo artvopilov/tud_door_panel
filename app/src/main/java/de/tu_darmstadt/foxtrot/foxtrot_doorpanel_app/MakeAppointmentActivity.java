@@ -185,7 +185,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
 
                     if (nameEdited && mailEdited && messageEdited) {
 
-                        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlotActive)));
+                        fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlot)));
                         fab.setEnabled(true);
                     }
 

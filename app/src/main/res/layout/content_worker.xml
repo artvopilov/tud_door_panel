@@ -1,71 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/linearLayout4"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:orientation="horizontal">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="24dp">
 
-<ImageView
+    <ImageView
 
-    android:id="@+id/landingPagePinButton8"
-    android:layout_width="62dp"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="false"
-    android:layout_gravity="center"
-    android:adjustViewBounds="true"
-    android:background="@android:color/darker_gray"
-    android:clickable="true"
-    android:minWidth="36dp"
-    android:minHeight="36dp"
-    android:src="@drawable/seeliger_alexander" />
-
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/b19"
-        android:layout_width="wrap_content"
+        android:id="@+id/landingPagePinButton8"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20px"
-        android:text="Alexander Seeliger, Msc"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:layout_centerHorizontal="false"
+        android:adjustViewBounds="true"
+        android:background="@android:color/darker_gray"
+        android:clickable="true"
+        android:minWidth="36dp"
+        android:minHeight="36dp"
+        android:src="@drawable/seeliger_alexander" />
 
-    <TextView
-        android:id="@+id/b20"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20px"
-        android:text="Research Assistant"
-        android:textSize="20sp" />
+        android:orientation="horizontal"
+        android:weightSum="5">
 
-    <TextView
-        android:id="@+id/b21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20px"
-        android:layout_weight="1"
-        android:text="@string/status"
-        android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="24dp">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/b19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alexander Seeliger, Msc"
+                android:textSize="22dp"
+                android:textStyle="bold" />
 
-<ImageButton
+            <TextView
+                android:id="@+id/b20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Research Assistant"
+                android:textSize="20dp" />
 
-    android:id="@+id/calendarButton"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:layout_marginLeft="-80px"
-    android:layout_marginBottom="5px"
-    android:layout_centerHorizontal="false"
-    android:layout_gravity="bottom"
-    android:background="@drawable/buttonbackground"
-    android:clickable="true"
-    android:minWidth="36dp"
-    android:minHeight="36dp"
-    android:src="@drawable/ic_calendar_alt"
-    android:radius="4dp"/>
+            <TextView
+                android:id="@+id/b21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/status"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+
+            <ImageButton
+
+                android:id="@+id/calendarButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="false"
+                android:layout_gravity="center"
+                android:background="@drawable/buttonbackground"
+                android:clickable="true"
+                android:minWidth="40dp"
+                android:minHeight="40dp"
+                android:src="@drawable/ic_calendar_alt" />
+        </FrameLayout>
+    </LinearLayout>
+
 </LinearLayout>

@@ -23,4 +23,5 @@
     <string name="createEventEndTime">Pick Time</string>
 
     <string name="createEventLocation">Location</string>
+    <string name="tablet_main_message">PLEASE DO NOT DISTURB</string>
 </resources>
