@@ -55,6 +55,8 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
     private RadioGroup radioGroupMain;
     private Button submitButton;
 
+    CalendarList calendarList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,11 +82,14 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
     }
 
     private void saveCalendar() {
+        List<CalendarListEntry> items = calendarList.getItems();
         ((MobileApplication) getApplicationContext()).setmCredential(mCredential);
         RadioButton mainActiveButton = radioGroupMain.findViewById(radioGroupMain.getCheckedRadioButtonId());
-        ((MobileApplication) getApplicationContext()).setmCalendar(mainActiveButton.getText().toString());
+        int idxMain = radioGroupMain.indexOfChild(mainActiveButton);
+        ((MobileApplication) getApplicationContext()).setmCalendar(items.get(idxMain).getId());
         RadioButton timeslotsActiveButton = radioGroupTimeslots.findViewById(radioGroupTimeslots.getCheckedRadioButtonId());
-        ((MobileApplication) getApplicationContext()).setTimeslotsCalendar(timeslotsActiveButton.getText().toString());
+        int idxTimeslot = radioGroupTimeslots.indexOfChild(timeslotsActiveButton);
+        ((MobileApplication) getApplicationContext()).setTimeslotsCalendar(items.get(idxTimeslot).getId());
         Intent intent = new Intent(SetCalendarActivity.this, MainActivity.class);
         startActivity(intent);
     }
@@ -285,7 +290,7 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
 
         protected void getDataFromApi() {
             try {
-                CalendarList calendarList = mService.calendarList().list().execute();
+                calendarList = mService.calendarList().list().execute();
                 List<CalendarListEntry> items = calendarList.getItems();
                 ids = new ArrayList<String>();
                 for (CalendarListEntry item : items){
@@ -301,12 +306,13 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
         @Override
         protected void onPostExecute(List<String> output) {
             mOutputText.setText("found calendars");
-            for (String id:ids) {
+            List<CalendarListEntry> items = calendarList.getItems();
+            for (CalendarListEntry item : items) {
                 RadioButton radioButton = new RadioButton(context);
-                radioButton.setText(id);
+                radioButton.setText(item.getSummary());
                 radioGroupMain.addView(radioButton);
                 radioButton = new RadioButton(context);
-                radioButton.setText(id);
+                radioButton.setText(item.getSummary());
                 radioGroupTimeslots.addView(radioButton);
             }
 
