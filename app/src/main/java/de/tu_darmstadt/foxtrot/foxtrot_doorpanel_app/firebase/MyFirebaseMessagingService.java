@@ -5,6 +5,8 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.R;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.TabletApplication;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
@@ -22,19 +24,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.d(TAG, "From: " + remoteMessage.getFrom());
+        Map<String, String> payload = remoteMessage.getData();
+        if (payload != null) {
+            Log.d(TAG, "Message data payload: " + payload);
 
-        if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            switch (payload.get("subject")) {
+                case "changeStatus":
+                    String status = payload.get("status");
+                    Log.d(TAG, "Message status: " + status);
 
-            String status = remoteMessage.getData().get("status");
-            Log.d(TAG, "Message status: " + status);
+                    String id = payload.get("workerId");
+                    Log.d(TAG, "worker id: " + id);
 
-            String id = remoteMessage.getData().get("workerId");
-
-            Log.d(TAG, "worker id: " + id);
-
-            if (status != null && id != null){
-                ((TabletApplication)getApplicationContext()).updateWorker(parseInt(id),"status", status);
+                    if (status != null && id != null){
+                        ((TabletApplication)getApplicationContext()).updateWorker(parseInt(id),
+                                "status", status);
+                    }
+                    break;
+                case "newWorker":
+                    ((TabletApplication)getApplicationContext()).pullWorkers();
+                    break;
             }
         }
 
