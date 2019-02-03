@@ -54,6 +54,17 @@ public class TabletApplication extends Application {
         }
     }
 
+    public void excludeWorker(int id) {
+        for (Worker candidate: workerList) {
+            if (candidate.getId() == id) {
+                workerList.remove(candidate);
+                break;
+            }
+        }
+        Intent intent = new Intent(UPDATE_GUI_FILTER);
+        sendBroadcast(intent);
+    }
+
     public void pullWorkers(){
         WorkerAPI workerAPI = RetrofitClient.getRetrofitInstance().create(WorkerAPI.class);
         Call<List<Worker>> call= workerAPI.getAllWorkers(room);

@@ -27,7 +27,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Map<String, String> payload = remoteMessage.getData();
         if (payload != null) {
             Log.d(TAG, "Message data payload: " + payload);
-
+            TabletApplication tabletApplication = ((TabletApplication)getApplicationContext());
             switch (payload.get("subject")) {
                 case "changeStatus":
                     String status = payload.get("status");
@@ -37,16 +37,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     Log.d(TAG, "worker id: " + id);
 
                     if (status != null && id != null){
-                        ((TabletApplication)getApplicationContext()).updateWorker(parseInt(id),
+                        tabletApplication.updateWorker(parseInt(id),
                                 "status", status);
                     }
                     break;
                 case "newWorker":
-                    ((TabletApplication)getApplicationContext()).pullWorkers();
+                    tabletApplication.pullWorkers();
                     break;
+                case "workerOutRoom":
+                    int workerId = Integer.parseInt(payload.get("workerId"));
+                    tabletApplication.excludeWorker(workerId);
+                    break;
+                case "workerInRoom":
+                    tabletApplication.pullWorkers();
+                    break;
+                default:
+                    Log.d(TAG, "Unknown subject");
             }
         }
-
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
