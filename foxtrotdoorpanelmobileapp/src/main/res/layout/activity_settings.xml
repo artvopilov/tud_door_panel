@@ -6,97 +6,142 @@
     android:layout_height="match_parent"
     tools:context=".Settings">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_height"
-            android:drawableLeft="@drawable/ic_image_regular"
-            android:text="photo"
-            android:textAlignment="center"
-            android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/button2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_height"
-            android:drawableLeft="@drawable/ic_door_open_solid"
-            android:text="room"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_height"
-            android:drawableLeft="@drawable/ic_envelope_regular"
-            android:text="email"
-            android:textAlignment="center"
-            android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_width"
-            android:drawableLeft="@drawable/ic_phone_solid"
-            android:text="phone number"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_width"
-            android:drawableLeft="@drawable/ic_align_center_solid"
-            android:text="short summary"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:text="photo"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_height"
-            android:drawableLeft="@drawable/ic_clock_regular"
-            android:text="define available time slots"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:text="room"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_height"
-            android:drawableLeft="@drawable/ic_clock_regular"
-            android:text="set calendar"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_height"
-            android:drawableLeft="@drawable/ic_clock_regular"
-            android:text="add new worker"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:text="email"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/logoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="@android:dimen/notification_large_icon_height"
-            android:drawableLeft="@drawable/ic_logout"
-            android:text="Logout"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:text="phone number"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
 
-    </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:text="short summary"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:text="time slots"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:text="set calendar"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:text="add new worker"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/logoutButton"
+                android:layout_width="match_parent"
+                android:layout_height="@android:dimen/notification_large_icon_height"
+                android:layout_marginTop="70dp"
+                android:drawableLeft="@drawable/ic_logout"
+                android:text="Logout"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
