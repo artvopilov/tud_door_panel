@@ -39,4 +39,11 @@
         android:ems="10"
         android:hint="Room" />
 
+    <EditText
+        android:id="@+id/newWorkerPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Position" />
+
 </LinearLayout>

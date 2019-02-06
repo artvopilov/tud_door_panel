@@ -26,6 +26,10 @@ const Worker = mongoose.model('Worker', new mongoose.Schema({
     phoneNumber: {
         type: String,
         default: ""
+    },
+    position: {
+        type: String,
+        default: "Research Assistant"
     }
 }));
 
