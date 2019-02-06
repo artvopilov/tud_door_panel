@@ -27,7 +27,8 @@
             android:name=".MakeAppointmentActivity"
             android:label="@string/title_activity_make_appointment"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.MainActivity" />
@@ -39,7 +40,10 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".BioActivity"></activity>
+        <activity
+            android:name=".BioActivity"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
