@@ -25,11 +25,16 @@ public interface WorkersAPI {
     Call<String> updateWorkerStatus(@Header("Authorization") String token,
                                     @Field("status") String status);
 
+    @FormUrlEncoded
+    @POST("workers/room")
+    Call<String> updateWorkerRoom(@Header("Authorization") String token,
+                                  @Field("room") String room);
+
     @POST("workers/{id}/timeslot")
     Call<String> addWorkerTimeslot(@Path("id") int workerId, @Body Event timeslot);
 
     @FormUrlEncoded
-    @POST("/workers/login/")
+    @POST("workers/login/")
     Call<LoginResponse> login(@Field("email") String email, @Field("password") String password);
 }
 

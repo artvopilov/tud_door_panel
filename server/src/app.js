@@ -49,7 +49,8 @@ router.post('/workers/', createWorkersController);
 router.post('/workers/status', passport.authenticate('jwt', {session: false}),
     changeWorkerStatusController);
 router.post('/workers/:id/message', sendWorkerMessageController);
-router.post('/workers/:id/room', changeWorkerRoomController);
+router.post('/workers/room', passport.authenticate('jwt', {session: false}),
+    changeWorkerRoomController);
 router.post('/workers/:id/timeslot', addWorkerTimeslotController);
 router.post('/workers/:id/book', bookWorkerTimeslotController);
 router.post('/workers/login/', authenticateWorkerController);

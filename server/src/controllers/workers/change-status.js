@@ -11,7 +11,7 @@ module.exports = async (ctx) => {
     }
 
     const messageToTablet = {
-        data: {workerId: worker.id.toString(), status},
+        data: {subject: 'changeStatus', workerId: worker.id.toString(), status},
         topic: "80b" // Later it will be real room
     };
     ctx.admin.messaging().send(messageToTablet)
