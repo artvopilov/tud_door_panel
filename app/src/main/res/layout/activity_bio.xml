@@ -74,32 +74,45 @@
         android:minHeight="36dp"
         android:radius="4dp"
         android:src="@drawable/ic_calendar_alt"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/landingPagePinButton8"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="800dp"
-        android:layout_height="100dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:text="message"
+    <LinearLayout
+        android:id="@+id/message_inputs"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent" >
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="send"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.94"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.48" />
+        <EditText
+            android:id="@+id/name_filed"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:hint="Your name"
+            android:inputType="textEmailAddress" />
 
+        <EditText
+            android:id="@+id/email_field"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:hint="Your email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/message_field"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:text="message" />
+
+        <Button
+            android:id="@+id/button_send"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="send"/>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

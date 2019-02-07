@@ -20,7 +20,9 @@ public interface WorkerAPI {
 
     @FormUrlEncoded
     @POST("workers/{id}/message")
-    Call<String> sendWorkerMessage(@Path("id") int workerId, @Field("message") String message);
+    Call<String> sendWorkerMessage(@Path("id") int workerId, @Field("text") String message,
+                                   @Field("date") String date, @Field("time") String time,
+                                   @Field("email") String email, @Field("name") String name);
 
     @FormUrlEncoded
     @POST("workers/{id}/book")

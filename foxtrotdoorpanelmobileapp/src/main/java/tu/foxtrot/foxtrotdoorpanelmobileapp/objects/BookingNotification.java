@@ -1,4 +1,6 @@
-package tu.foxtrot.foxtrotdoorpanelmobileapp;
+package tu.foxtrot.foxtrotdoorpanelmobileapp.objects;
+
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 
 public class BookingNotification extends Notification {
     private String email;
@@ -9,7 +11,7 @@ public class BookingNotification extends Notification {
 
     public BookingNotification(String date, String time, String timeslot, String details, String email,
                                String number, String name) {
-        super(date, time, "booking", details);
+        super(date, time, "booking");
         this.email = email;
         this.setNumber(number);
         this.name = name;

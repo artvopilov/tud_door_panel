@@ -21,8 +21,11 @@ const authenticateWorkerController = require('./controllers/workers/auth');
 const getTabletsController = require('./controllers/tablets/get-tablets');
 const createTabletController = require('./controllers/tablets/create');
 
+const getMessagesController = require('./controllers/messages/get-worker-messages');
+
 const WorkerModel = require('./models/workers');
 const TabletModel = require('./models/tablets');
+const MessageModel = require('./models/messages');
 
 mongoose.connect(config.get('mongo.uri'), { useNewUrlParser: true })
     .then(() => console.log("Successfully connected to db"))
@@ -62,9 +65,13 @@ router.get('/test-worker-token/', passport.authenticate('jwt', {session: false})
 router.get('/tablets/', getTabletsController);
 router.post('/tablets/', createTabletController);
 
+router.get('/messages', passport.authenticate('jwt', {session: false}),
+    getMessagesController);
+
 app.use(async (ctx, next) => {
     ctx.workerModel = new WorkerModel();
     ctx.tabletModel = new TabletModel();
+    ctx.messageModel = new MessageModel();
     ctx.admin = admin;
     await next();
 });

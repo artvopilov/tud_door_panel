@@ -2,9 +2,8 @@ package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 
@@ -14,9 +13,10 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.Utils;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.LoginResponse;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.Worker;
 
 public class MobileApplication extends Application {
@@ -27,9 +27,20 @@ public class MobileApplication extends Application {
     public List<Notification> getNotificationsList() {
         return notificationsList;
     }
+    public void setNotificationsList(List<? extends Notification> notificationsList) {
+        this.notificationsList = notificationsList != null ? (List<Notification>) notificationsList
+                : new ArrayList<Notification>();
+    }
 
     public void addNotification(Notification notification){
         notificationsList.add(notification);
+    }
+
+    public void pullNotifications() {
+        SharedPreferences sharedPreferences = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        Utils.getMessages(this, token);
     }
 
     public void pullWorkerName() {

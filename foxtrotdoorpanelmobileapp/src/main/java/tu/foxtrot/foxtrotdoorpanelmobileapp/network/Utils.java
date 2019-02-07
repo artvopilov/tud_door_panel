@@ -1,15 +1,19 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp.network;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.R;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.MobileApplication;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.MessagesAPI;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.MessageNotification;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 
 public class Utils {
     private final static String TAG = "UTILS";
@@ -51,6 +55,30 @@ public class Utils {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Log.d(TAG, "Room update error: " + t.getMessage());            }
+        });
+    }
+
+    public static void getMessages(MobileApplication mobileApplication, String token) {
+        MessagesAPI messagesAPI = RetrofitClient.getRetrofitInstance().create(MessagesAPI.class);
+        Call<List<MessageNotification>> call = messagesAPI.getMessages("Bearer " + token);
+        Log.d(TAG, "Sent request for messages");
+
+        call.enqueue(new Callback<List<MessageNotification>>() {
+            @Override
+            public void onResponse(Call<List<MessageNotification>> call,
+                                   Response<List<MessageNotification>> response) {
+                Log.d(TAG, "Response received: " + response.toString());
+                List<MessageNotification> messageNotifications = response.body();
+                for (MessageNotification messageNotification : messageNotifications) {
+                    messageNotification.setType("message");
+                }
+                mobileApplication.setNotificationsList(messageNotifications);
+            }
+
+            @Override
+            public void onFailure(Call<List<MessageNotification>> call, Throwable t) {
+                Log.d(TAG, "Room update error: " + t.getMessage());
+            }
         });
     }
 }

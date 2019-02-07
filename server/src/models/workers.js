@@ -29,7 +29,7 @@ class Workers extends DbModel {
     }
 
     async addTimeslot(event, id) {
-    console.log(id)
+        console.log(id);
         await this._MongooseModel.updateOne({id}, {$addToSet:{timeslots:event}});
     }
 

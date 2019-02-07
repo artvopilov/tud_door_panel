@@ -1,10 +1,10 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +13,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.MessageNotification;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 
 public class NotificationsListAdapter extends ArrayAdapter<Notification> {
 
@@ -45,7 +47,7 @@ public class NotificationsListAdapter extends ArrayAdapter<Notification> {
 
         String date = getItem(position).getDate();
         String time = getItem(position).getTime();
-        String details = getItem(position).getDetails();
+        String details = getItem(position).getType();
         String type = getItem(position).getType();
 
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
@@ -68,7 +70,7 @@ public class NotificationsListAdapter extends ArrayAdapter<Notification> {
 
         holder.time.setText(time);
         holder.details.setText(details);
-        if (type.equals("Message")) {
+        if (type.equals("message")) {
             String name = ((MessageNotification) getItem(position)).getName();
             String email = ((MessageNotification) getItem(position)).getEmail();
             holder.type.setText(String.format("%s from %s", type, name));

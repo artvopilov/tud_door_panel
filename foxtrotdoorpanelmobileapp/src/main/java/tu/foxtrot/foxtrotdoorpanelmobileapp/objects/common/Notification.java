@@ -1,19 +1,14 @@
-package tu.foxtrot.foxtrotdoorpanelmobileapp;
-
-import java.sql.Time;
-import java.util.Date;
+package tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common;
 
 public class Notification {
     private String date;
     private String time;
     private String type;
-    private String details;
 
-    public Notification(String date, String time, String type, String details) {
+    public Notification(String date, String time, String type) {
         this.date = date;
         this.time = time;
         this.type = type;
-        this.details = details;
     }
 
     public String getDate() {
@@ -40,12 +35,5 @@ public class Notification {
         this.type = type;
     }
 
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
 }
 

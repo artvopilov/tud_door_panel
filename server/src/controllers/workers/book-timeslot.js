@@ -7,7 +7,7 @@ module.exports = async (ctx) => {
 
 
     const messageToTablet = {
-        data: {workerId, timeslot, name, email, phone, message},
+        data: {workerId, timeslot, name, email, phone, message, type: 'booking'},
         topic: workerId.toString()
     };
     ctx.body = timeslot;
