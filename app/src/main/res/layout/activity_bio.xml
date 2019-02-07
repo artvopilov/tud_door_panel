@@ -11,46 +11,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="5dp"
-        android:weightSum="5">
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="4"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
 
                 android:id="@+id/landingPagePinButton8"
-                android:layout_width="150dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_weight="3"
                 android:adjustViewBounds="true"
                 android:background="@android:color/darker_gray"
                 android:clickable="true"
-                android:maxWidth="64dp"
                 android:minWidth="36dp"
-                android:minHeight="36dp"
                 android:src="@drawable/seeliger_alexander"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="9"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:paddingLeft="70dp"
-                android:paddingRight="70dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/b19"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Alexander Seeliger, Msc"
-                    android:textSize="22sp"
+                    android:textAllCaps="false"
+                    android:textSize="40dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -59,11 +61,11 @@
 
                 <TextView
                     android:id="@+id/b20"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Research Assistant"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -71,44 +73,54 @@
 
                 <TextView
                     android:id="@+id/b21"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="@string/status"
-                    android:textSize="20sp"
+                    android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/b20" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="About me:"
+                    android:textSize="26dp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/summaryView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Director of brand marketing, with experience managing global teams and multi-million-dollar campaigns. Her background in brand strategy, visual design, and account management inform her mindful but competitive approach."
+                    android:textSize="20dp"
+                    android:textStyle="italic" />
             </LinearLayout>
-
-            <ImageButton
-
-                android:id="@+id/calendarButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttonbackground"
-                android:clickable="true"
-                android:minWidth="40dp"
-                android:minHeight="40dp"
-                android:src="@drawable/ic_calendar_alt"
-                app:layout_constraintBottom_toTopOf="@+id/editText"
-                app:layout_constraintRight_toRightOf="parent" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp">
 
             <EditText
                 android:id="@+id/editText"
-                android:layout_width="900dp"
+                android:layout_width="0dp"
                 android:layout_height="100dp"
+                android:layout_weight="10"
                 android:ems="10"
                 android:hint="Introduce your message here:"
                 android:inputType="textMultiLine"
@@ -119,10 +131,11 @@
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_weight="1"
                 android:text="send"
                 app:layout_constraintBottom_toBottomOf="@+id/editText"
                 app:layout_constraintEnd_toEndOf="parent"

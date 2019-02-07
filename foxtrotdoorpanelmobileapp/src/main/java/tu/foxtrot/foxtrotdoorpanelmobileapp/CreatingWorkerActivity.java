@@ -27,6 +27,7 @@ public class CreatingWorkerActivity extends AppCompatActivity {
     private EditText passwordEdit;
     private EditText roomEdit;
     private EditText positionEdit;
+    private EditText summaryEdit;
     private FloatingActionButton createWorkerButton;
 
     @Override
@@ -40,6 +41,7 @@ public class CreatingWorkerActivity extends AppCompatActivity {
         passwordEdit = findViewById(R.id.newWorkerPassword);
         roomEdit = findViewById(R.id.newWorkerRoom);
         positionEdit = findViewById(R.id.newWorkerPosition);
+        summaryEdit = findViewById(R.id.newWorkerSummary);
 
         createWorkerButton = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -51,12 +53,14 @@ public class CreatingWorkerActivity extends AppCompatActivity {
                 String password = passwordEdit.getText().toString();
                 String room = roomEdit.getText().toString();
                 String position = positionEdit.getText().toString();
+                String summary = summaryEdit.getText().toString();
                 Worker worker = new Worker();
                 worker.setRoom(room);
                 worker.setName(name);
                 worker.setEmail(email);
                 worker.setPassword(password);
                 worker.setPosition(position);
+                worker.setSummary(summary);
 
                 createNewWorker(worker);
 

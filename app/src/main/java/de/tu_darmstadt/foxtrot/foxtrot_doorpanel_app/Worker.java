@@ -11,6 +11,7 @@ public class Worker {
     private String room;
     private String position;
     private String status;
+    private String summary;
     private int id;
     private List<Event> timeslots;
 
@@ -63,6 +64,14 @@ public class Worker {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public int getId() {
