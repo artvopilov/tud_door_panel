@@ -2,7 +2,6 @@ package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.content.Context;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -21,7 +20,6 @@ import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
-import com.google.api.services.calendar.model.EventReminder;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -55,7 +53,7 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_settings_alt);
         logoutButton = (Button) findViewById(R.id.logoutButton);
 
         openCustomizedPhoto();
@@ -214,7 +212,7 @@ public class Settings extends AppCompatActivity {
         ourEvent.setName(summary);
         ourEvent.setId(ourEvent.hashCode()); //TODO: this is probably not the best solution
 
-        int workerID = ((MobileApplication)getApplicationContext()).workerID;
+        int workerID = ((MobileApplication) getApplicationContext()).getWorkerID();
 
         Call<String> call = workersApi.addWorkerTimeslot(workerID, ourEvent);
 
@@ -250,12 +248,12 @@ public class Settings extends AppCompatActivity {
 
 
 
-        String calendarId = ((MobileApplication)getApplicationContext()).mCalendar;
+        String calendarId = ((MobileApplication) getApplicationContext()).getmCalendar();
 
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
         mService = new com.google.api.services.calendar.Calendar.Builder(
-                transport, jsonFactory, ((MobileApplication)getApplicationContext()).mCredential)
+                transport, jsonFactory, ((MobileApplication) getApplicationContext()).getmCredential())
                 .setApplicationName("Google Calendar API Android Quickstart")
                 .build();
 

@@ -1,6 +1,6 @@
 const passport = require('koa-passport');
 
-const EmployeeModel = require('./models/employees');
+const WorkerModel = require('./models/workers');
 
 const LocalStrategy = require('passport-local').Strategy;
 const JWTStrategy = require('passport-jwt').Strategy;
@@ -13,8 +13,8 @@ const localStrategyOptions = {
 };
 
 passport.use('local', new LocalStrategy(localStrategyOptions, (email, password, done) => {
-    const employeeModel = new EmployeeModel();
-    employeeModel.getBy({email, password})
+    const workerModel = new WorkerModel();
+    workerModel.getBy({email, password})
         .then(users => {
             if (users.length === 0) {
                 return done(null, false, {message: 'bad username or password'})
@@ -33,8 +33,8 @@ const jwtStrategyOptions = {
 };
 
 passport.use('jwt', new JWTStrategy(jwtStrategyOptions, (jwtPayload, done) => {
-    const employeeModel = new EmployeeModel();
-    employeeModel.getById(jwtPayload.id)
+    const workerModel = new WorkerModel();
+    workerModel.getById(jwtPayload.id)
         .then(user => {
             return done(null, user);
         })

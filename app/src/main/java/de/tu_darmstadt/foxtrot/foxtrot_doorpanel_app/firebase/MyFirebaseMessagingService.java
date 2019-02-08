@@ -5,6 +5,8 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import java.util.Map;
+
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.R;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.TabletApplication;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
@@ -22,22 +24,37 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         Log.d(TAG, "From: " + remoteMessage.getFrom());
+        Map<String, String> payload = remoteMessage.getData();
+        if (payload != null) {
+            Log.d(TAG, "Message data payload: " + payload);
+            TabletApplication tabletApplication = ((TabletApplication)getApplicationContext());
+            switch (payload.get("subject")) {
+                case "changeStatus":
+                    String status = payload.get("status");
+                    Log.d(TAG, "Message status: " + status);
 
-        if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+                    String id = payload.get("workerId");
+                    Log.d(TAG, "worker id: " + id);
 
-            String status = remoteMessage.getData().get("status");
-            Log.d(TAG, "Message status: " + status);
-
-            String id = remoteMessage.getData().get("employeeId");
-
-            Log.d(TAG, "worker id: " + id);
-
-            if (status != null && id != null){
-                ((TabletApplication)getApplicationContext()).updateWorker(parseInt(id),"status", status);
+                    if (status != null && id != null){
+                        tabletApplication.updateWorker(parseInt(id),
+                                "status", status);
+                    }
+                    break;
+                case "newWorker":
+                    tabletApplication.pullWorkers();
+                    break;
+                case "workerOutRoom":
+                    int workerId = Integer.parseInt(payload.get("workerId"));
+                    tabletApplication.excludeWorker(workerId);
+                    break;
+                case "workerInRoom":
+                    tabletApplication.pullWorkers();
+                    break;
+                default:
+                    Log.d(TAG, "Unknown subject");
             }
         }
-
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }

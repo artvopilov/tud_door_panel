@@ -23,14 +23,12 @@ public class PersonalStatus extends AppCompatActivity {
     private final String TAG = "PersonalStatusActivity";
     private Button submitButton;
     private TextView statusTextView;
-    private WorkersAPI workersApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_status);
 
-        workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
         submitButton = (Button) findViewById(R.id.submitPersonalStatusButton);
         statusTextView = (TextView) findViewById(R.id.personalStatusTextView);
 

@@ -1,9 +1,9 @@
 module.exports = async (ctx) => {
-    const employeeId = ctx.params.id;
+    const workerId = ctx.params.id;
     const timeslot = ctx.request.body;
 
     console.log("add timeslot: "+timeslot)
 
-    await ctx.employeeModel.addTimeslot(timeslot, employeeId);
+    await ctx.workerModel.addTimeslot(timeslot, workerId);
     ctx.body = "ok";
 };

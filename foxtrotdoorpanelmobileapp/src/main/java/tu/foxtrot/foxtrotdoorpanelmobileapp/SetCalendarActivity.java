@@ -26,7 +26,6 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.ExponentialBackOff;
-import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.CalendarList;
 import com.google.api.services.calendar.model.CalendarListEntry;
@@ -41,7 +40,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class SetCalendarActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
-    GoogleAccountCredential mCredential;
+    private GoogleAccountCredential mCredential;
 
     static final int REQUEST_ACCOUNT_PICKER = 1000;
     static final int REQUEST_AUTHORIZATION = 1001;
@@ -79,9 +78,9 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
     }
 
     private void saveCalendar() {
-        ((MobileApplication)getApplicationContext()).mCredential = mCredential;
+        ((MobileApplication) getApplicationContext()).setmCredential(mCredential);
         RadioButton activeButton = radioGroup.findViewById(radioGroup.getCheckedRadioButtonId());
-        ((MobileApplication)getApplicationContext()).mCalendar = activeButton.getText().toString();
+        ((MobileApplication) getApplicationContext()).setmCalendar(activeButton.getText().toString());
         Intent intent = new Intent(SetCalendarActivity.this, MainActivity.class);
         startActivity(intent);
     }
@@ -248,7 +247,7 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
 
         private String message = "";
 
-        List<String> ids;
+        private List<String> ids;
 
         private Context context;
 

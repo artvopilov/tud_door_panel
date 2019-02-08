@@ -1,14 +1,14 @@
 module.exports = async (ctx) => {
-    const employeeId = ctx.params.id;
+    const workerId = ctx.params.id;
     const {timeslot, name, email, phone, message} = ctx.request.body;
 
-    //const mobiles = await ctx.mobileModel.getBy({employeeId});
+    //const mobiles = await ctx.mobileModel.getBy({workerId});
     //const token = mobiles[0].token;
 
 
     const messageToTablet = {
-        data: {employeeId, timeslot, name, email, phone, message},
-        topic: employeeId.toString()
+        data: {workerId, timeslot, name, email, phone, message},
+        topic: workerId.toString()
     };
     ctx.body = timeslot;
     ctx.admin.messaging().send(messageToTablet)

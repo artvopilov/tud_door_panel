@@ -31,9 +31,9 @@ public class EventDialog extends DialogFragment implements View.OnClickListener,
     private DatePicker startDate;
     private TimePicker endTime;
     private DatePicker endDate;
-    final Calendar c = Calendar.getInstance();
-    int hour = c.get(Calendar.HOUR_OF_DAY);
-    int minute = c.get(Calendar.MINUTE);
+    private final Calendar c = Calendar.getInstance();
+    private int hour = c.get(Calendar.HOUR_OF_DAY);
+    private int minute = c.get(Calendar.MINUTE);
     private Button createEvent;
     private Button cancelEvent;
     private EditText eventTitle;

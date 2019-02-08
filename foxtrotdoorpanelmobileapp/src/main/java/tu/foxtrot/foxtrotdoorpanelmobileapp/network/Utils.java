@@ -13,9 +13,9 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
 public class Utils {
     private final static String TAG = "UTILS";
+    private static WorkersAPI workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
 
     public static void updateWorkerStatus(Context context, String token, String status) {
-        WorkersAPI workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
         Call<String> call = workersApi.updateWorkerStatus("Bearer " + token, status);
         Log.d(TAG, "Status update request sent");
 
@@ -33,6 +33,24 @@ public class Utils {
             public void onFailure(Call<String> call, Throwable t) {
                 Log.d(TAG, "Status update error: " + t.getMessage());
             }
+        });
+    }
+
+    public static void updateWorkerRoom(Context context, String token, String room) {
+        Call<String> call = workersApi.updateWorkerRoom("Bearer " + token, room);
+        Log.d(TAG, "Room update request sent | room:" + room);
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String newRoom = response.body();
+                Log.d(TAG, "Room updated: " + newRoom);
+                Toast.makeText(context, "Room updated: " + newRoom, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d(TAG, "Room update error: " + t.getMessage());            }
         });
     }
 }

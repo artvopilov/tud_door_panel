@@ -65,7 +65,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class makeAppointment extends AppCompatActivity {
+public class MakeAppointmentActivity extends AppCompatActivity {
 
     ProgressDialog mProgress;
 
