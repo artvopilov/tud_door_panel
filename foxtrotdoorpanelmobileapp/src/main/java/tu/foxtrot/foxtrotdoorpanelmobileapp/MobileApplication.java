@@ -2,13 +2,21 @@ package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,12 +27,28 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.Worker;
 
+import static java.util.Comparator.comparing;
+
 public class MobileApplication extends Application {
+    private final String UPD_NOTIF_FILTER = "tu.foxtrot.foxtrotdoorpanelmobileapp.UPDATE_NOTIFICATIONS";
 
     private List<Notification> notificationsList = new ArrayList<Notification>();
     private String workerName;
 
     public List<Notification> getNotificationsList() {
+        // TODO: After booking notifications' date and time can be parsed, we can use normal
+        // TODO: date and time comparison
+        Collections.sort(notificationsList, (o1, o2) -> {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            try {
+                Date date1 = dateFormat.parse(o1.getDate());
+                Date date2 = dateFormat.parse(o2.getDate());
+                return date1.after(date2) ? 1 : -1;
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        });
         return notificationsList;
     }
     public void setNotificationsList(List<? extends Notification> notificationsList) {
@@ -34,6 +58,8 @@ public class MobileApplication extends Application {
 
     public void addNotification(Notification notification){
         notificationsList.add(notification);
+        Intent intent = new Intent(UPD_NOTIF_FILTER);
+        sendBroadcast(intent);
     }
 
     public void pullNotifications() {

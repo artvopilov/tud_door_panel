@@ -14,6 +14,8 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.WorkerAPI;
@@ -54,9 +56,11 @@ public class BioActivity extends AppCompatActivity {
                 String message = ((EditText)findViewById(R.id.message_field)).getText().toString();
                 String email = ((EditText)findViewById(R.id.email_field)).getText().toString();
                 String name = ((EditText)findViewById(R.id.name_filed)).getText().toString();
-                Calendar calendar = Calendar.getInstance();
-                String time = DateFormat.getTimeInstance().format(calendar.getTime());
-                String date = DateFormat.getDateInstance().format(calendar.getTime());
+                Date currentDateTime = Calendar.getInstance().getTime();
+                DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                String time = timeFormat.format(currentDateTime);
+                String date = dateFormat.format(currentDateTime);
                 Call<String> call = workerApi.sendWorkerMessage(workerID, message,
                         date, time, email, name);
                 Log.d(TAG, "Message request sent");

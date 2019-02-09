@@ -1,6 +1,8 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,17 +13,19 @@ import java.util.List;
 
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.MessageNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.receivers.UpdateNotificationsReceiver;
 
 public class NotificationsAllActivity extends AppCompatActivity {
+    private final String UPD_NOTIF_FILTER = "tu.foxtrot.foxtrotdoorpanelmobileapp.UPDATE_NOTIFICATIONS";
+    private BroadcastReceiver updNotificationsReceiver = new UpdateNotificationsReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_notifications);
-        ListView mListView = (ListView) findViewById(R.id.notifications_list);
 
         List<Notification> notifications = ((MobileApplication)getApplicationContext()).getNotificationsList();
-
+        ListView mListView = (ListView) findViewById(R.id.notifications_list);
         NotificationsListAdapter adapter = new NotificationsListAdapter(this,
                 R.layout.single_notification, notifications);
         mListView.setAdapter(adapter);
@@ -46,5 +50,17 @@ public class NotificationsAllActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerReceiver(updNotificationsReceiver, new IntentFilter(UPD_NOTIF_FILTER));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(updNotificationsReceiver);
     }
 }
