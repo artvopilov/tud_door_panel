@@ -1,21 +1,28 @@
 module.exports = async (ctx) => {
     const workerId = ctx.params.id;
-    const {timeslot, name, email, phone, message} = ctx.request.body;
+    const booking = ctx.request.body;
+    booking.workerId = workerId;
 
-    //const mobiles = await ctx.mobileModel.getBy({workerId});
-    //const token = mobiles[0].token;
-
+    try {
+        await ctx.bookingModel.create(booking);
+    } catch (e) {
+        console.log(`Error caught in book-timeslot controller: ${e.message}: `);
+        ctx.status = 400;
+        ctx.body = { status: 'error' };
+    }
 
     const messageToTablet = {
-        data: {workerId, timeslot, name, email, phone, message, type: 'booking'},
+        data: {eventId: booking.eventId, name: booking.name, email: booking.email, phone: booking.phone,
+            text: booking.text, type: 'booking', time: booking.time, date: booking.date},
         topic: workerId.toString()
     };
-    ctx.body = timeslot;
     ctx.admin.messaging().send(messageToTablet)
-        .then((response) => {
-            console.log('Successfully booked slot:', response);
+        .then(() => {
+            console.log('Successfully booked slot: ', booking);
         })
         .catch((error) => {
             console.log('Error sending message:', error);
         });
+    ctx.status = 200;
+    ctx.body = { status: 'ok' };
 };

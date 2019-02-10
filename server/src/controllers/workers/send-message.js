@@ -13,7 +13,7 @@ module.exports = async (ctx) => {
 
     const messageToTablet = {
         data: {workerId, type: 'message', email: message.email, name: message.name, text: message.text,
-            timeCreation: message.time, dateCreation: message.date},
+            time: message.time, date: message.date},
         topic: workerId.toString()
     };
     ctx.admin.messaging().send(messageToTablet)

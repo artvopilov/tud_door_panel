@@ -26,6 +26,7 @@ const getMessagesController = require('./controllers/messages/get-worker-message
 const WorkerModel = require('./models/workers');
 const TabletModel = require('./models/tablets');
 const MessageModel = require('./models/messages');
+const BookingModel = require('./models/bookings');
 
 mongoose.connect(config.get('mongo.uri'), { useNewUrlParser: true })
     .then(() => console.log("Successfully connected to db"))
@@ -72,6 +73,7 @@ app.use(async (ctx, next) => {
     ctx.workerModel = new WorkerModel();
     ctx.tabletModel = new TabletModel();
     ctx.messageModel = new MessageModel();
+    ctx.bookingModel = new BookingModel();
     ctx.admin = admin;
     await next();
 });

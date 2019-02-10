@@ -52,10 +52,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String text = data.get("text");
         String email = data.get("email");
         String name = data.get("name");
-        String timeCreation = data.get("timeCreation");
-        String dateCreation = data.get("dateCreation");
+        String time = data.get("time");
+        String date = data.get("date");
         ((MobileApplication)getApplicationContext()).addNotification(new MessageNotification(
-                dateCreation, timeCreation, "message", email, name, text));
+                date, time, "message", email, name, text));
 
         Intent intent = new Intent(this, MessageActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -84,20 +84,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void handleBooking(Map<String, String> data){
 
-        String message = data.get("message");
-        String id = data.get("employeeId");
-        String timeslot = data.get("timeslot");
-        String mail = data.get("mail");
-        String number = data.get("number");
+        String message = data.get("text");
+        String timeslot = data.get("eventId");
+        String email = data.get("email");
+        String phone = data.get("phone");
         String name = data.get("name");
+        String time = data.get("time");
+        String date = data.get("date");
+        ((MobileApplication)getApplicationContext()).addNotification(new BookingNotification(date,
+                time, timeslot, message, email, phone, name));
 
-        Notification notification = new BookingNotification("22.02.2018",
-                "10:23", timeslot,  message,
-                mail, number, name);
-
-        ((MobileApplication)getApplicationContext()).addNotification(notification);
-
-        // Create an explicit intent for an Activity in your app
         Intent intent = new Intent(this, NotificationsAllActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
@@ -113,7 +109,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setVisibility(VISIBILITY_PUBLIC);
-
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
         // notificationId is a unique int for each notification that you must define
@@ -135,14 +130,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onSendError(String s, Exception e) {
         super.onSendError(s, e);
-    }
-
-    @Override
-    public void onNewToken(String token) {
-        Log.d(TAG, "Refreshed token: " + token);
-    }
-
-    private void sendRegistrationToServer(String token) {
-
     }
 }

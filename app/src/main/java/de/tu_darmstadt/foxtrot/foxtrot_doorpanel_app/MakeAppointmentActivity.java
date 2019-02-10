@@ -49,11 +49,14 @@ import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.Events;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.adapter.EventListAdapter;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.model.ScheduledEvents;
@@ -135,11 +138,15 @@ public class MakeAppointmentActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Date currentDateTime = Calendar.getInstance().getTime();
+                DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                String time = timeFormat.format(currentDateTime);
+                String date = dateFormat.format(currentDateTime);
                 Call<String> call = workersApi.bookWorkerTimeslot(workerID,
                         (int) activeEvent.getId(),editName.getText().toString(),
-                        editNumber.getText().toString(), editMail.getText().toString(),
-                        editMessage.getText().toString());
+                        editMail.getText().toString(), editNumber.getText().toString(),
+                        editMessage.getText().toString(), date, time);
 
                 call.enqueue(new Callback<String>() {
                     @Override

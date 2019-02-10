@@ -9,14 +9,14 @@ public class BookingNotification extends Notification {
     private String timeslot;
     private String message;
 
-    public BookingNotification(String date, String time, String timeslot, String details, String email,
+    public BookingNotification(String date, String time, String timeslot, String message, String email,
                                String number, String name) {
         super(date, time, "booking");
         this.email = email;
-        this.setNumber(number);
+        this.number = number;
         this.name = name;
-        this.message = details;
-        this.setTimeslot(timeslot);
+        this.message = message;
+        this.timeslot = timeslot;
     }
 
     public String getEmail() {

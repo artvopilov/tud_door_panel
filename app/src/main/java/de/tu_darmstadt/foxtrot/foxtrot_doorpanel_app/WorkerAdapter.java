@@ -14,8 +14,6 @@ import java.util.List;
 
 public class WorkerAdapter extends BaseAdapter {
 
-
-
     public WorkerAdapter(Context context) {
         this.context = context;
     }
@@ -50,8 +48,6 @@ public class WorkerAdapter extends BaseAdapter {
         TextView tv2= linearLayout.findViewById(R.id.b20);
         TextView tv3= linearLayout.findViewById(R.id.b21);
         ImageButton calendarButton = linearLayout.findViewById(R.id.calendarButton);
-
-
 
         // set some properties of rowTextView or something
         tv1.setText(worker.getName());
