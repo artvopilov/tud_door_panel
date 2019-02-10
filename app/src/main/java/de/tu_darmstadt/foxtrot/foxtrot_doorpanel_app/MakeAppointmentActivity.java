@@ -293,10 +293,4 @@ public class MakeAppointmentActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
 }

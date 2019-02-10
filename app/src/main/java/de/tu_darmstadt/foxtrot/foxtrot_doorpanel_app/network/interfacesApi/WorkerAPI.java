@@ -20,7 +20,7 @@ public interface WorkerAPI {
 
     @FormUrlEncoded
     @POST("workers/{id}/message")
-    Call<String> sendWorkerMessage(@Path("id") int workerId, @Field("text") String message,
+    Call<String> sendWorkerMessage(@Path("id") int workerId, @Field("message") String message,
                                    @Field("date") String date, @Field("time") String time,
                                    @Field("email") String email, @Field("name") String name);
 
@@ -28,7 +28,7 @@ public interface WorkerAPI {
     @POST("workers/{id}/book")
     Call<String> bookWorkerTimeslot(@Path("id") int workerId, @Field("eventId") int timeslot,
                                     @Field("name") String name, @Field("email") String email,
-                                    @Field("phone") String number, @Field("text") String message,
+                                    @Field("phone") String number, @Field("message") String message,
                                     @Field("date") String date, @Field("time") String time);
 }
 

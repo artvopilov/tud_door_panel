@@ -1,4 +1,5 @@
 module.exports = async (ctx) => {
+    console.log('Booking request got');
     const workerId = ctx.params.id;
     const booking = ctx.request.body;
     booking.workerId = workerId;
@@ -9,11 +10,12 @@ module.exports = async (ctx) => {
         console.log(`Error caught in book-timeslot controller: ${e.message}: `);
         ctx.status = 400;
         ctx.body = { status: 'error' };
+        return;
     }
 
     const messageToTablet = {
         data: {eventId: booking.eventId, name: booking.name, email: booking.email, phone: booking.phone,
-            text: booking.text, type: 'booking', time: booking.time, date: booking.date},
+            message: booking.message, type: 'booking', time: booking.time, date: booking.date},
         topic: workerId.toString()
     };
     ctx.admin.messaging().send(messageToTablet)

@@ -10,7 +10,7 @@ class Messages extends DbModel {
         const isMessage = message
             && Object.prototype.hasOwnProperty.call(message, 'date')
             && Object.prototype.hasOwnProperty.call(message, 'time')
-            && Object.prototype.hasOwnProperty.call(message, 'text')
+            && Object.prototype.hasOwnProperty.call(message, 'message')
             && Object.prototype.hasOwnProperty.call(message, 'email')
             && Object.prototype.hasOwnProperty.call(message, 'name')
             && Object.prototype.hasOwnProperty.call(message, 'workerId');

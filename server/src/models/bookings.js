@@ -8,14 +8,14 @@ class Bookings extends DbModel {
 
     async create (booking) {
         const isBooking = booking
-            && Object.prototype.hasOwnProperty.call(message, 'date')
-            && Object.prototype.hasOwnProperty.call(message, 'time')
-            && Object.prototype.hasOwnProperty.call(message, 'text')
-            && Object.prototype.hasOwnProperty.call(message, 'email')
-            && Object.prototype.hasOwnProperty.call(message, 'name')
-            && Object.prototype.hasOwnProperty.call(message, 'eventId')
-            && Object.prototype.hasOwnProperty.call(message, 'phone')
-            && Object.prototype.hasOwnProperty.call(message, 'workerId');
+            && Object.prototype.hasOwnProperty.call(booking, 'date')
+            && Object.prototype.hasOwnProperty.call(booking, 'time')
+            && Object.prototype.hasOwnProperty.call(booking, 'message')
+            && Object.prototype.hasOwnProperty.call(booking, 'email')
+            && Object.prototype.hasOwnProperty.call(booking, 'name')
+            && Object.prototype.hasOwnProperty.call(booking, 'eventId')
+            && Object.prototype.hasOwnProperty.call(booking, 'phone')
+            && Object.prototype.hasOwnProperty.call(booking, 'workerId');
         if (isBooking) {
             booking.id = await this._generate_id();
 

@@ -49,28 +49,28 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void handleMessage(Map<String, String> data){
         Log.d(TAG, "Message notification processing...");
-        String text = data.get("text");
+        String message = data.get("message");
         String email = data.get("email");
         String name = data.get("name");
         String time = data.get("time");
         String date = data.get("date");
         ((MobileApplication)getApplicationContext()).addNotification(new MessageNotification(
-                date, time, "message", email, name, text));
+                date, time, "message", email, name, message));
 
         Intent intent = new Intent(this, MessageActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("Name", name);
         intent.putExtra("Email", email);
-        intent.putExtra("Details", text);
+        intent.putExtra("Details", message);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_envelope)
                 .setContentTitle("new message from door panel")
-                .setContentText(text)
+                .setContentText(message)
                 .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText(text))
+                        .bigText(message))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
@@ -79,12 +79,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(notificationID, mBuilder.build());
         notificationID++;
 
-        Log.d(TAG, "Message notification processed: " + text);
+        Log.d(TAG, "Message notification processed: " + message);
     }
 
     private void handleBooking(Map<String, String> data){
+        Log.d(TAG, "Booking notification processing...");
 
-        String message = data.get("text");
+        String message = data.get("message");
         String timeslot = data.get("eventId");
         String email = data.get("email");
         String phone = data.get("phone");

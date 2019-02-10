@@ -7,7 +7,7 @@ const Booking = mongoose.model('Booking', new mongoose.Schema({
     workerId: Number,
     time: String,
     date: String,
-    text: String,
+    message: String,
     email: String,
     name: String,
     phone: String,

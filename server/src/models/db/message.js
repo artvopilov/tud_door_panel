@@ -5,7 +5,7 @@ const Message = mongoose.model('Message', new mongoose.Schema({
     id: Number,
     date: String,
     time: String,
-    text: String,
+    message: String,
     workerId: Number,
     email: String,
     name: String,

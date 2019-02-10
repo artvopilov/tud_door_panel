@@ -37,9 +37,9 @@ public class NotificationsAllActivity extends AppCompatActivity {
                 if (notification.getType().equals("message")) {
                     Intent intent = new Intent(NotificationsAllActivity.this,
                             MessageActivity.class);
-                    intent.putExtra("Name", ((MessageNotification) notification).getName());
-                    intent.putExtra("Email", ((MessageNotification) notification).getEmail());
-                    intent.putExtra("Details", ((MessageNotification) notification).getText());
+                    intent.putExtra("Name", notification.getName());
+                    intent.putExtra("Email", notification.getEmail());
+                    intent.putExtra("Details", notification.getMessage());
                     startActivity(intent);
                 }
                 if (notification.getType().equals("booking")) {

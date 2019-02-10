@@ -44,10 +44,9 @@ public class NotificationsListAdapter extends ArrayAdapter<Notification> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        String date = getItem(position).getDate();
+        String name = getItem(position).getName();
         String time = getItem(position).getTime();
-        String details = getItem(position).getType();
+        String details = getItem(position).getMessage();
         String type = getItem(position).getType();
 
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
@@ -57,28 +56,18 @@ public class NotificationsListAdapter extends ArrayAdapter<Notification> {
         holder.time = (TextView) convertView.findViewById(R.id.notification_time);
         holder.type = (TextView) convertView.findViewById(R.id.notification_type);
         holder.details = (TextView) convertView.findViewById(R.id.notification_details);
-
-        //final View resultView = convertView;
         convertView.setTag(holder);
 
         Animation animation = AnimationUtils.loadAnimation(mContext,
                 (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
-
-        //resultView.startAnimation(animation);
         convertView.startAnimation(animation);
+
         lastPosition = position;
 
         holder.time.setText(time);
+        holder.type.setText(String.format("%s from %s", type, name));
+        holder.type.setTextColor(Color.parseColor("#AABC45"));
         holder.details.setText(details);
-        if (type.equals("message")) {
-            String name = ((MessageNotification) getItem(position)).getName();
-            String email = ((MessageNotification) getItem(position)).getEmail();
-            holder.type.setText(String.format("%s from %s", type, name));
-            holder.type.setTextColor(Color.parseColor("#AABC45"));
-        } else {
-            holder.type.setText(type);
-        }
-
         return convertView;
     }
 }

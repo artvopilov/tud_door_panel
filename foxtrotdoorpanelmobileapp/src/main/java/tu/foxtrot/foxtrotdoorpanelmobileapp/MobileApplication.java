@@ -36,14 +36,20 @@ public class MobileApplication extends Application {
     private String workerName;
 
     public List<Notification> getNotificationsList() {
-        // TODO: After booking notifications' date and time can be parsed, we can use normal
-        // TODO: date and time comparison
         Collections.sort(notificationsList, (o1, o2) -> {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
             try {
+                if (o1.getDate().compareTo(o2.getDate()) == 0) {
+                    Date time1 = timeFormat.parse(o1.getTime());
+                    Date time2 = timeFormat.parse(o2.getTime());
+                    Log.d("MobileAppComparison", time1.toString());
+                    Log.d("MobileAppComparison", time2.toString());
+                    return time1.after(time2) ? -1 : 1;
+                }
                 Date date1 = dateFormat.parse(o1.getDate());
                 Date date2 = dateFormat.parse(o2.getDate());
-                return date1.after(date2) ? 1 : -1;
+                return date1.after(date2) ? -1 : 1;
             } catch (ParseException e) {
                 e.printStackTrace();
                 return 0;
@@ -57,7 +63,7 @@ public class MobileApplication extends Application {
     }
 
     public void addNotification(Notification notification){
-        notificationsList.add(notification);
+        notificationsList.add(0, notification);
         Intent intent = new Intent(UPD_NOTIF_FILTER);
         sendBroadcast(intent);
     }
@@ -67,6 +73,7 @@ public class MobileApplication extends Application {
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
         Utils.getMessages(this, token);
+        Utils.getBookings(this, token);
     }
 
     public void pullWorkerName() {
