@@ -46,6 +46,8 @@ public class BioActivity extends AppCompatActivity {
             positionView.setText(worker.getPosition());
             TextView statusView = findViewById(R.id.b21);
             statusView.setText(worker.getStatus());
+            TextView summaryView = findViewById(R.id.summaryView);
+            summaryView.setText(worker.getSummary());
         }
 
         Button sendButton = findViewById(R.id.button_send);

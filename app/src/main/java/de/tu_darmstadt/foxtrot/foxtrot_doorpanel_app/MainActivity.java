@@ -14,6 +14,7 @@ import android.widget.GridView;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.UpdateReceiver;
 
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         gridView.setAdapter(new WorkerAdapter(this));
         ((TabletApplication)getApplicationContext()).pullWorkers();
         subscribeToTopic80b();
+
+        TextView room = findViewById(R.id.room);
+        room.setText(((TabletApplication)getApplicationContext()).getRoom());
     }
 
     private void subscribeToTopic80b() {

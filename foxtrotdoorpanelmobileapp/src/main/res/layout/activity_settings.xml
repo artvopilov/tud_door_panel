@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings"
+    android:background="@drawable/d">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/blue_button"
+                    android:text="photo"
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/blue_button"
+                    android:text="room"
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/blue_button"
+                    android:text="email"
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/blue_button"
+                    android:text="phone number"
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/blue_button"
+                    android:text="short summary"
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/blue_button"
+                    android:text="time slots"
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/blue_button"
+                    android:text="set calendar"
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@android:dimen/notification_large_icon_height"
+                    android:layout_weight="0.5"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/blue_button"
+                    android:text="add new worker"
+                    android:textColor="#FFFFFF"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/logoutButton"
+                android:layout_width="match_parent"
+                android:layout_height="@android:dimen/notification_large_icon_height"
+                android:layout_marginTop="70dp"
+                android:drawableLeft="@drawable/ic_logout"
+                android:text="Logout"
+                android:background="@drawable/blue_button"
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

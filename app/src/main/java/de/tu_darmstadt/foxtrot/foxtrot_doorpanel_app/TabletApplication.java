@@ -20,6 +20,10 @@ public class TabletApplication extends Application {
 
     public String room = "80b";
 
+    public String getRoom() {
+        return room;
+    }
+
     public Worker getWorker(int position) {
         return workerList.get(position);
     }
