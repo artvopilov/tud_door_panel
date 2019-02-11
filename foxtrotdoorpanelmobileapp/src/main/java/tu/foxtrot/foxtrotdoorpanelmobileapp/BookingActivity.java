@@ -1,16 +1,20 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -21,46 +25,64 @@ import java.util.Arrays;
 
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.BookingNotification;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
+
 public class BookingActivity extends AppCompatActivity {
 
     private TextView name;
     private TextView email;
     private TextView text;
+    private TextView eventStart;
+    private TextView eventEnd;
     private Button buttonAcceptBooking;
     private Event timeslot;
     private String calendarId;
+    private String timeslotCalendarId;
+    private String slotID;
 
     private com.google.api.services.calendar.Calendar mService = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_message);
+        setContentView(R.layout.activity_booking);
 
         calendarId = ((MobileApplication) getApplicationContext()).getmCalendar();
+        timeslotCalendarId = ((MobileApplication) getApplicationContext()).getTimeslotsCalendar();
 
         name = (TextView) findViewById(R.id.message_name);
         email = (TextView) findViewById(R.id.message_email);
         text = (TextView) findViewById(R.id.message_text);
+        eventStart = (TextView) findViewById(R.id.event_start);
+        eventEnd = (TextView) findViewById(R.id.event_end);
         buttonAcceptBooking = (Button) findViewById(R.id.buttonAcceptBooking);
 
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
 
-        mService = new com.google.api.services.calendar.Calendar.Builder(
-                transport, jsonFactory, ((MobileApplication) getApplicationContext()).getmCredential())
-                .setApplicationName("Google Calendar API Android Quickstart")
-                .build();
+
+
+
 
         Intent intent = getIntent();
         int notificationID = intent.getIntExtra("notificationID",0);
         BookingNotification notification = (BookingNotification) ((MobileApplication)getApplicationContext()).getNotificationsList().get(notificationID);
-        String slotID = notification.getTimeslot();
-        /*try {
-            timeslot = mService.events().get(calendarId,slotID).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        slotID = notification.getTimeslot();
+
+
+        if (((MobileApplication) getApplicationContext()).isCredentialReady(this)){
+            GoogleAccountCredential credential = ((MobileApplication) getApplicationContext()).getmCredential();
+            mService = new com.google.api.services.calendar.Calendar.Builder(
+                    transport, jsonFactory, credential)
+                    .setApplicationName("Google Calendar API Android Quickstart")
+                    .build();
+            getEventAsync(slotID);
+        }
+
         name.setText(notification.getName());
         email.setText(notification.getEmail());
         text.setText(notification.getMessage());
@@ -84,25 +106,38 @@ public class BookingActivity extends AppCompatActivity {
 
 
                 //event.send
-                if(mService!=null) {
-                    try {
-                        mService.events().insert(calendarId, event).setSendNotifications(true).execute();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+                setEventAsync(event);
 
-                Intent gmail = new Intent(Intent.ACTION_VIEW);
-                gmail.setClassName("com.google.android.gm","com.google.android.gm.ComposeActivityGmail");
+                WorkersAPI workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
+
+                int myID = ((MobileApplication)getApplicationContext()).getWorkerID();
+
+                Call<String> call = workersApi.removeWorkerTimeslot(myID, notification.getTimeslot());
+
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Log.d("remove Timeslot", t.getMessage());
+                    }
+                });
+
+                Intent gmail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto",notification.getEmail(), null));
+                //gmail.setClassName("com.google.android.gm","com.google.android.gm.ComposeActivityGmail");
                 gmail.putExtra(Intent.EXTRA_EMAIL, new String[] { notification.getEmail() });
-                gmail.setData(Uri.parse(notification.getEmail()));
+                //gmail.setData(Uri.parse(notification.getEmail()));
                 gmail.putExtra(Intent.EXTRA_SUBJECT, "enter something");
-                gmail.setType("plain/text");
+                //gmail.setType("plain/text");
                 gmail.putExtra(Intent.EXTRA_TEXT, "hello "+notification.getName()+"\n"+
-                        "I have accepted your request to meet from "+timeslot.getStart().toString()
-                        +" until "+timeslot.getEnd().toString()+" in/at "+ timeslot.getLocation()+"\n"+
+                        "I have accepted your request to meet from "+timeslot.getStart().getDateTime().toString()
+                        +" until "+timeslot.getEnd().getDateTime().toString()+" in/at "+ timeslot.getLocation()+"\n"+
                         "Please be on time");
-                startActivity(gmail);
+                startActivity(Intent.createChooser(gmail, "Send Email"));
             }
         });
     }
@@ -111,7 +146,6 @@ public class BookingActivity extends AppCompatActivity {
     public void getEventAsync(String slotID) {
 
         new AsyncTask<Void, Void, String>() {
-            private com.google.api.services.calendar.Calendar mService = null;
             private Exception mLastError = null;
             private boolean FLAG = false;
 
@@ -119,9 +153,41 @@ public class BookingActivity extends AppCompatActivity {
             @Override
             protected String doInBackground (Void...voids){
                 try {
-                    timeslot = mService.events().get(calendarId,slotID).execute();
+                    timeslot = mService.events().get(timeslotCalendarId,slotID).execute();
                 } catch (IOException e) {
                     e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute (String s){
+                super.onPostExecute(s);
+                if (timeslot != null) {
+                    eventStart.setText("starts " + timeslot.getStart().getDateTime().toString());
+                    eventEnd.setText("ends " + timeslot.getEnd().getDateTime().toString());
+                }
+                //getResultsFromApi();
+            }
+        }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public void setEventAsync(Event event) {
+
+        new AsyncTask<Void, Void, String>() {
+            private Exception mLastError = null;
+            private boolean FLAG = false;
+
+
+            @Override
+            protected String doInBackground (Void...voids){
+                if(mService!=null) {
+                    try {
+                        mService.events().insert(calendarId, event).setSendNotifications(true).execute();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 return null;
             }
@@ -132,5 +198,22 @@ public class BookingActivity extends AppCompatActivity {
                 //getResultsFromApi();
             }
         }.execute();
+    }
+
+    @Override
+    protected void onActivityResult(
+            int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        name.setText(((MobileApplication) getApplicationContext()).processActivityResult(requestCode,resultCode,data));
+        HttpTransport transport = AndroidHttp.newCompatibleTransport();
+        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+        if (((MobileApplication) getApplicationContext()).isCredentialReady(this)){
+            GoogleAccountCredential credential = ((MobileApplication) getApplicationContext()).getmCredential();
+            mService = new com.google.api.services.calendar.Calendar.Builder(
+                    transport, jsonFactory, credential)
+                    .setApplicationName("Google Calendar API Android Quickstart")
+                    .build();
+            getEventAsync(slotID);
+        }
     }
 }

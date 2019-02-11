@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -28,7 +29,6 @@ import java.util.Date;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.dialog.EventDialog;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
@@ -45,9 +45,6 @@ public class Settings extends AppCompatActivity {
     private Button addWorkerButton;
     private Button logoutButton;
 
-    private WorkersAPI workersApi;
-
-    private com.google.api.services.calendar.Calendar mService = null;
 
 
     @Override
@@ -64,9 +61,10 @@ public class Settings extends AppCompatActivity {
         openSetCalendar();
         openAddWorker();
         logoutWorker();
+        openCreateTimeslot();
 
+/*
 
-        workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
 
         defTimeSlotsButton = (Button) findViewById(R.id.button6);
         defTimeSlotsButton.setOnClickListener(new View.OnClickListener() {
@@ -75,11 +73,8 @@ public class Settings extends AppCompatActivity {
                 EventDialog eventDialog = new EventDialog();
                 eventDialog.show(getFragmentManager(), "dialog");
 
-               /* Dialog dialog=new Dialog(CalendarActivity.this,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
-                dialog.setContentView(R.layout.create_event_layout);
-                dialog.show();*/
             }
-        });
+        });*/
 
     }
 
@@ -172,95 +167,15 @@ public class Settings extends AppCompatActivity {
         });
     }
 
-    @SuppressLint("StaticFieldLeak")
-    public void createEventAsync(final String summary, final String location, final String des, final DateTime startDate, final DateTime endDate, final EventAttendee[]
-            eventAttendees) {
-
-        new AsyncTask<Void, Void, String>() {
-            private com.google.api.services.calendar.Calendar mService = null;
-            private Exception mLastError = null;
-            private boolean FLAG = false;
-
-
+    public void openCreateTimeslot() {
+        defTimeSlotsButton = (Button) findViewById(R.id.button6);
+        defTimeSlotsButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            protected String doInBackground (Void...voids){
-                try {
-                    insertEvent(summary, location, des, startDate, endDate, eventAttendees);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute (String s){
-                super.onPostExecute(s);
-                //getResultsFromApi();
-            }
-        }.execute();
-    }
-    void insertEvent(String summary, String location, String des, DateTime startDate, DateTime endDate, EventAttendee[] eventAttendees) throws IOException {
-        Event event = new Event()
-                .setSummary(summary)
-                .setLocation(location)
-                .setDescription(des);
-
-        tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event ourEvent = new tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event();
-
-        ourEvent.setStart(new Date(startDate.getValue()));
-        ourEvent.setEnd(new Date(endDate.getValue()));
-        ourEvent.setName(summary);
-        ourEvent.setId(ourEvent.hashCode()); //TODO: this is probably not the best solution
-
-        int workerID = ((MobileApplication) getApplicationContext()).getWorkerID();
-
-        Call<String> call = workersApi.addWorkerTimeslot(workerID, ourEvent);
-
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String newStatus = response.body();
-
-                Context context = getApplicationContext();
-                Toast toast = Toast.makeText(context, "Status updated: " + newStatus,
-                        Toast.LENGTH_SHORT);
-                toast.show();
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d("add Timeslot", t.getMessage());
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, CreateTimeslotActivity.class);
+                startActivity(intent);
             }
         });
-
-        EventDateTime start = new EventDateTime()
-                .setDateTime(startDate)
-                .setTimeZone("America/Los_Angeles");
-        event.setStart(start);
-
-        EventDateTime end = new EventDateTime()
-                .setDateTime(endDate)
-                .setTimeZone("America/Los_Angeles");
-        event.setEnd(end);
-
-        String[] recurrence = new String[] {"RRULE:FREQ=DAILY;COUNT=1"};
-        event.setRecurrence(Arrays.asList(recurrence));
-
-
-
-        String calendarId = ((MobileApplication) getApplicationContext()).getmCalendar();
-
-        HttpTransport transport = AndroidHttp.newCompatibleTransport();
-        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-        mService = new com.google.api.services.calendar.Calendar.Builder(
-                transport, jsonFactory, ((MobileApplication) getApplicationContext()).getmCredential())
-                .setApplicationName("Google Calendar API Android Quickstart")
-                .build();
-
-        //event.send
-        if(mService!=null)
-            mService.events().insert(calendarId, event).setSendNotifications(true).execute();
-
-
     }
+
 }

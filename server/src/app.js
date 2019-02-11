@@ -15,6 +15,7 @@ const sendWorkerMessageController = require('./controllers/workers/send-message'
 const getWorkerByIdController = require('./controllers/workers/get-by-id');
 const changeWorkerRoomController = require('./controllers/workers/change-room');
 const addWorkerTimeslotController = require('./controllers/workers/add-timeslot');
+const removeWorkerTimeslotController = require('./controllers/workers/remove-timeslot');
 const bookWorkerTimeslotController = require('./controllers/workers/book-timeslot');
 const authenticateWorkerController = require('./controllers/workers/auth');
 
@@ -57,6 +58,7 @@ router.post('/workers/:id/message', sendWorkerMessageController);
 router.post('/workers/room', passport.authenticate('jwt', {session: false}),
     changeWorkerRoomController);
 router.post('/workers/:id/timeslot', addWorkerTimeslotController);
+router.delete('/workers/:id/timeslot', removeWorkerTimeslotController);
 router.post('/workers/:id/book', bookWorkerTimeslotController);
 router.post('/workers/login/', authenticateWorkerController);
 router.get('/test-worker-token/', passport.authenticate('jwt', {session: false}),
