@@ -34,6 +34,7 @@ public class TabletApplication extends Application {
     }
 
     public int getWorkerNum(){
+        //TODO: When the server is off, the code below causes error
         return workerList.size();
     }
 

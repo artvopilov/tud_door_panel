@@ -19,6 +19,8 @@ import com.google.api.services.calendar.model.Event;
 import java.io.IOException;
 import java.util.Arrays;
 
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.BookingNotification;
+
 public class BookingActivity extends AppCompatActivity {
 
     private TextView name;

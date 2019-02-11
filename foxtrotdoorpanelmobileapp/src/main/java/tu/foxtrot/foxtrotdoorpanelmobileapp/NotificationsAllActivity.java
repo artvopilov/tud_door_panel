@@ -1,27 +1,31 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.MessageNotification;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.receivers.UpdateNotificationsReceiver;
+
 public class NotificationsAllActivity extends AppCompatActivity {
+    private final String UPD_NOTIF_FILTER = "tu.foxtrot.foxtrotdoorpanelmobileapp.UPDATE_NOTIFICATIONS";
+    private BroadcastReceiver updNotificationsReceiver = new UpdateNotificationsReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_notifications);
-        ListView mListView = (ListView) findViewById(R.id.notifications_list);
 
         List<Notification> notifications = ((MobileApplication)getApplicationContext()).getNotificationsList();
-
+        ListView mListView = (ListView) findViewById(R.id.notifications_list);
         NotificationsListAdapter adapter = new NotificationsListAdapter(this,
                 R.layout.single_notification, notifications);
         mListView.setAdapter(adapter);
@@ -30,12 +34,12 @@ public class NotificationsAllActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Notification notification = notifications.get(position);
-                if (notification.getType().equals("Message")) {
+                if (notification.getType().equals("message")) {
                     Intent intent = new Intent(NotificationsAllActivity.this,
                             MessageActivity.class);
-                    intent.putExtra("Name", ((MessageNotification) notification).getName());
-                    intent.putExtra("Email", ((MessageNotification) notification).getEmail());
-                    intent.putExtra("Details", notification.getDetails());
+                    intent.putExtra("Name", notification.getName());
+                    intent.putExtra("Email", notification.getEmail());
+                    intent.putExtra("Details", notification.getMessage());
                     startActivity(intent);
                 }
                 if (notification.getType().equals("booking")) {
@@ -46,5 +50,17 @@ public class NotificationsAllActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerReceiver(updNotificationsReceiver, new IntentFilter(UPD_NOTIF_FILTER));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(updNotificationsReceiver);
     }
 }

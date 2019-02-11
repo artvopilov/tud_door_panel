@@ -1,21 +1,28 @@
 module.exports = async (ctx) => {
     const workerId = ctx.params.id;
-    const {message} = ctx.request.body;
+    const message = ctx.request.body;
+    message.workerId = workerId;
 
-    // const mobiles = await ctx.mobileModel.getBy({workerId});
-    // const token = mobiles[0].token;
-
+    try {
+        await ctx.messageModel.create(message);
+    } catch (e) {
+        console.log(`Error caught in send-message controller: ${e.message}: `);
+        ctx.status = 400;
+        ctx.body = { status: 'error' };
+    }
 
     const messageToTablet = {
-        data: {workerId, message},
+        data: {workerId, type: 'message', email: message.email, name: message.name, message: message.message,
+            time: message.time, date: message.date},
         topic: workerId.toString()
     };
-    ctx.body = message;
     ctx.admin.messaging().send(messageToTablet)
-        .then((response) => {
-            console.log('Successfully sent message:', response);
+        .then(() => {
+            console.log('Successfully sent message:', messageToTablet);
         })
         .catch((error) => {
-            console.log('Error sending message:', error);
+            console.log('Error sending message:', messageToTablet, '\nError: ' + error);
         });
+    ctx.status = 200;
+    ctx.body = { status: 'ok' };
 };

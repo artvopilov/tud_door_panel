@@ -11,6 +11,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.WorkerAPI;
 import retrofit2.Call;
@@ -42,33 +48,39 @@ public class BioActivity extends AppCompatActivity {
             statusView.setText(worker.getStatus());
         }
 
-        Button sendButton = findViewById(R.id.button);
+        Button sendButton = findViewById(R.id.button_send);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText textEdit = findViewById(R.id.editText);
-                String message = textEdit.getText().toString();
-                Call<String> call = workerApi.sendWorkerMessage(workerID, message);
+                String message = ((EditText)findViewById(R.id.message_field)).getText().toString();
+                String email = ((EditText)findViewById(R.id.email_field)).getText().toString();
+                String name = ((EditText)findViewById(R.id.name_filed)).getText().toString();
+                Date currentDateTime = Calendar.getInstance().getTime();
+                DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                String time = timeFormat.format(currentDateTime);
+                String date = dateFormat.format(currentDateTime);
+                Call<String> call = workerApi.sendWorkerMessage(workerID, message,
+                        date, time, email, name);
+                Log.d(TAG, "Message request sent");
 
                 call.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-                        String newStatus = response.body();
+                        Log.d(TAG, "Successful response");
+                        Toast.makeText(getApplicationContext(), "Message sent",
+                                Toast.LENGTH_SHORT).show();
 
-                        Context context = getApplicationContext();
-                        Toast toast = Toast.makeText(context, "Status updated: " + newStatus,
-                                Toast.LENGTH_SHORT);
-                        toast.show();
                     }
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
+                        Log.d(TAG, "Unsuccessful response");
                         Log.d(TAG, t.getMessage());
                     }
                 });
-                Intent intent = new Intent(BioActivity.this,
-                        MainActivity.class);
+                Intent intent = new Intent(BioActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
