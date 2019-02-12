@@ -64,6 +64,12 @@ public class MobileApplication extends Application {
 
     private Activity activity;
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        pullNotifications();
+    }
+
     public List<Notification> getNotificationsList() {
         Collections.sort(notificationsList, (o1, o2) -> {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());

@@ -116,32 +116,11 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-    <LinearLayout
-        android:id="@+id/message_inputs"
-        android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" >
-
             <EditText
                 android:id="@+id/editText"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:layout_weight="10"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/email_field"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:hint="Your email"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/message_field"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
                 android:ems="10"
                 android:hint="Introduce your message here:"
                 android:inputType="textMultiLine"
@@ -167,5 +146,6 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

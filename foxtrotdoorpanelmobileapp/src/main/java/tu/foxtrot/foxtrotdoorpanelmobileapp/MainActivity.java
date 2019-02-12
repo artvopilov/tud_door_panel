@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
 //        ((MobileApplication)getApplicationContext()).pullWorkerName();
 //        String workerName = ((MobileApplication)getApplicationContext()).getWorkerName();
 //        workerNameMain.setText(workerName);
-
-        ((MobileApplication)getApplicationContext()).pullNotifications();
     }
 
     public void openCalendar(View view) {
