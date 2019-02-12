@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/e">
+    tools:context=".MainActivity">
 
 
     <ScrollView
@@ -71,14 +70,14 @@
                 android:layout_height="88dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/blue_button"
-                android:drawableLeft="@drawable/ic_notification_dark_own"
+                android:drawableLeft="@drawable/ic_notification_own"
                 android:drawablePadding="2dip"
                 android:gravity="center"
                 android:paddingLeft="40dip"
                 android:paddingRight="16dip"
                 android:singleLine="true"
                 android:text="notifications"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="24sp"
                 tools:layout_editor_absoluteX="19dp"
                 tools:layout_editor_absoluteY="233dp" />
@@ -89,14 +88,14 @@
                 android:layout_height="88dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/blue_button"
-                android:drawableLeft="@drawable/ic_settings_dark_own"
+                android:drawableLeft="@drawable/ic_settings_own"
                 android:drawablePadding="2dip"
                 android:gravity="center"
                 android:paddingLeft="40dip"
                 android:paddingRight="16dip"
                 android:singleLine="true"
                 android:text="settings"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="24sp"
                 tools:layout_editor_absoluteX="19dp"
                 tools:layout_editor_absoluteY="233dp" />

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Settings"
-    android:background="@drawable/f">
+    tools:context=".Settings">
 
 
     <ScrollView
@@ -70,7 +69,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_weight="0.5"
                 android:orientation="horizontal">
 
@@ -115,7 +114,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_weight="0.5"
                 android:orientation="horizontal">
 
@@ -126,7 +125,7 @@
                     android:layout_height="@android:dimen/notification_large_icon_height"
                     android:layout_weight="0.5"
                     android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_personal_info2_dark_own"
+                    android:drawableLeft="@drawable/ic_personal_info2_own"
                     android:drawablePadding="2dip"
                     android:gravity="center"
                     android:paddingLeft="10dip"
@@ -134,7 +133,7 @@
                     android:singleLine="true"
                     android:text="About me"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="18sp" />
 
                 <Button
@@ -144,7 +143,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_weight="0.5"
                     android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_timeslots_dark_own"
+                    android:drawableLeft="@drawable/ic_timeslots_own"
                     android:drawablePadding="2dip"
                     android:gravity="center"
                     android:paddingLeft="10dip"
@@ -152,7 +151,7 @@
                     android:singleLine="true"
                     android:text="time slots"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -160,7 +159,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_weight="0.5"
                 android:orientation="horizontal">
 
@@ -170,7 +169,7 @@
                     android:layout_height="@android:dimen/notification_large_icon_height"
                     android:layout_weight="0.5"
                     android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_calendar_dark_own"
+                    android:drawableLeft="@drawable/ic_calendar_own"
                     android:drawablePadding="2dip"
                     android:gravity="center"
                     android:paddingLeft="10dip"
@@ -178,7 +177,7 @@
                     android:singleLine="true"
                     android:text="set calendar"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="18sp" />
 
                 <Button
@@ -188,7 +187,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_weight="0.5"
                     android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_new_worker_dark_own"
+                    android:drawableLeft="@drawable/ic_new_worker_own"
 
                     android:drawablePadding="2dip"
                     android:gravity="center"
@@ -198,7 +197,7 @@
 
                     android:text="new worker"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/white"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -209,7 +208,7 @@
                 android:layout_height="@android:dimen/notification_large_icon_height"
                 android:layout_marginTop="80dp"
                 android:background="@drawable/blue_button"
-                android:drawableLeft="@drawable/ic_logout"
+                android:drawableLeft="@drawable/ic_logout_own"
 
                 android:drawablePadding="2dip"
                 android:gravity="center"
