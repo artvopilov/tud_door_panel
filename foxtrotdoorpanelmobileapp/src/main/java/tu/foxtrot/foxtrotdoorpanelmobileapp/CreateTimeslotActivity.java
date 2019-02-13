@@ -253,7 +253,7 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
 
 
 
-        calendarId = ((MobileApplication) getApplicationContext()).getmCalendar();
+        calendarId = ((MobileApplication) getApplicationContext()).getTimeslotsCalendar();
 
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
