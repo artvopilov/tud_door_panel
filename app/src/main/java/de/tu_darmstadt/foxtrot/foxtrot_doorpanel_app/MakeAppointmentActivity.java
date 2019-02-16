@@ -29,7 +29,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alamkanak.weekview.MonthLoader;
+import com.alamkanak.weekview.EventClickListener;
+import com.alamkanak.weekview.EventLongPressListener;
+import com.alamkanak.weekview.MonthChangeListener;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.google.android.gms.common.ConnectionResult;
@@ -122,16 +124,17 @@ public class MakeAppointmentActivity extends AppCompatActivity {
             Calendar calEnd = Calendar.getInstance();
             calEnd.setTime(event.getEnd());
             wvEvent.setEndTime(calEnd);
-            wvEvent.setName(event.getName());
+            wvEvent.setTitle(event.getName());
             wvEvent.setColor(getResources().getColor(R.color.colorSlot));
             wvEvent.setId(event.getId());
+            wvEvent.setData(events.size());
             events.add(wvEvent);
         }
 
         // Get a reference for the week view in the layout.
         mWeekView = (WeekView) findViewById(R.id.weekView);
 
-        mWeekView.notifyDatasetChanged();
+        mWeekView.notifyDataSetChanged();
 
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -175,9 +178,10 @@ public class MakeAppointmentActivity extends AppCompatActivity {
 
 
         // Set an action when any event is clicked.
-        mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
+        mWeekView.setOnEventClickListener(new EventClickListener() {
             @Override
-            public void onEventClick(WeekViewEvent event, RectF eventRect) {
+            public void onEventClick(Object e, RectF eventRect) {
+                WeekViewEvent event = events.get((int) e);
 
 
                 if (event.getColor()==getResources().getColor(R.color.colorSlot)) {
@@ -187,7 +191,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
                     }
                     activeEvent = event;
                     activeEvent.setColor(getResources().getColor(R.color.colorSlotActive));
-                    mWeekView.notifyDatasetChanged();
+                    mWeekView.notifyDataSetChanged();
 
 
                     if (nameEdited && mailEdited && messageEdited) {
@@ -262,16 +266,14 @@ public class MakeAppointmentActivity extends AppCompatActivity {
 
         // The week view has infinite scrolling horizontally. We have to provide the events of a
         // month every time the month changes on the week view.
-        mWeekView.setMonthChangeListener(new MonthLoader.MonthChangeListener() {
+        mWeekView.setMonthChangeListener(new MonthChangeListener() {
             @Override
-            public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
+            public List<WeekViewEvent> onMonthChange(Calendar startDate, Calendar endDate) {
 
                 List<WeekViewEvent> theseEvents = new ArrayList<WeekViewEvent>();
 
                 for (WeekViewEvent event: events) {
-                    int year = event.getStartTime().get(Calendar.YEAR);
-                    int month = event.getStartTime().get(Calendar.MONTH)+1;
-                    if (year==newYear && month==newMonth){
+                    if (event.getStartTime().after(startDate)&&event.getEndTime().before(endDate)){
                         theseEvents.add(event);
                     }
                 }
@@ -280,13 +282,13 @@ public class MakeAppointmentActivity extends AppCompatActivity {
             }
         });
 
-        // Set long press listener for events.
-        mWeekView.setEventLongPressListener(new WeekView.EventLongPressListener() {
+        /*// Set long press listener for events.
+        mWeekView.setEventLongPressListener(new EventLongPressListener() {
             @Override
             public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
 
             }
-        });
+        });*/
 
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("Syncing with calendar..");

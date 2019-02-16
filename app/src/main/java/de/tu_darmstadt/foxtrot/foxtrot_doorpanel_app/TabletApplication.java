@@ -2,6 +2,7 @@ package de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app;
 
 import android.app.Application;
 import android.content.Intent;
+import android.support.multidex.MultiDexApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TabletApplication extends Application {
+public class TabletApplication extends MultiDexApplication {
 
     private List<Worker> workerList = new ArrayList<Worker>();
 

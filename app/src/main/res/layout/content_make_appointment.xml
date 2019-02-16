@@ -23,14 +23,13 @@
             app:dayBackgroundColor="#05000000"
             app:eventTextColor="@android:color/white"
             app:eventTextSize="8sp"
-            app:headerColumnBackground="#ffffffff"
-            app:headerColumnPadding="8dp"
-            app:headerColumnTextColor="#8f000000"
+            app:timeColumnBackgroundColor="#ffffffff"
+            app:timeColumnPadding="8dp"
+            app:timeColumnTextColor="#8f000000"
             app:headerRowBackgroundColor="#ffefefef"
             app:headerRowPadding="12dp"
             app:hourHeight="60dp"
-            app:noOfVisibleDays="7"
-            app:textSize="12sp"
+            app:numberOfVisibleDays="7"
             app:todayBackgroundColor="#1848adff" />
 
         <android.support.constraint.ConstraintLayout
