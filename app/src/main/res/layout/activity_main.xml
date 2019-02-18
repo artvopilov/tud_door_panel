@@ -108,7 +108,7 @@
 
             <ImageButton
 
-                android:id="@+id/landingPagePinButton10"
+                android:id="@+id/chat_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -117,7 +117,7 @@
                 android:clickable="true"
                 android:minWidth="60dp"
                 android:minHeight="60dp"
-                android:src="@drawable/ic_calendar_alt_bottom_tablet" />
+                android:src="@drawable/ic_comments_solid" />
 
 
         </LinearLayout>
