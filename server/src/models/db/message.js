@@ -9,6 +9,10 @@ const Message = mongoose.model('Message', new mongoose.Schema({
     workerId: Number,
     email: String,
     name: String,
+    fromWorker: {
+        type: Boolean,
+        default: false
+    }
 }));
 
 module.exports = Message;
