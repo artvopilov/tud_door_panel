@@ -7,13 +7,21 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.model.Message;
+
 public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        ListView messagesList = findViewById(R.id.list_of_messages);
-
+        List<Message> messageList = ((TabletApplication)getApplication()).getMessages();
+        ListView messagesListView = findViewById(R.id.list_of_messages);
+        ChatMessagesAdapter messagesAdapter = new ChatMessagesAdapter(this,
+                R.layout.single_message, messageList);
+        messagesListView.setAdapter(messagesAdapter);
     }
 }

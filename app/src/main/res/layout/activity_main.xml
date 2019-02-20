@@ -117,7 +117,7 @@
                 android:clickable="true"
                 android:minWidth="60dp"
                 android:minHeight="60dp"
-                android:src="@drawable/ic_comments_solid" />
+                android:src="@drawable/ic_comment_alt_solid" />
 
 
         </LinearLayout>

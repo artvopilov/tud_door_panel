@@ -6,6 +6,7 @@ import android.content.Intent;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.model.Message;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.WorkerAPI;
 import retrofit2.Call;
@@ -68,6 +69,19 @@ public class TabletApplication extends Application {
         }
         Intent intent = new Intent(UPDATE_GUI_FILTER);
         sendBroadcast(intent);
+    }
+
+    public List<Message> getMessages() {
+        return new ArrayList<Message>() {{
+            add(new Message("I am busy, sorry", "01.02.2019", "10:00:00",
+                    "Andreas Brown", "visitor brad"));
+            add(new Message("I am busy, sorry", "01.02.2019", "10:00:00",
+                    "Andreas Brown", "visitor brad"));
+            add(new Message("I am busy, sorry", "01.02.2019", "10:00:00",
+                    "Andreas Brown", "visitor brad"));
+            add(new Message("I am busy, sorry", "01.02.2019", "10:00:00",
+                    "Andreas Brown", "visitor brad"));
+        }};
     }
 
     public void pullWorkers(){
