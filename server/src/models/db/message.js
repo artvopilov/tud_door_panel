@@ -7,6 +7,10 @@ const Message = mongoose.model('Message', new mongoose.Schema({
     time: String,
     message: String,
     workerId: Number,
+    previousMessageId: {
+        type: Number,
+        default: -1
+    },
     email: String,
     name: String,
     fromWorker: {
