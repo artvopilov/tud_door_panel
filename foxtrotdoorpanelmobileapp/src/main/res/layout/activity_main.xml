@@ -7,38 +7,36 @@
     tools:context=".MainActivity">
 
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="53dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingTop="30dp"
+            android:paddingRight="30dp">
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
-                android:layout_height="88dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@drawable/blue_button"
                 android:drawableLeft="@drawable/ic_calendar_own"
-                android:drawablePadding="2dip"
+                android:drawablePadding="2dp"
                 android:gravity="center"
-                android:paddingLeft="40dip"
-                android:paddingRight="16dip"
+                android:paddingLeft="40dp"
+                android:paddingRight="16dp"
                 android:singleLine="true"
                 android:text="Calendar"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"
+                android:textSize="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/scrollView2"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -49,72 +47,76 @@
             <Button
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
-                android:layout_height="88dp"
+                android:layout_height="0dp"
                 android:layout_marginTop="24dp"
+                android:layout_weight="1"
                 android:background="@drawable/blue_button"
                 android:drawableLeft="@drawable/ic_status_own"
-                android:drawablePadding="2dip"
+                android:drawablePadding="2dp"
                 android:gravity="center"
-                android:paddingLeft="40dip"
-                android:paddingRight="16dip"
+                android:paddingLeft="40dp"
+                android:paddingRight="16dp"
                 android:singleLine="true"
                 android:text="Status"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"
+                android:textSize="24dp"
                 tools:layout_editor_absoluteX="19dp"
                 tools:layout_editor_absoluteY="133dp" />
 
             <Button
                 android:id="@+id/button4"
                 android:layout_width="match_parent"
-                android:layout_height="88dp"
+                android:layout_height="0dp"
                 android:layout_marginTop="24dp"
+                android:layout_weight="1"
                 android:background="@drawable/blue_button"
                 android:drawableLeft="@drawable/ic_notification_own"
-                android:drawablePadding="2dip"
+                android:drawablePadding="2dp"
                 android:gravity="center"
-                android:paddingLeft="40dip"
-                android:paddingRight="16dip"
+                android:paddingLeft="40dp"
+                android:paddingRight="16dp"
                 android:singleLine="true"
                 android:text="notifications"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"
+                android:textSize="24dp"
                 tools:layout_editor_absoluteX="19dp"
                 tools:layout_editor_absoluteY="233dp" />
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="match_parent"
-                android:layout_height="88dp"
+                android:layout_height="0dp"
                 android:layout_marginTop="24dp"
+                android:layout_weight="1"
                 android:background="@drawable/blue_button"
                 android:drawableLeft="@drawable/ic_settings_own"
-                android:drawablePadding="2dip"
+                android:drawablePadding="2dp"
                 android:gravity="center"
-                android:paddingLeft="40dip"
-                android:paddingRight="16dip"
+                android:paddingLeft="40dp"
+                android:paddingRight="16dp"
                 android:singleLine="true"
                 android:text="settings"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"
+                android:textSize="24dp"
                 tools:layout_editor_absoluteX="19dp"
                 tools:layout_editor_absoluteY="233dp" />
         </LinearLayout>
-    </ScrollView>
 
-    <TextView
-        android:id="@+id/workerNameMain"
-        android:layout_width="356dp"
-        android:layout_height="88dp"
-        android:layout_marginBottom="24dp"
-        android:autoSizeTextType="uniform"
-        android:text="Max Mustermann"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/workerNameMain"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:text="Max Mustermann"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
