@@ -134,13 +134,13 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
     private void onSpinnerChange(String selected){
         mode = selected;
         switch (selected){
-            case "single timeslot":
+            case "Single timeslot":
                 eventLengthLayout.setVisibility(View.GONE);
                 weekdayLayout.setVisibility(View.GONE);
                 startDate.setVisibility(View.VISIBLE);
                 endDate.setVisibility(View.VISIBLE);
                 break;
-            case "automatic repeating timeslots":
+            case "Automatic repeating timeslots":
                 eventLengthLayout.setVisibility(View.VISIBLE);
 
                 ArrayAdapter<CharSequence> unitsAdapter = ArrayAdapter
@@ -351,10 +351,10 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
                 buffer.append(eventDes.getText().toString());
 
                 switch (mode){
-                    case "single timeslot":
+                    case "Single timeslot":
                         createEventAsync(eventTitle.getText().toString(), eventLocation.getText().toString(), buffer.toString(), start, end, eventAttendeeEmail );
                         break;
-                    case "automatic repeating timeslots":
+                    case "Automatic repeating timeslots":
                         String weekday = weekdaySpinner.getSelectedItem().toString();
                         int length = Integer.parseInt(timeslotLength.getText().toString());
                         switch (timeUnitSpinner.getSelectedItem().toString()){

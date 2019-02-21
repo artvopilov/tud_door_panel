@@ -25,22 +25,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#89bcd4"
-                android:padding="10dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/createEventTitle" />
+                android:layout_height="70dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <EditText
                     android:id="@+id/eventTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/createEventTitle"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:lines="1"
@@ -50,22 +43,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#dce2e6"
-                android:padding="10dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/createEventDesc" />
+                android:layout_height="70dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <EditText
                     android:id="@+id/eventDes"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/createEventDesc"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:lines="1"
@@ -75,22 +61,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#89bcd4"
-                android:padding="10dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/createEventLocation" />
+                android:layout_height="70dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <EditText
                     android:id="@+id/eventLocation"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/createEventLocation"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:lines="1"
@@ -101,33 +80,32 @@
             <LinearLayout
                 android:id="@+id/eventWeekdayLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#dce2e6"
-                android:padding="10dp"
-                android:weightSum="10">
+                android:layout_height="70dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="10dp">
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/WeekDay" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:text="@string/WeekDay"
+                    android:textSize="16dp" />
 
 
                 <Spinner
                     android:id="@+id/spinnerWeekday"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="3" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/eventLengthLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#dce2e6"
-                android:padding="10dp"
-                android:weightSum="10">
+                android:layout_height="70dp"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -156,8 +134,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#89bcd4"
+                android:layout_height="300dp"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
@@ -197,8 +174,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#dce2e6"
+                android:layout_height="300dp"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
@@ -232,8 +208,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#89bcd4"
+                android:layout_height="70dp"
                 android:padding="10dp"
                 android:weightSum="10">
 

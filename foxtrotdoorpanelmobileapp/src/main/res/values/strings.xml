@@ -23,8 +23,8 @@
     <string name="eventEnd">End Time</string>
     <string name="eventLocation">Location</string>
 
-    <string name="createEventTitle">Title</string>
-    <string name="createEventDesc">Description</string>
+    <string name="createEventTitle">Title:</string>
+    <string name="createEventDesc">Description:</string>
     <string name="createEventAttendee">Attendee</string>
     <string name="createEventStart">Start At</string>
     <string name="createEventStartDate">Pick Date</string>
@@ -34,13 +34,13 @@
     <string name="createEventEndDate">Pick Date</string>
     <string name="createEventEndTime">Pick Time</string>
 
-    <string name="createEventLocation">Location</string>
-    <string name="EventLength">Length of each timeslot</string>
-    <string name="WeekDay">Weekday</string>
+    <string name="createEventLocation">Location:</string>
+    <string name="EventLength">Length of each timeslot:</string>
+    <string name="WeekDay">Weekday:</string>
 
     <string-array name="createTimeslot_array">
-        <item>single timeslot</item>
-        <item>automatic repeating timeslots</item>
+        <item>Single timeslot</item>
+        <item>Automatic repeating timeslots</item>
     </string-array>
 
     <string-array name="TimeUnits_array">
