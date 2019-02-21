@@ -50,14 +50,14 @@ public class BioActivity extends AppCompatActivity {
             summaryView.setText(worker.getSummary());
         }
 
-        Button sendButton = findViewById(R.id.button);
+        Button sendButton = findViewById(R.id.button_send);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message = "MessageField"; // ((EditText)findViewById(R.id.message_field)).getText().toString();
-                String email = "EmailField"; // ((EditText)findViewById(R.id.email_field)).getText().toString();
-                String name = "NameField"; // ((EditText)findViewById(R.id.name_filed)).getText().toString();
+                String message = ((EditText)findViewById(R.id.message_field)).getText().toString();
+                String email = ((EditText)findViewById(R.id.email_field)).getText().toString();
+                String name = ((EditText)findViewById(R.id.name_field)).getText().toString();
                 Date currentDateTime = Calendar.getInstance().getTime();
                 DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
