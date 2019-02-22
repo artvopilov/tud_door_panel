@@ -31,7 +31,6 @@ public class MessageActivity extends AppCompatActivity {
     private final String TAG = "MessageActivity";
     private TextView name;
     private TextView email;
-    private TextView text;
     private int previousMessageId;
 
     @Override
@@ -41,13 +40,12 @@ public class MessageActivity extends AppCompatActivity {
 
         name = (TextView) findViewById(R.id.message_name);
         email = (TextView) findViewById(R.id.message_email);
-        text = (TextView) findViewById(R.id.message_text);
 
         Intent intent = getIntent();
-        name.setText(intent.getStringExtra("Name").toString());
-        email.setText(intent.getStringExtra("Email").toString());
-        text.setText(intent.getStringExtra("Details").toString());
         previousMessageId = Integer.parseInt(intent.getStringExtra("MessageId"));
+        name.setText(intent.getStringExtra("Name"));
+        email.setText(intent.getStringExtra("Email"));
+        ((TextView) findViewById(R.id.message_text)).setText(intent.getStringExtra("Details"));
 
         findViewById(R.id.answer_button).setOnClickListener(this::sendAnswer);
     }

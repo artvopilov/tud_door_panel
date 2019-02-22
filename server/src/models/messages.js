@@ -13,6 +13,7 @@ class Messages extends DbModel {
             && Object.prototype.hasOwnProperty.call(message, 'message')
             && Object.prototype.hasOwnProperty.call(message, 'email')
             && Object.prototype.hasOwnProperty.call(message, 'name')
+            && Object.prototype.hasOwnProperty.call(message, 'tabletId')
             && Object.prototype.hasOwnProperty.call(message, 'workerId');
         if (isMessage) {
             message.id = await this._generate_id();

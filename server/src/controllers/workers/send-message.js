@@ -11,17 +11,17 @@ module.exports = async (ctx) => {
         ctx.body = { status: 'error' };
     }
 
-    const messageToTablet = {
+    const messageToWorker = {
         data: {workerId, type: 'message', email: message.email, name: message.name, message: message.message,
             time: message.time, date: message.date},
         topic: workerId.toString()
     };
-    ctx.admin.messaging().send(messageToTablet)
+    ctx.admin.messaging().send(messageToWorker)
         .then(() => {
-            console.log('Successfully sent message:', messageToTablet);
+            console.log('Successfully sent message:', messageToWorker);
         })
         .catch((error) => {
-            console.log('Error sending message:', messageToTablet, '\nError: ' + error);
+            console.log('Error sending message:', messageToWorker, '\nError: ' + error);
         });
     ctx.status = 200;
     ctx.body = { status: 'ok' };

@@ -7,6 +7,7 @@ const Message = mongoose.model('Message', new mongoose.Schema({
     time: String,
     message: String,
     workerId: Number,
+    tabletId: Number,
     previousMessageId: {
         type: Number,
         default: -1
@@ -16,7 +17,7 @@ const Message = mongoose.model('Message', new mongoose.Schema({
     fromWorker: {
         type: Boolean,
         default: false
-    }
+    },
 }));
 
 module.exports = Message;
