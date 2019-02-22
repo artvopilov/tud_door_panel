@@ -85,6 +85,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void handleBooking(Map<String, String> data){
         Log.d(TAG, "Booking notification processing...");
 
+        String mail = data.get("email");
         String message = data.get("message");
         String timeslot = data.get("eventId");
         String email = data.get("email");

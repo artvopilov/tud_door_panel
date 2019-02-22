@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private Button statusButton;
     private Button notificationButton;
     private Button settingsButton;
-    private TextView workerNameMain;
 
     private static final String CHANNEL_ID = "FoxtrottNotifications";
 
@@ -35,11 +34,13 @@ public class MainActivity extends AppCompatActivity {
         settingsButton = (Button) findViewById(R.id.button5);
         settingsButton.setOnClickListener(this::openSettings);
 
-        workerNameMain = findViewById(R.id.workerNameMain);
-//        ((MobileApplication)getApplicationContext()).pullWorkerName();
-//        String workerName = ((MobileApplication)getApplicationContext()).getWorkerName();
-//        workerNameMain.setText(workerName);
+        ((MobileApplication)getApplicationContext()).pullWorkerName();
+        TextView workerNameMain = findViewById(R.id.workerNameMain);
+        workerNameMain.setText(((MobileApplication)getApplicationContext()).getWorkerName());
+
+        ((MobileApplication)getApplicationContext()).pullNotifications();
     }
+
 
     public void openCalendar(View view) {
         Intent intent = new Intent(this, CalendarActivity.class);
