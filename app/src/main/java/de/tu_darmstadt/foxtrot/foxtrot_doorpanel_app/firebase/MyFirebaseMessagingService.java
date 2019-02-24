@@ -9,6 +9,7 @@ import java.util.Map;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.R;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.TabletApplication;
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.model.Message;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.RetrofitClient;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.TabletsAPI;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Tablet;
@@ -32,7 +33,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 case "changeStatus":
                     String status = payload.get("status");
                     Log.d(TAG, "Message status: " + status);
-
                     String id = payload.get("workerId");
                     Log.d(TAG, "worker id: " + id);
 
@@ -50,6 +50,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     break;
                 case "workerInRoom":
                     tabletApplication.pullWorkers();
+                    break;
+                case "messageFromWorker":
+                    String from = payload.get("from_worker");
+                    String to = payload.get("to_visitor");
+                    String date = payload.get("date");
+                    String time = payload.get("time");
+                    String text = payload.get("text");
+                    tabletApplication.addMessage(new Message(text, date, time, from, to));
+                    Log.d(TAG, String.format("Message from worker %s added", from));
                     break;
                 default:
                     Log.d(TAG, "Unknown subject");

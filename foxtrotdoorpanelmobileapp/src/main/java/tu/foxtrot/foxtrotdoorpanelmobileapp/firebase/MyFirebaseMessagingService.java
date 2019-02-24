@@ -54,8 +54,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String name = data.get("name");
         String time = data.get("time");
         String date = data.get("date");
+        int messageId = data.get("message_id") != null ? parseInt(data.get("message_id")) : -1;
+        Log.d(TAG, "Got message id: " + messageId);
         ((MobileApplication)getApplicationContext()).addNotification(new MessageNotification(
-                date, time, "message", email, name, message));
+                date, time, "message", email, name, message, messageId));
 
         Intent intent = new Intent(this, MessageActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

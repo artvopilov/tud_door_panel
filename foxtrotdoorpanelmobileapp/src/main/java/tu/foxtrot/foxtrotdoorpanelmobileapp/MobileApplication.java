@@ -71,25 +71,27 @@ public class MobileApplication extends Application {
     }
 
     public List<Notification> getNotificationsList() {
-        Collections.sort(notificationsList, (o1, o2) -> {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-            try {
-                if (o1.getDate().compareTo(o2.getDate()) == 0) {
-                    Date time1 = timeFormat.parse(o1.getTime());
-                    Date time2 = timeFormat.parse(o2.getTime());
-                    Log.d("MobileAppComparison", time1.toString());
-                    Log.d("MobileAppComparison", time2.toString());
-                    return time1.after(time2) ? -1 : 1;
+        if (!notificationsList.isEmpty()) {
+            Collections.sort(notificationsList, (o1, o2) -> {
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                try {
+                    if (o1.getDate().compareTo(o2.getDate()) == 0) {
+                        Date time1 = timeFormat.parse(o1.getTime());
+                        Date time2 = timeFormat.parse(o2.getTime());
+                        Log.d("MobileAppComparison", time1.toString());
+                        Log.d("MobileAppComparison", time2.toString());
+                        return time1.after(time2) ? -1 : 1;
+                    }
+                    Date date1 = dateFormat.parse(o1.getDate());
+                    Date date2 = dateFormat.parse(o2.getDate());
+                    return date1.after(date2) ? -1 : 1;
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    return 0;
                 }
-                Date date1 = dateFormat.parse(o1.getDate());
-                Date date2 = dateFormat.parse(o2.getDate());
-                return date1.after(date2) ? -1 : 1;
-            } catch (ParseException e) {
-                e.printStackTrace();
-                return 0;
-            }
-        });
+            });
+        }
         return notificationsList;
     }
     public void setNotificationsList(List<? extends Notification> notificationsList) {

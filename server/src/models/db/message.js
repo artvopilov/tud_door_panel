@@ -7,7 +7,7 @@ const Message = mongoose.model('Message', new mongoose.Schema({
     time: String,
     message: String,
     workerId: Number,
-    tabletId: Number,
+    roomNumber: String,
     previousMessageId: {
         type: Number,
         default: -1

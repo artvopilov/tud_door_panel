@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
         ((MobileApplication)getApplicationContext()).pullWorkerName();
         TextView workerNameMain = findViewById(R.id.workerNameMain);
         workerNameMain.setText(((MobileApplication)getApplicationContext()).getWorkerName());
-
-        ((MobileApplication)getApplicationContext()).pullNotifications();
     }
 
 

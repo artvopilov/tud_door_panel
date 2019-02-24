@@ -7,6 +7,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.BookingNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.MessageNotification;
 
@@ -18,7 +19,7 @@ public interface MessagesAPI {
     Call<List<BookingNotification>> getBookings(@Header("Authorization") String token);
 
     @FormUrlEncoded
-    @GET("/messages/send-to-visitor")
+    @POST("/messages/send-to-visitor")
     Call<String> sendMessageAnswer(@Header("Authorization") String token,
                                    @Field("message") String message,@Field("date") String date,
                                    @Field("time") String time, @Field("email") String email,

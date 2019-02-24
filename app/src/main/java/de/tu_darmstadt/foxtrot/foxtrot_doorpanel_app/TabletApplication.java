@@ -16,8 +16,10 @@ import retrofit2.Response;
 public class TabletApplication extends Application {
 
     private List<Worker> workerList = new ArrayList<Worker>();
+    private List<Message> messageList = new ArrayList<>();
 
     final String UPDATE_GUI_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateGUI";
+    final String UPD_CHAT_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateChat";
 
     public String room = "80b";
 
@@ -27,6 +29,13 @@ public class TabletApplication extends Application {
 
     public Worker getWorker(int position) {
         return workerList.get(position);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        pullMessages();
+        pullWorkers();
     }
 
     public Worker getWorkerByID(int id){
@@ -72,7 +81,17 @@ public class TabletApplication extends Application {
     }
 
     public List<Message> getMessages() {
-        return new ArrayList<Message>() {{
+        return messageList;
+    }
+
+    public void addMessage(Message message) {
+        messageList.add(0, message);
+        Intent intent = new Intent(UPD_CHAT_FILTER);
+        sendBroadcast(intent);
+    }
+
+    public void pullMessages() {
+        messageList = new ArrayList<Message>() {{
             add(new Message("I am busy, sorry", "01.02.2019", "10:00:00",
                     "Andreas Brown", "visitor brad"));
             add(new Message("I am busy, sorry", "01.02.2019", "10:00:00",

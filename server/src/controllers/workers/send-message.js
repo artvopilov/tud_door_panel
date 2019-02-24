@@ -1,10 +1,11 @@
 module.exports = async (ctx) => {
     const workerId = ctx.params.id;
-    const message = ctx.request.body;
+    let message = ctx.request.body;
     message.workerId = workerId;
+    message.roomNumber = '80b'; // Later we need to get rid of this hard-coded value
 
     try {
-        await ctx.messageModel.create(message);
+        message = await ctx.messageModel.create(message);
     } catch (e) {
         console.log(`Error caught in send-message controller: ${e.message}: `);
         ctx.status = 400;
@@ -13,7 +14,7 @@ module.exports = async (ctx) => {
 
     const messageToWorker = {
         data: {workerId, type: 'message', email: message.email, name: message.name, message: message.message,
-            time: message.time, date: message.date},
+            time: message.time, date: message.date, message_id: message.id.toString()},
         topic: workerId.toString()
     };
     ctx.admin.messaging().send(messageToWorker)

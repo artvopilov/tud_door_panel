@@ -42,7 +42,8 @@ public class MessageActivity extends AppCompatActivity {
         email = (TextView) findViewById(R.id.message_email);
 
         Intent intent = getIntent();
-        previousMessageId = Integer.parseInt(intent.getStringExtra("MessageId"));
+        previousMessageId = intent.getIntExtra("MessageId", -1);
+        Log.d(TAG, "Previous message id: " + previousMessageId);
         name.setText(intent.getStringExtra("Name"));
         email.setText(intent.getStringExtra("Email"));
         ((TextView) findViewById(R.id.message_text)).setText(intent.getStringExtra("Details"));

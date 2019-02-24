@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         gridView = (GridView) findViewById(R.id.workersGrid);
         gridView.setAdapter(new WorkerAdapter(this));
-        ((TabletApplication)getApplicationContext()).pullWorkers();
         subscribeToTopic80b();
 
         TextView room = findViewById(R.id.room);

@@ -3,19 +3,19 @@ package tu.foxtrot.foxtrotdoorpanelmobileapp.objects;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 
 public class MessageNotification extends Notification {
-    private int messageId;
+    private int id;
 
     public MessageNotification(String date, String time, String type, String email, String name,
-                               String text) {
+                               String text, int messageId) {
         super(date, time, type, name, email, text);
-        this.messageId = 1;
+        this.id = messageId;
     }
 
     public int getMessageId() {
-        return messageId;
+        return id;
     }
 
     public void setMessageId(int messageId) {
-        this.messageId = messageId;
+        this.id = messageId;
     }
 }

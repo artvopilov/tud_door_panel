@@ -23,6 +23,7 @@ const getTabletsController = require('./controllers/tablets/get-tablets');
 const createTabletController = require('./controllers/tablets/create');
 
 const getMessagesController = require('./controllers/messages/get-worker-messages');
+const sendMessageToVisitorController = require('./controllers/messages/send-to-visitor');
 const getBookingsController = require('./controllers/bookings/get-worker-bookings');
 
 const WorkerModel = require('./models/workers');
@@ -71,6 +72,8 @@ router.post('/tablets/', createTabletController);
 
 router.get('/messages', passport.authenticate('jwt', {session: false}),
     getMessagesController);
+router.post('/messages/send-to-visitor', passport.authenticate('jwt', {session: false}),
+    sendMessageToVisitorController);
 
 router.get('/bookings', passport.authenticate('jwt', {session: false}),
     getBookingsController);
