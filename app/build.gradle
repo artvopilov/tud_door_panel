@@ -33,7 +33,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.github.thellmund:Android-Week-View:3.2.1'
+
+    implementation 'com.github.rummatee:Android-Week-View:83b81c055e1405e299b0834768b9ba245c053b26'
+
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
@@ -56,6 +58,7 @@ dependencies {
     }
 
     compile 'com.android.support:multidex:1.0.3'
+
 
 }
 
