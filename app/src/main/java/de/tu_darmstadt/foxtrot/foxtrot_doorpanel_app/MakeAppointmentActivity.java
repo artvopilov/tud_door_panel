@@ -116,6 +116,9 @@ public class MakeAppointmentActivity extends AppCompatActivity {
 
         events = new ArrayList<WeekViewEvent>();
 
+        // Get a reference for the week view in the layout.
+        mWeekView = (WeekView) findViewById(R.id.weekView);
+
         for (de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Event event:worker.getTimeslots()) {
             WeekViewEvent wvEvent = new WeekViewEvent();
             Calendar calStart = Calendar.getInstance();
@@ -129,10 +132,17 @@ public class MakeAppointmentActivity extends AppCompatActivity {
             wvEvent.setId(event.getId());
             wvEvent.setData(events.size());
             events.add(wvEvent);
+
+            if (calEnd.get(Calendar.HOUR_OF_DAY)>mWeekView.getMaxHour()) {
+                mWeekView.setMaxHour(calEnd.get(Calendar.HOUR_OF_DAY));
+            }
+
+            if (calStart.get(Calendar.HOUR_OF_DAY)<mWeekView.getMinHour()) {
+                mWeekView.setMinHour(calStart.get(Calendar.HOUR_OF_DAY));
+            }
         }
 
-        // Get a reference for the week view in the layout.
-        mWeekView = (WeekView) findViewById(R.id.weekView);
+
 
         mWeekView.notifyDataSetChanged();
 

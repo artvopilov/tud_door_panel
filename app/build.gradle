@@ -34,7 +34,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation 'com.github.rummatee:Android-Week-View:83b81c055e1405e299b0834768b9ba245c053b26'
+    implementation 'com.github.rummatee:Android-Week-View:aeaf6cc4c9fc56dbaa1034966890c76471dc40d8'
 
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
