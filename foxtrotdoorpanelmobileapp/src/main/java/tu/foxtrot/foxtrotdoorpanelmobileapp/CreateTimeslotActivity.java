@@ -358,8 +358,8 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
                         String weekday = weekdaySpinner.getSelectedItem().toString();
                         int length = Integer.parseInt(timeslotLength.getText().toString());
                         switch (timeUnitSpinner.getSelectedItem().toString()){
-                            case "seconds":
-                                break;
+/*                            case "seconds":
+                                break;*/
                             case "minutes":
                                 length = length*60;
                                 break;

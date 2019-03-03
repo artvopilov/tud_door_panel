@@ -64,7 +64,10 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".CreateTimeslotActivity"></activity>
+        <activity
+            android:name=".CreateTimeslotActivity"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
     </application>
 
 </manifest>

@@ -35,7 +35,7 @@
     <string name="createEventEndTime">Pick Time</string>
 
     <string name="createEventLocation">Location:</string>
-    <string name="EventLength">Length of each timeslot:</string>
+    <string name="EventLength">Length of timeslot:</string>
     <string name="WeekDay">Weekday:</string>
 
     <string-array name="createTimeslot_array">
@@ -44,7 +44,7 @@
     </string-array>
 
     <string-array name="TimeUnits_array">
-        <item>sec</item>
+        <!--<item>sec</item>-->
         <item>min</item>
         <item>h</item>
     </string-array>
