@@ -59,6 +59,8 @@ public class Utils {
         });
     }
 
+
+
     public static void getMessages(MobileApplication mobileApplication, String token) {
         MessagesAPI messagesAPI = RetrofitClient.getRetrofitInstance().create(MessagesAPI.class);
         Call<List<MessageNotification>> call = messagesAPI.getMessages("Bearer " + token);
