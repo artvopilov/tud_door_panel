@@ -43,14 +43,15 @@ public class Settings extends AppCompatActivity {
     private Button calendarButton;
     private Button defTimeSlotsButton;
     private Button addWorkerButton;
+    private Button backtomainbutton;
     private Button logoutButton;
-
+    private Button personalInfoButton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings_alt);
+        setContentView(R.layout.activity_settings);
         logoutButton = (Button) findViewById(R.id.logoutButton);
 
         openCustomizedPhoto();
@@ -62,6 +63,9 @@ public class Settings extends AppCompatActivity {
         openAddWorker();
         logoutWorker();
         openCreateTimeslot();
+        backToMainWIndow();
+        openPersonalInfo();
+
 
 /*
 
@@ -173,6 +177,28 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Settings.this, CreateTimeslotActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void backToMainWIndow() {
+        backtomainbutton = (Button) findViewById(R.id.button10);
+        backtomainbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void openPersonalInfo() {
+        personalInfoButton = (Button) findViewById(R.id.button9);
+        personalInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Settings.this, PersonalInfo.class);
                 startActivity(intent);
             }
         });

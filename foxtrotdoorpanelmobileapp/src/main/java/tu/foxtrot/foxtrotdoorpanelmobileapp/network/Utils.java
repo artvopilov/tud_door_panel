@@ -59,6 +59,50 @@ public class Utils {
         });
     }
 
+    public static void updateWorkerPhone(Context context, String token, String phone) {
+        Call<String> call = workersApi.updateWorkerPhone("Bearer " + token, phone);
+        Log.d(TAG, "Phone update request sent");
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String newPhone = response.body();
+                Log.d(TAG, "Phone updated: " + newPhone);
+                Toast toast = Toast.makeText(context, "Status updated: " + newPhone,
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d(TAG, "Phone update error: " + t.getMessage());
+            }
+        });
+    }
+
+    public static void updateWorkerEmail(Context context, String token, String email) {
+        Call<String> call = workersApi.updateWorkerEmail("Bearer " + token, email);
+        Log.d(TAG, "Email update request sent");
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String newEmail = response.body();
+                Log.d(TAG, "Email updated: " + newEmail);
+                Toast toast = Toast.makeText(context, "Status updated: " + newEmail,
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d(TAG, "Email update error: " + t.getMessage());
+            }
+        });
+    }
+
+
+
     public static void getMessages(MobileApplication mobileApplication, String token) {
         MessagesAPI messagesAPI = RetrofitClient.getRetrofitInstance().create(MessagesAPI.class);
         Call<List<MessageNotification>> call = messagesAPI.getMessages("Bearer " + token);
