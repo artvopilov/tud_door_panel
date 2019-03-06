@@ -5,14 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
     tools:context=".CreateTimeslotActivity">
 
     <Spinner
         android:id="@+id/static_spinner"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,22 +28,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#89bcd4"
-                android:padding="10dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/createEventTitle" />
+                android:layout_height="50dp">
 
                 <EditText
                     android:id="@+id/eventTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/createEventTitle"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:lines="1"
@@ -50,22 +44,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#dce2e6"
-                android:padding="10dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/createEventDesc" />
+                android:layout_height="50dp">
 
                 <EditText
                     android:id="@+id/eventDes"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/createEventDesc"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:lines="1"
@@ -75,22 +60,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#89bcd4"
-                android:padding="10dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/createEventLocation" />
+                android:layout_height="50dp">
 
                 <EditText
                     android:id="@+id/eventLocation"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/createEventLocation"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:lines="1"
@@ -101,55 +77,47 @@
             <LinearLayout
                 android:id="@+id/eventWeekdayLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#dce2e6"
-                android:padding="10dp"
-                android:weightSum="10">
+                android:layout_height="50dp">
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/WeekDay" />
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
+                    android:text="@string/WeekDay"
+                    android:textSize="16sp" />
 
 
                 <Spinner
                     android:id="@+id/spinnerWeekday"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="6" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:textAlignment="viewEnd" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/eventLengthLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#dce2e6"
-                android:padding="10dp"
-                android:weightSum="10">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="@string/EventLength" />
+                android:layout_height="50dp">
 
                 <EditText
                     android:id="@+id/eventLength"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:hint="@string/EventLength"
                     android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:lines="1"
-                    android:maxLines="1" />
+                    android:inputType="number" />
 
                 <Spinner
                     android:id="@+id/spinnerTimeUnit"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textAlignment="viewEnd" />
 
             </LinearLayout>
 
@@ -157,40 +125,41 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#89bcd4"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:orientation="vertical"
+                android:paddingTop="15dp">
 
                 <TextView
                     android:id="@+id/startAt"
 
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:text="@string/createEventStart" />
+                    android:layout_marginStart="4dp"
+                    android:text="@string/createEventStart"
+                    android:textSize="16sp" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
 
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
                     android:orientation="vertical">
 
                     <DatePicker
                         android:id="@+id/startDate"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:calendarViewShown="false"
+                        android:layout_weight="2"
 
-                        android:datePickerMode="spinner" />
+                        android:calendarViewShown="false"
+                        android:datePickerMode="spinner"
+                        android:paddingStart="9dp" />
 
                     <TimePicker
                         android:id="@+id/startTime"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="4"
+                        android:layout_weight="2"
                         android:timePickerMode="spinner" />
+
                 </LinearLayout>
 
             </LinearLayout>
@@ -198,61 +167,79 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#dce2e6"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:orientation="vertical"
+                android:paddingTop="15dp">
 
                 <TextView
                     android:id="@+id/endAt"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:text="@string/createEventEnd" />
+                    android:layout_marginStart="4dp"
+                    android:text="@string/createEventEnd"
+                    android:textSize="16sp" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
                     android:orientation="vertical">
 
                     <DatePicker
                         android:id="@+id/endDate"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:calendarViewShown="false"
-                        android:datePickerMode="spinner" />
+                        android:datePickerMode="spinner"
+                        android:paddingStart="9dp" />
 
                     <TimePicker
                         android:id="@+id/endTime"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:timePickerMode="spinner" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#89bcd4"
-                android:padding="10dp"
-                android:weightSum="10">
-
-                <Button
-                    android:id="@+id/createEvent"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:maxLines="1"
-                    android:text="Create Event" />
+                android:layout_height="40dp">
 
                 <Button
                     android:id="@+id/cancelEvent"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
                     android:layout_weight="5"
-                    android:text="Cancel" />
+                    android:background="@drawable/blue_button"
+                    android:drawablePadding="2dp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="Cancel"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="19dp"
+                    tools:layout_editor_absoluteY="233dp" />
+
+                <Button
+                    android:id="@+id/createEvent"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="5"
+                    android:background="@drawable/blue_button"
+                    android:drawablePadding="2dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Create Event"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="19dp"
+                    tools:layout_editor_absoluteY="233dp" />
 
             </LinearLayout>
+
         </LinearLayout>
 
 

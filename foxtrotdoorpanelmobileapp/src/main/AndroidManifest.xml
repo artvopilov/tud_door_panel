@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".PersonalInfo"></activity>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".CalendarActivity"
@@ -64,7 +65,9 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".CreateTimeslotActivity"></activity>
+        <activity
+            android:name=".CreateTimeslotActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>
