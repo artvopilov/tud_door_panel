@@ -10,6 +10,7 @@ module.exports = async (ctx) => {
         console.log(`Error caught in send-message controller: ${e.message}: `);
         ctx.status = 400;
         ctx.body = { status: 'error' };
+        return;
     }
 
     const messageToWorker = {

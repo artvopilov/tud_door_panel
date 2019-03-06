@@ -6,6 +6,7 @@ module.exports = async (ctx) => {
     const previousMessage = await ctx.messageModel.getById(parseInt(message.previousMessageId));
     console.log(previousMessage);
     message.workerId = worker.id;
+    message.workerName = worker.name;
     message.roomNumber = previousMessage.roomNumber;
     message.fromWorker = true;
 
