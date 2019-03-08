@@ -16,6 +16,7 @@ module.exports = async (ctx) => {
         console.log(`Error caught in send-to-visitor controller: ${e.message}: `);
         ctx.status = 400;
         ctx.body = { status: 'error' };
+        return
     }
 
     const messageToTablet = {

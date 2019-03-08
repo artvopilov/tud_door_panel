@@ -1,5 +1,11 @@
 package de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.firebase;
 
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -7,6 +13,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Map;
 
+import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.ChatActivity;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.R;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.TabletApplication;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.model.Message;
@@ -17,10 +24,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Notification.VISIBILITY_PUBLIC;
 import static java.lang.Integer.parseInt;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
+    private final String CHANNEL_ID = "FoxtrotTabletNotifications";
+
+    private int notificationId = 0;
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -59,6 +70,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     String text = payload.get("text");
                     tabletApplication.addMessage(new Message(text, date, time, from, to));
                     Log.d(TAG, String.format("Message from worker %s added", from));
+
+                    createNotification(from, to);
                     break;
                 default:
                     Log.d(TAG, "Unknown subject");
@@ -67,6 +80,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
+    }
+
+    private void createNotification(String from, String to) {
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                intent, 0);
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_envelope)
+                .setContentTitle(String.format("Message from %s to %s", from, to))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true)
+                .setSound(alarmSound)
+                .setVisibility(1);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(notificationId++, builder.build());
     }
 
     @Override
@@ -89,23 +122,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "Refreshed token: " + token);
         // from now we don't use tokens, but topics for Cloud Messaging
         // sendRegistrationToServer(token);
-    }
-
-    private void sendRegistrationToServer(String token) {
-        TabletsAPI tabletsAPI = RetrofitClient.getRetrofitInstance().create(TabletsAPI.class);
-        Call<String> call = tabletsAPI.registerTablet(1, token);
-        call.enqueue(new Callback<String>() {
-
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String resp = response.body();
-                Log.d(TAG, "Token registration: " + resp);
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d(TAG, "Token registration: " + t.getMessage());
-            }
-        });
     }
 }

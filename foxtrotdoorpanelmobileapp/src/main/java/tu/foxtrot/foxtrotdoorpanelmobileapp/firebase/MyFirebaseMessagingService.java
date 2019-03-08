@@ -64,6 +64,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         intent.putExtra("Name", name);
         intent.putExtra("Email", email);
         intent.putExtra("Details", message);
+        intent.putExtra("MessageId", messageId);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 

@@ -1,7 +1,10 @@
 package de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
@@ -46,6 +49,20 @@ public class TabletApplication extends MultiDexApplication {
         super.onCreate();
         pullMessages();
         pullWorkers();
+        createNotificationChannel();
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "FoxtrotTabletNotifications";
+            String description = "Notifications for Foxtrot's tablet application";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            String CHANNEL_ID = "FoxtrotTabletNotifications";
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
     public Worker getWorkerByID(int id){
