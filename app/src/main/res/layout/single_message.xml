@@ -11,7 +11,7 @@
         android:id="@+id/message_info"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="7"
+        android:layout_weight="8"
         android:orientation="vertical">
 
         <TextView
@@ -21,8 +21,8 @@
             android:paddingLeft="10dp"
             android:paddingBottom="1dp"
             android:text="From: Peter | To: Roger"
-            android:textSize="15sp"
-            android:textStyle="italic" />
+            android:textSize="30sp"
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/message_text"
@@ -56,7 +56,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:text="12:13:00"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:textStyle="italic" />
 
         <TextView
@@ -67,7 +67,7 @@
             android:gravity="bottom"
             android:paddingLeft="5dp"
             android:text="01.03.2019"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:textStyle="italic" />
 
     </LinearLayout>

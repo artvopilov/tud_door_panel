@@ -90,7 +90,6 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
         eventTitle = (EditText) findViewById(R.id.eventTitle);
         eventDes = (EditText) findViewById(R.id.eventDes);
         eventLocation = (EditText) findViewById(R.id.eventLocation);
-        eventAttendee = (EditText) findViewById(R.id.eventAttendee);
 
         startDate = (DatePicker) findViewById(R.id.startDate);
 
