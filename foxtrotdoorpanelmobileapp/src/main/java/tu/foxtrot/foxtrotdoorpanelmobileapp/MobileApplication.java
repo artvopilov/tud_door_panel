@@ -109,32 +109,41 @@ public class MobileApplication extends Application {
         SharedPreferences sharedPreferences = getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
+        if (token == null) {
+            return;
+        }
         Utils.getMessages(this, token);
         Utils.getBookings(this, token);
     }
 
-    public void pullWorkerName() {
-        int workerId = getSharedPreferences(getString(R.string.preference_file_key),
-                Context.MODE_PRIVATE).getInt("topic", 0);
-        WorkersAPI workersAPI = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
-        Call<Worker> call = workersAPI.getWorkerById(workerId);
-        call.enqueue(new Callback<Worker>() {
-            @Override
-            public void onResponse(Call<Worker> call, Response<Worker> response) {
-                Worker worker = response.body();
-                workerName = worker.getName();
-                Log.d("Application", "New worker name got: " + workerName);
-            }
-
-            @Override
-            public void onFailure(Call<Worker> call, Throwable t) {
-
-            }
-        });
-    }
+//    public void pullWorkerNameAndStartMain() {
+//        int workerId = getSharedPreferences(getString(R.string.preference_file_key),
+//                Context.MODE_PRIVATE).getInt("topic", 0);
+//        WorkersAPI workersAPI = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
+//        Call<Worker> call = workersAPI.getWorkerById(workerId);
+//        call.enqueue(new Callback<Worker>() {
+//            @Override
+//            public void onResponse(Call<Worker> call, Response<Worker> response) {
+//                Worker worker = response.body();
+//                workerName = worker.getName();
+//                Log.d("Application", "New worker name got: " + workerName);
+//                Intent activityIntent = new Intent(getApplicationContext(), MainActivity.class);
+//                startActivity(activityIntent);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Worker> call, Throwable t) {
+//
+//            }
+//        });
+//    }
 
     public String getWorkerName() {
         return workerName;
+    }
+
+    public void setWorkerName(String name) {
+        this.workerName = name;
     }
 
     private int workerID;

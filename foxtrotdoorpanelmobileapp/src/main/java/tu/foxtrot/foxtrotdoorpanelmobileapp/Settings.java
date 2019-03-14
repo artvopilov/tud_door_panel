@@ -88,6 +88,8 @@ public class Settings extends AppCompatActivity {
             SharedPreferences.Editor sharedPrefEditor = getSharedPreferences(
                     getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
             sharedPrefEditor.remove("token");
+            sharedPrefEditor.remove("name");
+            sharedPrefEditor.remove("topic");
             sharedPrefEditor.apply();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);

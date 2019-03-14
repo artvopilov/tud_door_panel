@@ -13,12 +13,16 @@ import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.LoginResponse;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 
 public class LoginActivity extends AppCompatActivity {
     private final String TAG = "LoginActivityTag";
@@ -69,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginResponse loginResponse = response.body();
                 if (loginResponse.getStatus().equals("ok")) {
                     int workerId = loginResponse.getWorker().getId();
+                    String workerName = loginResponse.getWorker().getName();
                     SharedPreferences sharedPreferences = getSharedPreferences(
                             getString(R.string.preference_file_key), Context.MODE_PRIVATE);
                     int previousWorkerId = sharedPreferences.getInt("workerId", 0);
@@ -82,7 +87,8 @@ public class LoginActivity extends AppCompatActivity {
                     String token = loginResponse.getToken();
 
                     updateSubscriptions(workerId);
-                    updateSharedPreferences(token, workerId);
+                    updateSharedPreferences(token, workerId, workerName);
+                    updateApplicatoinData(workerName);
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -99,6 +105,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void updateApplicatoinData(String name) {
+        MobileApplication mobileApp = (MobileApplication)getApplication();
+        mobileApp.setWorkerName(name);
+        mobileApp.setNotificationsList(new ArrayList<Notification>() {});
+        mobileApp.pullNotifications();
+    }
+
     private void updateSubscriptions(int workerId) {
         int previousWorkerId = sharedPreferences.getInt("topic", 0);
         if (previousWorkerId != 0) {
@@ -107,9 +120,10 @@ public class LoginActivity extends AppCompatActivity {
         subscribeToTopic(String.valueOf(workerId));
     }
 
-    private void updateSharedPreferences(String token, int workerId) {
+    private void updateSharedPreferences(String token, int workerId, String name) {
         SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
         sharedPrefEditor.putString("token", token);
+        sharedPrefEditor.putString("name", name);
         sharedPrefEditor.putInt("topic", workerId);
         sharedPrefEditor.apply();
         Log.d(TAG, "SharedPreferences updated: token - " + token + ", workerId - " + workerId);

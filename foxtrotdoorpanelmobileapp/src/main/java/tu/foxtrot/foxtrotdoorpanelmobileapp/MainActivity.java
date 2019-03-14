@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         settingsButton = (Button) findViewById(R.id.button5);
         settingsButton.setOnClickListener(this::openSettings);
 
-        ((MobileApplication)getApplicationContext()).pullWorkerName();
         TextView workerNameMain = findViewById(R.id.workerNameMain);
         workerNameMain.setText(((MobileApplication)getApplicationContext()).getWorkerName());
     }
