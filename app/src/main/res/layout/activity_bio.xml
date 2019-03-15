@@ -162,18 +162,20 @@
 
             <Button
                 android:id="@+id/button_send"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:text="send"
-                app:layout_constraintBottom_toBottomOf="@+id/editText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.94"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editText"
-                app:layout_constraintVertical_bias="0.48" />
+                android:background="@drawable/blue_button"
+                android:text="Submit"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:autoSizeMaxTextSize="24sp"
+                android:autoSizeStepGranularity="2sp"/>
         </LinearLayout>
 
     </LinearLayout>
