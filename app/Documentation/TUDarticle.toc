@@ -1,0 +1,8 @@
+\contentsline {section}{\numberline {1}Motivation}{2}{section.1}
+\contentsline {section}{\numberline {2}Structure}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Structural Overview}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Description of elements and their interaction}{2}{subsection.2.2}
+\contentsline {section}{\numberline {3}User Descripton}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Basic Funtionality}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Detailed explanation}{3}{subsection.3.2}
+\contentsline {chapter}{List of Figures}{3}{figure.5}
