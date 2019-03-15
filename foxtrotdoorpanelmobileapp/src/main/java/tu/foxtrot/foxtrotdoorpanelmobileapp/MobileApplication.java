@@ -122,8 +122,12 @@ public class MobileApplication extends Application {
             @Override
             public void onResponse(Call<Worker> call, Response<Worker> response) {
                 Worker worker = response.body();
-                workerName = worker.getName();
-                Log.d("Application", "New worker name got: " + workerName);
+                if (worker==null){
+                    workerName = "";
+                } else {
+                    workerName = worker.getName();
+                    Log.d("Application", "New worker name got: " + workerName);
+                }
             }
 
             @Override

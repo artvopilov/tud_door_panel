@@ -43,7 +43,7 @@ public interface WorkersAPI {
                                    @Field("email") String email);
 
     @POST("workers/{id}/timeslot")
-    Call<String> addWorkerTimeslot(@Path("id") int workerId, @Body Event timeslot);
+    Call<String> addWorkerTimeslot(@Header("Authorization") String token, @Path("id") int workerId, @Body Event timeslot);
 
     @FormUrlEncoded
     @HTTP(method = "DELETE",path = "workers/{id}/timeslot", hasBody = true)

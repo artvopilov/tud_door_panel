@@ -62,6 +62,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 case "workerInRoom":
                     tabletApplication.pullWorkers();
                     break;
+                case "addTimeslot":
+                    tabletApplication.pullWorkers();
+                    break;
                 case "messageFromWorker":
                     String from = payload.get("from_worker");
                     String to = payload.get("to_visitor");

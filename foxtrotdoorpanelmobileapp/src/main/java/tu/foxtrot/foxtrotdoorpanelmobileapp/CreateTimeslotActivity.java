@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -209,9 +210,12 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
         ourEvent.setName(summary);
         ourEvent.setId(ourEvent.hashCode()); //TODO: this is probably not the best solution
 
+        SharedPreferences sharedPreferences = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
         int workerID = ((MobileApplication) getApplicationContext()).getWorkerID();
 
-        Call<String> call = workersApi.addWorkerTimeslot(workerID, ourEvent);
+        Call<String> call = workersApi.addWorkerTimeslot(token, workerID, ourEvent);
 
         call.enqueue(new Callback<String>() {
             @Override
@@ -275,7 +279,7 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
     }
 
     void insertAutoTimeslot(String weekday,int slotLength, String summary, String location, String des, DateTime startDate, DateTime endDate, EventAttendee[] eventAttendees) {
-        AutoTimeslotReceiver.setAutoTimeslot(weekday, slotLength, summary, location, des, startDate, endDate, eventAttendees);
+        AutoTimeslotReceiver.setAutoTimeslot(weekday, slotLength, summary, location, des, startDate, endDate, eventAttendees, getString(R.string.preference_file_key));
         Intent alarmIntent = new Intent(getApplicationContext(), AutoTimeslotReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
         AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);

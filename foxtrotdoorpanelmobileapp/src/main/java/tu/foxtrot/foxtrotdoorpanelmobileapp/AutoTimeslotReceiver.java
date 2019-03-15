@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -52,10 +53,12 @@ public class AutoTimeslotReceiver extends BroadcastReceiver {
 
     private static WorkersAPI workersApi;
 
+    private static String string_preference_file_key;
+
 
 
     public static void setAutoTimeslot(String weekday, int slotLength, final String summary, final String location, final String des, final DateTime startDate, final DateTime endDate, final EventAttendee[]
-            eventAttendees){
+            eventAttendees, String preference_file_key){
         AutoTimeslot autoTimeslot = new AutoTimeslot();
         autoTimeslot.summary = summary;
         autoTimeslot.location = location;
@@ -67,6 +70,8 @@ public class AutoTimeslotReceiver extends BroadcastReceiver {
         autoTimeslotMap.put(weekday,autoTimeslot);
 
         workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
+
+        string_preference_file_key = preference_file_key;
 
     }
 
@@ -216,7 +221,10 @@ public class AutoTimeslotReceiver extends BroadcastReceiver {
 
         int workerID = ((MobileApplication) context.getApplicationContext()).getWorkerID();
 
-        Call<String> call = workersApi.addWorkerTimeslot(workerID, ourEvent);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                string_preference_file_key, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        Call<String> call = workersApi.addWorkerTimeslot(token, workerID, ourEvent);
 
         call.enqueue(new Callback<String>() {
             @Override

@@ -59,7 +59,8 @@ router.post('/workers/status', passport.authenticate('jwt', {session: false}),
 router.post('/workers/:id/message', sendWorkerMessageController);
 router.post('/workers/room', passport.authenticate('jwt', {session: false}),
     changeWorkerRoomController);
-router.post('/workers/:id/timeslot', addWorkerTimeslotController);
+router.post('/workers/:id/timeslot', passport.authenticate('jwt', {session: false}),
+    addWorkerTimeslotController);
 router.delete('/workers/:id/timeslot', removeWorkerTimeslotController);
 router.post('/workers/:id/book', bookWorkerTimeslotController);
 router.post('/workers/login/', authenticateWorkerController);
