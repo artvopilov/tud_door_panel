@@ -56,7 +56,7 @@ public class TabletApplication extends MultiDexApplication {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "FoxtrotTabletNotifications";
             String description = "Notifications for Foxtrot's tablet application";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
             String CHANNEL_ID = "FoxtrotTabletNotifications";
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
