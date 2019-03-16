@@ -3,6 +3,7 @@ package tu.foxtrot.foxtrotdoorpanelmobileapp;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -112,7 +113,11 @@ public class BookingActivity extends AppCompatActivity {
 
                 int myID = ((MobileApplication)getApplicationContext()).getWorkerID();
 
-                Call<String> call = workersApi.removeWorkerTimeslot(myID, notification.getTimeslot());
+
+                SharedPreferences sharedPreferences = getSharedPreferences(
+                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                String token = sharedPreferences.getString("token", null);
+                Call<String> call = workersApi.removeWorkerTimeslot(token, myID, notification.getTimeslot());
 
                 call.enqueue(new Callback<String>() {
                     @Override

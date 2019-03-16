@@ -89,5 +89,13 @@ public class Worker {
     public void setTimeslots(List<Event> timeslots) {
         this.timeslots = timeslots;
     }
+
+    public void deleteTimeslot(int id) {
+        for (Event slot : this.timeslots){
+            if (slot.getId() == id){
+                this.timeslots.remove(slot);
+            }
+        }
+    }
 }
 
