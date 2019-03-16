@@ -65,8 +65,8 @@ public class NotificationsListAdapter extends ArrayAdapter<Notification> {
         lastPosition = position;
 
         holder.time.setText(time);
-        holder.type.setText(String.format("%s from %s", type, name));
-        holder.type.setTextColor(Color.parseColor("#AABC45"));
+        holder.type.setText(String.format("%S FROM %S", type, name));
+        holder.type.setTextColor(Color.parseColor("#2A7FC4"));
         holder.details.setText(details);
         return convertView;
     }

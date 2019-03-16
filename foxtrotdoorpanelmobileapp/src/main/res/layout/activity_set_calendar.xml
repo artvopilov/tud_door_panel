@@ -5,39 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".SetCalendarActivity">
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="loading" />
+        android:text="loading"
+        android:textAlignment="center"
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Calendar for timeslots:" />
+        android:text="Calendar for timeslots:"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        />
 
     <RadioGroup
         android:id="@+id/radioGroupTimeslots"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Calendar for events" />
+        android:text="Calendar for events"
+        android:textAlignment="center"
+        android:textSize="18sp"/>
 
     <RadioGroup
         android:id="@+id/radioGroupMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="save calendar settings" />
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/blue_button"
+        android:padding="10dp"
+        android:text="Save calendar settings"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 </LinearLayout>

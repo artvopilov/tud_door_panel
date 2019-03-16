@@ -222,7 +222,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
                 nameEdited = true;
                 Log.v("DoorPanel", "name edited" );
                 if (activeEvent != null && mailEdited && messageEdited){
-                    fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlotActive)));
+                    fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlot)));
                     fab.setEnabled(true);
                 }
             }
@@ -241,7 +241,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
                 mailEdited = true;
                 Log.v("DoorPanel", "mail edited" );
                 if (activeEvent != null && nameEdited && messageEdited){
-                    fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlotActive)));
+                    fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlot)));
                     fab.setEnabled(true);
                 }
             }
@@ -260,7 +260,7 @@ public class MakeAppointmentActivity extends AppCompatActivity {
                 messageEdited = true;
                 Log.v("DoorPanel", "message edited" );
                 if (activeEvent != null && mailEdited && nameEdited){
-                    fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlotActive)));
+                    fab.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSlot)));
                     fab.setEnabled(true);
                 }
             }

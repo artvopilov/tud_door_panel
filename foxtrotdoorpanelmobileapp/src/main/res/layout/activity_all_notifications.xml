@@ -11,6 +11,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/notifications_list"/>
+        android:id="@+id/notifications_list"
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
 
 </RelativeLayout>
