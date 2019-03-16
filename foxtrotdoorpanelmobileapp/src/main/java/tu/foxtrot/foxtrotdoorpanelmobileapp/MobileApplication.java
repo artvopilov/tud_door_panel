@@ -105,7 +105,7 @@ public class MobileApplication extends Application {
         sendBroadcast(intent);
     }
 
-    public void pullNotifications() 
+    public void pullNotifications() {
         SharedPreferences sharedPreferences = getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
