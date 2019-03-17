@@ -7,6 +7,7 @@ import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Event;
 public class Worker {
     private String name;
     private String email;
+    private String phoneNumber;
     private int age;
     private String room;
     private String position;
@@ -88,6 +89,14 @@ public class Worker {
 
     public void setTimeslots(List<Event> timeslots) {
         this.timeslots = timeslots;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
 

@@ -60,7 +60,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/b20"
+                    android:id="@+id/bio_position"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -72,7 +72,7 @@
                     app:layout_constraintTop_toBottomOf="@id/b19" />
 
                 <TextView
-                    android:id="@+id/b21"
+                    android:id="@+id/bio_email_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -91,7 +91,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     android:text="About me:"
-                    android:textSize="26dp"
+                    android:textSize="23dp"
                     android:textStyle="bold|italic" />
 
                 <TextView

@@ -196,69 +196,6 @@
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="fill_parent"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="56dp"
-                android:layout_weight="0.5"
-                android:background="@drawable/blue_button"
-                android:drawableLeft="@drawable/ic_room_own"
-                android:drawablePadding="2dip"
-                android:gravity="center"
-                android:paddingLeft="10dip"
-                android:paddingRight="16dip"
-                android:singleLine="true"
-                android:text="room"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="24dp"
-                android:layout_weight="0.5"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@android:dimen/notification_large_icon_height"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_email_own"
-                    android:drawablePadding="2dip"
-                    android:gravity="center"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="16dip"
-                    android:singleLine="true"
-                    android:text="email"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@android:dimen/notification_large_icon_height"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_phone_own"
-                    android:drawablePadding="2dip"
-                    android:gravity="center"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="16dip"
-                    android:singleLine="true"
-                    android:text="phone number"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 

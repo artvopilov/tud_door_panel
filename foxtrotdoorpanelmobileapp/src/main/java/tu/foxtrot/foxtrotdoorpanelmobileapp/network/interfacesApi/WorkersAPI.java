@@ -28,19 +28,10 @@ public interface WorkersAPI {
                                     @Field("status") String status);
 
     @FormUrlEncoded
-    @POST("workers/room")
-    Call<String> updateWorkerRoom(@Header("Authorization") String token,
-                                  @Field("room") String room);
-
-    @FormUrlEncoded
-    @POST("workers/phone")
-    Call<String> updateWorkerPhone(@Header("Authorization") String token,
-                                  @Field("phone") String phone);
-
-    @FormUrlEncoded
-    @POST("workers/phone")
-    Call<String> updateWorkerEmail(@Header("Authorization") String token,
-                                   @Field("email") String email);
+    @POST("workers/personal-info")
+    Call<String> updatePersonalInfo(@Header("Authorization") String token,
+                                    @Field("phone") String phone, @Field("email") String email,
+                                    @Field("room") String room);
 
     @POST("workers/{id}/timeslot")
     Call<String> addWorkerTimeslot(@Header("Authorization") String token, @Path("id") int workerId, @Body Event timeslot);

@@ -55,9 +55,6 @@ public class Settings extends AppCompatActivity {
         logoutButton = (Button) findViewById(R.id.logoutButton);
 
         openCustomizedPhoto();
-        openCustomizedRoom();
-        openCustomizedEmail();
-        openCustomizedPhone();
         openCustomizedSummary();
         openSetCalendar();
         openAddWorker();
@@ -102,39 +99,6 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Settings.this, PersonalPhoto.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    public void openCustomizedRoom() {
-        roomButton = (Button) findViewById(R.id.button2);
-        roomButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Settings.this, PersonalRoom.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    public void openCustomizedEmail() {
-        emailButton = (Button) findViewById(R.id.button3);
-        emailButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Settings.this, PersonalEmail.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    public void openCustomizedPhone() {
-        phoneButton = (Button) findViewById(R.id.button4);
-        phoneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Settings.this, PersonalPhone.class);
                 startActivity(intent);
             }
         });
