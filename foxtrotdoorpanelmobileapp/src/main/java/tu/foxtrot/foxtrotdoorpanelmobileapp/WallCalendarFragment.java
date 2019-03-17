@@ -18,12 +18,21 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.sql.BatchUpdateException;
+import java.text.DecimalFormat;
+import java.util.List;
+
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event;
 
 public class WallCalendarFragment extends Fragment {
     private static final String Tag = "WallCalendarFragment";
 
     private CalendarView mCalendarView;
     private ViewPager mViewPager;
+    private List<Event> events;
+
+    public WallCalendarFragment(List<Event> events){
+        this.events = events;
+    }
 
     @Nullable
     @Override
@@ -35,9 +44,10 @@ public class WallCalendarFragment extends Fragment {
         mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                String date = dayOfMonth + "/" + (month + 1) + "/" +year;
+                DecimalFormat formatter = new DecimalFormat("00");
+                String date = formatter.format(dayOfMonth) + "/" + formatter.format(month + 1) + "/" +year;
 
-                ListCalendarFragment listCalendarFragment = new ListCalendarFragment();
+                ListCalendarFragment listCalendarFragment = new ListCalendarFragment(events);
                 Bundle bundle = new Bundle();
                 bundle.putString("date", date);
                 listCalendarFragment.setArguments(bundle);
@@ -46,6 +56,11 @@ public class WallCalendarFragment extends Fragment {
                 mViewPager.setCurrentItem(1);
             }
         });
+
+        for (Event event : events){
+            //Android doesn't support to highlight multiple days, so we need a 3rd party library for that
+            //I will do that later
+        }
         return view;
     }
 }
