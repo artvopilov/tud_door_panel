@@ -94,6 +94,13 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
 
         startDate = (DatePicker) findViewById(R.id.startDate);
 
+        Intent intent = getIntent();
+        if (intent.hasExtra("year")&&intent.hasExtra("month")&&intent.hasExtra("day")){
+            startDate.updateDate(intent.getIntExtra("year",2019),
+                    intent.getIntExtra("month",1),
+                    intent.getIntExtra("day",1));
+        }
+
         startTime = (TimePicker) findViewById(R.id.startTime);
         endTime = (TimePicker) findViewById(R.id.endTime);
         endDate = (DatePicker) findViewById(R.id.endDate);

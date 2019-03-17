@@ -1,5 +1,7 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,9 +19,13 @@ import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.design.widget.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,12 +61,14 @@ public class ListCalendarFragment extends Fragment {
         String day          = (String) DateFormat.format("dd",   today );
         String monthNumber  = (String) DateFormat.format("MM",   today );
         String year         = (String) DateFormat.format("yyyy", today );
-        String currentDate =  day + "/" + monthNumber + "/" +year;
+        String currentDate;
 
 
         if (bundle != null){
 
             currentDate = getArguments().getString("date");
+        }else {
+            currentDate =  day + "/" + monthNumber + "/" +year;
         }
 
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.listCalendarLinearLayout);
@@ -105,6 +113,25 @@ public class ListCalendarFragment extends Fragment {
             String value = getArguments().getString("date");
             listCalendarText.setText(value);
         }
+
+        FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CreateTimeslotActivity.class);
+                String s = currentDate.substring(0,2);
+                Integer i = Integer.parseInt(s);
+                intent.putExtra("day",i);
+                s = currentDate.substring(3,5);
+                i = Integer.parseInt(s)-1;
+                intent.putExtra("month",i);
+                s = currentDate.substring(6,10);
+                i = Integer.parseInt(s);
+                intent.putExtra("year", i);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

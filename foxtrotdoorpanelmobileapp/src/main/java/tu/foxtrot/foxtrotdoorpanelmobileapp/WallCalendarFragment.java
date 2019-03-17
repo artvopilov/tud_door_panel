@@ -51,6 +51,7 @@ public class WallCalendarFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("date", date);
                 listCalendarFragment.setArguments(bundle);
+                ((ViewGroup)getActivity().findViewById(R.id.listCalendarFragment)).removeAllViews();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.listCalendarFragment, listCalendarFragment).commit();
                 mViewPager.setCurrentItem(1);
