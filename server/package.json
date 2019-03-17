@@ -4,7 +4,6 @@
   "description": "Server for mobile and tablet apps",
   "main": "src/app.js",
   "devDependencies": {
-    "npm": "2.1.x",
     "babel": "^6.23.0",
     "config": "^3.0.1",
     "firebase-admin": "^6.4.0",
