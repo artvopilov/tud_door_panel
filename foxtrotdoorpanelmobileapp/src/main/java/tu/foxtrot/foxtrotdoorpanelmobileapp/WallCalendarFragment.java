@@ -19,14 +19,19 @@ import org.w3c.dom.Text;
 
 import java.sql.BatchUpdateException;
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
+import sun.bob.mcalendarview.MCalendarView;
+import sun.bob.mcalendarview.MarkStyle;
+import sun.bob.mcalendarview.listeners.OnDateClickListener;
+import sun.bob.mcalendarview.vo.DateData;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event;
 
 public class WallCalendarFragment extends Fragment {
     private static final String Tag = "WallCalendarFragment";
 
-    private CalendarView mCalendarView;
+    private MCalendarView mCalendarView;
     private ViewPager mViewPager;
     private List<Event> events;
 
@@ -40,12 +45,15 @@ public class WallCalendarFragment extends Fragment {
         View view = inflater.inflate(R.layout.wall_calendar_fragment, container, false);
         mViewPager = (ViewPager) getActivity().findViewById(R.id.container);
 
-        mCalendarView =(CalendarView) view.findViewById(R.id.wallCalendarObject);
-        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        mCalendarView =(MCalendarView) view.findViewById(R.id.wallCalendarObject);
+        mCalendarView.setOnDateClickListener(new OnDateClickListener() {
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+            public void onDateClick(View view, DateData datedata) {
+                int year = datedata.getYear();
+                int month = datedata.getMonth();
+                int dayOfMonth = datedata.getDay();
                 DecimalFormat formatter = new DecimalFormat("00");
-                String date = formatter.format(dayOfMonth) + "/" + formatter.format(month + 1) + "/" +year;
+                String date = formatter.format(dayOfMonth) + "/" + formatter.format(month) + "/" +year;
 
                 ListCalendarFragment listCalendarFragment = new ListCalendarFragment(events);
                 Bundle bundle = new Bundle();
@@ -58,9 +66,16 @@ public class WallCalendarFragment extends Fragment {
             }
         });
 
+        mCalendarView.setMarkedStyle(MarkStyle.BACKGROUND);
         for (Event event : events){
-            //Android doesn't support to highlight multiple days, so we need a 3rd party library for that
-            //I will do that later
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(event.getStart());
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            mCalendarView.markDate(year,
+                    month+1,
+                    day);
         }
         return view;
     }
