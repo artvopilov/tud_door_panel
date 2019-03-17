@@ -1,9 +1,8 @@
 module.exports = async (ctx) => {
     console.log('Personal info request received');
-    const worker = await ctx.req.user;
+    const worker = ctx.req.user;
     const formerRoom = worker.room;
     const {phone, email, room} = ctx.request.body;
-    console.log(ctx.request.body);
 
     if (phone !== "") {
         await ctx.workerModel.changePhone(phone, worker.id)
@@ -15,7 +14,7 @@ module.exports = async (ctx) => {
         await ctx.workerModel.changeRoom(room, worker.id)
     }
 
-    let messageToTabletIn = {}
+    let messageToTabletIn = {};
     if (formerRoom !== room && room  !== "") {
         const messageToTabletOut = {
             data: {subject: 'workerOutRoom', workerId: worker.id.toString()},

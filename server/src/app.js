@@ -18,6 +18,7 @@ const removeWorkerTimeslotController = require('./controllers/workers/remove-tim
 const bookWorkerTimeslotController = require('./controllers/workers/book-timeslot');
 const authenticateWorkerController = require('./controllers/workers/auth');
 const updatePersonalInfoController = require('./controllers/workers/personal-info');
+const updateWorkerSummaryController = require('./controllers/workers/update-summary');
 
 const getTabletsController = require('./controllers/tablets/get-tablets');
 const createTabletController = require('./controllers/tablets/create');
@@ -56,6 +57,8 @@ router.get('/workers/:id/', getWorkerByIdController);
 router.post('/workers/', createWorkersController);
 router.post('/workers/status', passport.authenticate('jwt', {session: false}),
     changeWorkerStatusController);
+router.post('/workers/summary', passport.authenticate('jwt', {session: false}),
+    updateWorkerSummaryController);
 router.post('/workers/:id/message', sendWorkerMessageController);
 router.post('/workers/personal-info', passport.authenticate('jwt', {session: false}),
     updatePersonalInfoController);

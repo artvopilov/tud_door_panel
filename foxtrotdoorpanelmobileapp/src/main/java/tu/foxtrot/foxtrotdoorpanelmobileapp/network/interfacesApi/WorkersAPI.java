@@ -44,6 +44,11 @@ public interface WorkersAPI {
     @FormUrlEncoded
     @POST("workers/login/")
     Call<LoginResponse> login(@Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("workers/summary")
+    Call<String> updateWorkerSummary(@Header("Authorization") String token,
+                                     @Field("summary") String summary);
 }
 
 

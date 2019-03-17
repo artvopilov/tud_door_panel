@@ -28,6 +28,10 @@ class Workers extends DbModel {
         await this._updateById(id, {email})
     }
 
+    async changeSummary(summary, id) {
+        await this._updateById(id, {summary})
+    }
+
     async changePhone(phoneNumber, id) {
         await this._updateById(id, {phoneNumber})
     }
