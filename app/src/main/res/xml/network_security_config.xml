@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">foxtrot-doorpanel-new-foxtrot-doorpanel-server.7e14.starter-us-west-2.openshiftapps.com </domain>
         <domain includeSubdomains="true">10.0.2.2</domain>
         <domain includeSubdomains="true">192.168.2.118</domain> <!--10.0.2.2-->
     </domain-config>
