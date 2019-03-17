@@ -9,6 +9,8 @@ public class Worker {
     private String phoneNumber;
     private String status;
     private String password;
+    private String position;
+    private String summary;
 
     public int getId() {
         return id;
@@ -72,5 +74,17 @@ public class Worker {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPosition() { return position; }
+
+    public void setPosition(String position) { this.position = position; }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }

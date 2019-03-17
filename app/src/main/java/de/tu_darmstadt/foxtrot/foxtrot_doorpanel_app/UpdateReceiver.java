@@ -9,8 +9,7 @@ import android.widget.GridView;
 public class UpdateReceiver extends BroadcastReceiver {
 
     @Override
-    public void onReceive(Context context, Intent intent)
-    {
+    public void onReceive(Context context, Intent intent) {
         GridView gridView = ((Activity)context).findViewById(R.id.workersGrid);
         gridView.invalidateViews();
     }

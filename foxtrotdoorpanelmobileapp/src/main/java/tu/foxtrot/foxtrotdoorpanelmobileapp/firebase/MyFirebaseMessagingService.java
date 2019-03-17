@@ -10,11 +10,13 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 //import tu.foxtrot.foxtrotdoorpanelmobileapp.TabletApplication;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.BookingNotification;
+import java.util.Map;
+
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.BookingNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.MessageActivity;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.MessageNotification;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.MessageNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.MobileApplication;
-import tu.foxtrot.foxtrotdoorpanelmobileapp.Notification;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.NotificationsAllActivity;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.R;
 
@@ -28,21 +30,16 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
+        Log.d(TAG, "Firebase notification from: " + remoteMessage.getFrom());
+        Map<String, String> payload = remoteMessage.getData();
+        if (payload != null) {
+            Log.d(TAG, "Notification payload: " + payload);
 
-        if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
-
-
-            if (remoteMessage.getData().containsKey("timeslot")) {
-                handleBooking(remoteMessage);
-            } else {
-                handleMessage(remoteMessage);
+            if (payload.get("type").equals("booking")) {
+                handleBooking(payload);
+            } else if (payload.get("type").equals("message")) {
+                handleMessage(payload);
             }
-
-
-
-
         }
 
         if (remoteMessage.getNotification() != null) {
@@ -50,25 +47,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
-    private void handleMessage(RemoteMessage remoteMessage){
+    private void handleMessage(Map<String, String> data){
+        Log.d(TAG, "Message notification processing...");
+        String message = data.get("message");
+        String email = data.get("email");
+        String name = data.get("name");
+        String time = data.get("time");
+        String date = data.get("date");
+        int messageId = data.get("message_id") != null ? parseInt(data.get("message_id")) : -1;
+        Log.d(TAG, "Got message id: " + messageId);
+        ((MobileApplication)getApplicationContext()).addNotification(new MessageNotification(
+                date, time, "message", email, name, message, messageId));
 
-        String message = remoteMessage.getData().get("message");
-        String id = remoteMessage.getData().get("employeeId");
-
-        Notification notification = new MessageNotification("22.02.2018",
-                "10:23", "Message", message,
-                "mister@gmail.com", "Anon");
-
-        // Create an explicit intent for an Activity in your app
         Intent intent = new Intent(this, MessageActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra("Name", ((MessageNotification) notification).getName());
-        intent.putExtra("Email", ((MessageNotification) notification).getEmail());
-        intent.putExtra("Details", ((MessageNotification) notification).getDetails());
+        intent.putExtra("Name", name);
+        intent.putExtra("Email", email);
+        intent.putExtra("Details", message);
+        intent.putExtra("MessageId", messageId);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
-
-        ((MobileApplication)getApplicationContext()).addNotification(notification);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_envelope)
@@ -80,36 +78,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setVisibility(VISIBILITY_PUBLIC);
-
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-        // notificationId is a unique int for each notification that you must define
         notificationManager.notify(notificationID, mBuilder.build());
         notificationID++;
 
-        Log.d(TAG, "Message: " + message);
-
-
-
-        Log.d(TAG, "worker id: " + id);
+        Log.d(TAG, "Message notification processed: " + message);
     }
 
-    private void handleBooking(RemoteMessage remoteMessage){
+    private void handleBooking(Map<String, String> data){
+        Log.d(TAG, "Booking notification processing...");
 
-        String message = remoteMessage.getData().get("message");
-        String id = remoteMessage.getData().get("employeeId");
-        String timeslot = remoteMessage.getData().get("timeslot");
-        String mail = remoteMessage.getData().get("mail");
-        String number = remoteMessage.getData().get("number");
-        String name = remoteMessage.getData().get("name");
+        String mail = data.get("email");
+        String message = data.get("message");
+        String timeslot = data.get("eventId");
+        String email = data.get("email");
+        String phone = data.get("phone");
+        String name = data.get("name");
+        String time = data.get("time");
+        String date = data.get("date");
+        ((MobileApplication)getApplicationContext()).addNotification(new BookingNotification(date,
+                time, timeslot, message, email, phone, name));
 
-        Notification notification = new BookingNotification("22.02.2018",
-                "10:23", timeslot,  message,
-                mail, number, name);
-
-        ((MobileApplication)getApplicationContext()).addNotification(notification);
-
-        // Create an explicit intent for an Activity in your app
         Intent intent = new Intent(this, NotificationsAllActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
@@ -125,7 +114,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setVisibility(VISIBILITY_PUBLIC);
-
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
         // notificationId is a unique int for each notification that you must define
@@ -147,14 +135,5 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onSendError(String s, Exception e) {
         super.onSendError(s, e);
-    }
-
-    @Override
-    public void onNewToken(String token) {
-        Log.d(TAG, "Refreshed token: " + token);
-    }
-
-    private void sendRegistrationToServer(String token) {
-
     }
 }

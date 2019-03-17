@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -32,7 +33,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    api 'com.github.alamkanak:android-week-view:1.2.6'
+
+    implementation 'com.github.rummatee:Android-Week-View:aeaf6cc4c9fc56dbaa1034966890c76471dc40d8'
+
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
@@ -53,6 +56,9 @@ dependencies {
     implementation('com.google.apis:google-api-services-calendar:v3-rev218-1.22.0') {
         exclude group: 'org.apache.httpcomponents'
     }
+
+    implementation 'com.android.support:multidex:1.0.3'
+
 
 }
 

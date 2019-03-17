@@ -26,7 +26,16 @@ const Worker = mongoose.model('Worker', new mongoose.Schema({
     phoneNumber: {
         type: String,
         default: ""
+    },
+    position: {
+        type: String,
+        default: "Research Assistant"
+    },
+    summary: {
+        type: String,
+        default: "Director of brand marketing, with experience managing global teams and multi-million-dollar campaigns. Her background in brand strategy, visual design, and account management inform her mindful but competitive approach."
     }
+
 }));
 
 module.exports = Worker;

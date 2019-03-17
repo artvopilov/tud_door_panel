@@ -1,4 +1,4 @@
-package tu.foxtrot.foxtrotdoorpanelmobileapp.dialog;
+/*package tu.foxtrot.foxtrotdoorpanelmobileapp.dialog;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -66,7 +66,6 @@ public class EventDialog extends DialogFragment implements View.OnClickListener,
         return view;
     }
 
-    /** The system calls this only when creating the layout in a dialog. */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
@@ -152,3 +151,4 @@ public class EventDialog extends DialogFragment implements View.OnClickListener,
         }
     }
 }
+*/

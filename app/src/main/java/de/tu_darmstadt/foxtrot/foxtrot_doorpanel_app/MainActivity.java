@@ -14,6 +14,7 @@ import android.widget.GridView;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.UpdateReceiver;
 
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private final String UPDATE_GUI_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateGUI";
     private final String TAG = "MainTabletActivity";
     private GridView gridView;
-    private ImageButton calendarButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
         gridView = (GridView) findViewById(R.id.workersGrid);
         gridView.setAdapter(new WorkerAdapter(this));
-        ((TabletApplication)getApplicationContext()).pullWorkers();
         subscribeToTopic80b();
+
+        TextView room = findViewById(R.id.room);
+        room.setText(((TabletApplication)getApplicationContext()).getRoom());
+        ((ImageButton)findViewById(R.id.chat_button)).setOnClickListener(this::openChat);
     }
 
     private void subscribeToTopic80b() {
@@ -60,16 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-
-        public void openCreateEvent () {
-            calendarButton = findViewById(R.id.landingPagePinButton10);
-            calendarButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
-                    startActivity(intent);
-                }
-            });
-        }
-
+    private void openChat(View v) {
+        Log.d(TAG, "Open chat");
+        Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
+    }
 }

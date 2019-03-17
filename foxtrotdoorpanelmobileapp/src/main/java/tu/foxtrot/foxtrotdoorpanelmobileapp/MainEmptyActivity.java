@@ -18,6 +18,9 @@ public class MainEmptyActivity extends AppCompatActivity {
 
         // go straight to main if a token is stored
         if (getToken() != null) {
+            String workerName = getSharedPreferences(getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE).getString("name", "Default");
+            ((MobileApplication)getApplication()).setWorkerName(workerName);
             activityIntent = new Intent(this, MainActivity.class);
         } else {
             activityIntent = new Intent(this, LoginActivity.class);

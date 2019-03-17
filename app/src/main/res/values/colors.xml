@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#2a7fc4</color>
+    <color name="colorPrimaryDark">#1e5b8c</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorSlot">#777700</color>
+    <color name="colorSlot">#2a7fc4</color>
     <color name="colorEvent">#222299</color>
     <color name="colorSlotActive">#FF5500</color>
+    <color name="tablet_message_background">#b9e0a8a8</color>
 </resources>

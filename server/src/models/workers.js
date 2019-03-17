@@ -29,8 +29,13 @@ class Workers extends DbModel {
     }
 
     async addTimeslot(event, id) {
-    console.log(id)
+        console.log(id);
         await this._MongooseModel.updateOne({id}, {$addToSet:{timeslots:event}});
+    }
+
+    async removeTimeslot(eventId, id) {
+        console.log(eventId)
+        await this._MongooseModel.updateOne({id}, {$pull:{timeslots:{id:eventId}}});
     }
 
 }

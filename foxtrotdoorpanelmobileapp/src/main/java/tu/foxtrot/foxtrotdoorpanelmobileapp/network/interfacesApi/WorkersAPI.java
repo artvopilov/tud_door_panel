@@ -2,9 +2,11 @@ package tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -30,8 +32,23 @@ public interface WorkersAPI {
     Call<String> updateWorkerRoom(@Header("Authorization") String token,
                                   @Field("room") String room);
 
+    @FormUrlEncoded
+    @POST("workers/phone")
+    Call<String> updateWorkerPhone(@Header("Authorization") String token,
+                                  @Field("phone") String phone);
+
+    @FormUrlEncoded
+    @POST("workers/phone")
+    Call<String> updateWorkerEmail(@Header("Authorization") String token,
+                                   @Field("email") String email);
+
     @POST("workers/{id}/timeslot")
-    Call<String> addWorkerTimeslot(@Path("id") int workerId, @Body Event timeslot);
+    Call<String> addWorkerTimeslot(@Header("Authorization") String token, @Path("id") int workerId, @Body Event timeslot);
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE",path = "workers/{id}/timeslot", hasBody = true)
+    Call<String> removeWorkerTimeslot(@Path("id") int workerId, @Field("timeslot") String timeslot);
+
 
     @FormUrlEncoded
     @POST("workers/login/")
