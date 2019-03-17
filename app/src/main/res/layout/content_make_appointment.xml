@@ -1,89 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MakeAppointmentActivity"
     tools:showIn="@layout/activity_make_appointment">
 
-    <LinearLayout
+    <com.alamkanak.weekview.WeekView
+        android:id="@+id/weekView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="3">
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        app:columnGap="8dp"
+        app:dayBackgroundColor="#05000000"
+        app:eventTextColor="@android:color/white"
+        app:eventTextSize="8sp"
+        app:headerRowBackgroundColor="#ffefefef"
+        app:headerRowPadding="12dp"
+        app:hourHeight="60dp"
+        app:maxHour="20"
+        app:minHour="8"
+        app:numberOfVisibleDays="7"
+        app:timeColumnBackgroundColor="#ffffffff"
+        app:timeColumnPadding="8dp"
+        app:timeColumnTextColor="#8f000000"
+        app:todayBackgroundColor="#1848adff" />
 
-        <com.alamkanak.weekview.WeekView
-            android:id="@+id/weekView"
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            app:columnGap="8dp"
-            app:dayBackgroundColor="#05000000"
-            app:eventTextColor="@android:color/white"
-            app:eventTextSize="8sp"
-            app:timeColumnBackgroundColor="#ffffffff"
-            app:timeColumnPadding="8dp"
-            app:timeColumnTextColor="#8f000000"
-            app:headerRowBackgroundColor="#ffefefef"
-            app:headerRowPadding="12dp"
-            app:hourHeight="60dp"
-            app:minHour="8"
-            app:maxHour="20"
-            app:numberOfVisibleDays="7"
-            app:todayBackgroundColor="#1848adff" />
+            android:ems="10"
+            android:hint="Name:"
+            android:inputType="textPersonName" />
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="350dp"
+        <EditText
+            android:id="@+id/editEMail"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="2"
+            android:ems="10"
+            android:hint="Email:"
+            android:inputType="textWebEmailAddress"
+            tools:layout_editor_absoluteY="46dp" />
 
-            <EditText
-                android:id="@+id/editName"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:hint="Name"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/editEMail"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/editEMail"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:hint="Email"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/editPhone"
-                app:layout_constraintStart_toStartOf="@+id/editName"
-                app:layout_constraintTop_toBottomOf="@+id/editName" />
-
-            <EditText
-                android:id="@+id/editPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:hint="Phone"
-                android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/editMessage"
-                app:layout_constraintStart_toStartOf="@+id/editEMail"
-                app:layout_constraintTop_toBottomOf="@+id/editEMail" />
-
-            <EditText
-                android:id="@+id/editMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:ems="10"
-                android:hint="Message"
-                android:inputType="textMultiLine"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/editPhone"
-                app:layout_constraintTop_toBottomOf="@+id/editPhone" />
-        </android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/editPhone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:ems="10"
+            android:hint="Phone:"
+            android:inputType="phone"
+            tools:layout_editor_absoluteY="92dp" />
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editMessage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Your message:"
+            android:inputType="textMultiLine"
+            tools:layout_editor_absoluteY="691dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="#33333300"
+            app:srcCompat="@android:drawable/ic_dialog_email" />
+    </LinearLayout>
+</LinearLayout>
