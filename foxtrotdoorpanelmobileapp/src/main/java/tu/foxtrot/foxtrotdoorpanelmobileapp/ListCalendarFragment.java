@@ -6,11 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Layout;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,11 @@ import android.widget.Toast;
 import java.util.Date;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event;
 
 public class ListCalendarFragment extends Fragment {
@@ -69,6 +77,24 @@ public class ListCalendarFragment extends Fragment {
                 time.setText((String) DateFormat.format("HH:mm", start));
                 TextView title = eventFragment.findViewById(R.id.titleFirstListCalendar);
                 title.setText(event.getName());
+                title.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        PopupMenu menu = new PopupMenu(getActivity(), title);
+                        menu.inflate(R.menu.menu_calendar);
+                        menu.show();
+                        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                if (item.getItemId() == R.id.action_delete){
+                                    deleteEvent(event);
+                                }
+                                return true;
+                            }
+                        });
+                        return true;
+                    }
+                });
                 layout.addView(eventFragment);
             }
         }
@@ -81,5 +107,26 @@ public class ListCalendarFragment extends Fragment {
         }
 
         return view;
+    }
+
+    private void deleteEvent(Event event){
+        WorkersAPI workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
+
+        int myID = ((MobileApplication)getActivity().getApplicationContext()).getWorkerID();
+
+        Call<String> call = workersApi.removeWorkerTimeslot(myID, Integer.toString(event.getId()));
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+
+                Log.d("remove Timeslot", response.message());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("remove Timeslot", t.getMessage());
+            }
+        });
     }
 }
