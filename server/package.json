@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Server for mobile and tablet apps",
   "main": "src/app.js",
-  "devDependencies": {
+  "dependencies": {
     "babel": "^6.23.0",
     "config": "^3.0.1",
     "firebase-admin": "^6.4.0",
