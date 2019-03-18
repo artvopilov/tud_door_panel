@@ -20,6 +20,7 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 public class Utils {
     private final static String TAG = "UTILS";
     private static WorkersAPI workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
+    private static MessagesAPI messagesApi = RetrofitClient.getRetrofitInstance().create(MessagesAPI.class);
 
     public static void updateWorkerStatus(Context context, String token, String status) {
         Call<String> call = workersApi.updateWorkerStatus("Bearer " + token, status);
@@ -42,24 +43,6 @@ public class Utils {
         });
     }
 
-    public static void updateWorkerRoom(Context context, String token, String room) {
-        Call<String> call = workersApi.updateWorkerRoom("Bearer " + token, room);
-        Log.d(TAG, "Room update request sent | room:" + room);
-
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String newRoom = response.body();
-                Log.d(TAG, "Room updated: " + newRoom);
-                Toast.makeText(context, "Room updated: " + newRoom, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d(TAG, "Room update error: " + t.getMessage());            }
-        });
-    }
-
     public static void updateWorkerPhoto(Context context, String token, String image) {
         Call<String> call = workersApi.updateWorkerPhoto("Bearer " + token, image);
         Log.d(TAG, "Photo update request sent ");
@@ -78,53 +61,8 @@ public class Utils {
         });
     }
 
-    public static void updateWorkerPhone(Context context, String token, String phone) {
-        Call<String> call = workersApi.updateWorkerPhone("Bearer " + token, phone);
-        Log.d(TAG, "Phone update request sent");
-
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String newPhone = response.body();
-                Log.d(TAG, "Phone updated: " + newPhone);
-                Toast toast = Toast.makeText(context, "Status updated: " + newPhone,
-                        Toast.LENGTH_SHORT);
-                toast.show();
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d(TAG, "Phone update error: " + t.getMessage());
-            }
-        });
-    }
-
-    public static void updateWorkerEmail(Context context, String token, String email) {
-        Call<String> call = workersApi.updateWorkerEmail("Bearer " + token, email);
-        Log.d(TAG, "Email update request sent");
-
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String newEmail = response.body();
-                Log.d(TAG, "Email updated: " + newEmail);
-                Toast toast = Toast.makeText(context, "Status updated: " + newEmail,
-                        Toast.LENGTH_SHORT);
-                toast.show();
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Log.d(TAG, "Email update error: " + t.getMessage());
-            }
-        });
-    }
-
-
-
     public static void getMessages(MobileApplication mobileApplication, String token) {
-        MessagesAPI messagesAPI = RetrofitClient.getRetrofitInstance().create(MessagesAPI.class);
-        Call<List<MessageNotification>> call = messagesAPI.getMessages("Bearer " + token);
+        Call<List<MessageNotification>> call = messagesApi.getMessages("Bearer " + token);
         Log.d(TAG, "Sent request for messages");
 
         call.enqueue(new Callback<List<MessageNotification>>() {
@@ -151,8 +89,7 @@ public class Utils {
     }
 
     public static void getBookings(MobileApplication mobileApplication, String token) {
-        MessagesAPI messagesAPI = RetrofitClient.getRetrofitInstance().create(MessagesAPI.class);
-        Call<List<BookingNotification>> call = messagesAPI.getBookings("Bearer " + token);
+        Call<List<BookingNotification>> call = messagesApi.getBookings("Bearer " + token);
         Log.d(TAG, "Sent request for bookings");
 
         call.enqueue(new Callback<List<BookingNotification>>() {
@@ -174,6 +111,60 @@ public class Utils {
             @Override
             public void onFailure(Call<List<BookingNotification>> call, Throwable t) {
                 Log.d(TAG, "Bookings pulling error: " + t.getMessage());
+            }
+        });
+    }
+
+    public static void updatePersonalInfo(Context applicationContext, String token, String phone,
+                                          String email, String room) {
+        Call<String> call = workersApi.updatePersonalInfo("Bearer " + token,
+                phone, email, room);
+        Log.d(TAG, "Personal info update request sent");
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String status = response.body() != null ? response.body() : "failed";
+                if (status.equals("ok")) {
+                    Log.d(TAG, "Personal info was SUCCESSFULLY updated");
+                    Toast.makeText(applicationContext, "Personal info updated: " + status,
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(applicationContext, "Personal info updated: " + status,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d(TAG, "Personal info update error: " + t.getMessage());
+                Toast.makeText(applicationContext, "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public static void updateWorkerSummary(Context context, String token, String summary) {
+        Call<String> call = workersApi.updateWorkerSummary("Bearer " + token, summary);
+        Log.d(TAG, "Personal summary update request sent");
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String status = response.body() != null ? response.body() : "failed";
+                if (status.equals("ok")) {
+                    Log.d(TAG, "Personal summary was SUCCESSFULLY updated");
+                    Toast.makeText(context, "Personal summary updated: " + status,
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Personal summary updated: " + status,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d(TAG, "Personal info update error: " + t.getMessage());
+                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
             }
         });
     }

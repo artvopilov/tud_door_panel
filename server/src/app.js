@@ -14,12 +14,13 @@ const createWorkersController = require('./controllers/workers/create');
 const changeWorkerStatusController = require('./controllers/workers/change-status');
 const sendWorkerMessageController = require('./controllers/workers/send-message');
 const getWorkerByIdController = require('./controllers/workers/get-by-id');
-const changeWorkerRoomController = require('./controllers/workers/change-room');
 const changeWorkerPhotoController = require('./controllers/workers/change-photo');
 const addWorkerTimeslotController = require('./controllers/workers/add-timeslot');
 const removeWorkerTimeslotController = require('./controllers/workers/remove-timeslot');
 const bookWorkerTimeslotController = require('./controllers/workers/book-timeslot');
 const authenticateWorkerController = require('./controllers/workers/auth');
+const updatePersonalInfoController = require('./controllers/workers/personal-info');
+const updateWorkerSummaryController = require('./controllers/workers/update-summary');
 
 const getTabletsController = require('./controllers/tablets/get-tablets');
 const createTabletController = require('./controllers/tablets/create');
@@ -60,9 +61,11 @@ router.get('/workers/:id/', getWorkerByIdController);
 router.post('/workers/', createWorkersController);
 router.post('/workers/status', passport.authenticate('jwt', {session: false}),
     changeWorkerStatusController);
+router.post('/workers/summary', passport.authenticate('jwt', {session: false}),
+    updateWorkerSummaryController);
 router.post('/workers/:id/message', sendWorkerMessageController);
-router.post('/workers/room', passport.authenticate('jwt', {session: false}),
-    changeWorkerRoomController);
+router.post('/workers/personal-info', passport.authenticate('jwt', {session: false}),
+    updatePersonalInfoController);
 router.post('/workers/:id/timeslot', passport.authenticate('jwt', {session: false}),
     addWorkerTimeslotController);
 router.delete('/workers/:id/timeslot', removeWorkerTimeslotController);

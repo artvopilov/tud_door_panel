@@ -67,6 +67,7 @@ public class CreatingWorkerActivity extends AppCompatActivity {
     private EditText roomEdit;
     private EditText positionEdit;
     private EditText summaryEdit;
+    private EditText phoneEdit;
     private FloatingActionButton createWorkerButton;
 
     private Button btn;
@@ -88,6 +89,7 @@ public class CreatingWorkerActivity extends AppCompatActivity {
         roomEdit = findViewById(R.id.newWorkerRoom);
         positionEdit = findViewById(R.id.newWorkerPosition);
         summaryEdit = findViewById(R.id.newWorkerSummary);
+        phoneEdit = findViewById(R.id.newWorkerPhone);
 
         createWorkerButton = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -100,6 +102,7 @@ public class CreatingWorkerActivity extends AppCompatActivity {
                 String room = roomEdit.getText().toString();
                 String position = positionEdit.getText().toString();
                 String summary = summaryEdit.getText().toString();
+                String phone = phoneEdit.getText().toString();
                 Worker worker = new Worker();
                 worker.setRoom(room);
                 worker.setName(name);
@@ -107,6 +110,7 @@ public class CreatingWorkerActivity extends AppCompatActivity {
                 worker.setPassword(password);
                 worker.setPosition(position);
                 worker.setSummary(summary);
+                worker.setPhoneNumber(phone);
 
 
 

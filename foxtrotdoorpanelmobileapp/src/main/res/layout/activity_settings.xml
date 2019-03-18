@@ -1,265 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
     tools:context=".Settings">
 
 
-    <ScrollView
+    <Button
+        android:id="@+id/button9"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_weight="1"
+        android:background="@drawable/blue_button"
+        android:drawableStart="@drawable/ic_action_name"
+        android:gravity="center"
+        android:padding="15dp"
+        android:singleLine="true"
+        android:text="Person"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_weight="1"
+        android:background="@drawable/blue_button"
+        android:drawableStart="@drawable/ic_picture_own"
+        android:gravity="center"
+        android:padding="15dp"
+        android:singleLine="true"
+        android:text="photo"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_weight="1"
+        android:background="@drawable/blue_button"
+        android:drawableStart="@drawable/ic_personal_info2_own"
+        android:gravity="center"
+        android:padding="15dp"
+        android:singleLine="true"
+        android:text="About me"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
 
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_weight="1"
+        android:background="@drawable/blue_button"
+        android:drawableStart="@drawable/ic_calendar_own"
+        android:gravity="center"
+        android:padding="15dp"
+        android:singleLine="true"
+        android:text="set calendar"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:orientation="horizontal">
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_weight="1"
+        android:background="@drawable/blue_button"
+        android:drawableStart="@drawable/ic_new_worker_own"
+        android:gravity="center"
+        android:padding="15dp"
+        android:singleLine="true"
+        android:text="new worker"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
 
-                <Button
-                    android:id="@+id/button1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@android:dimen/notification_large_icon_height"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_picture_own"
-                    android:drawablePadding="2dip"
-                    android:gravity="center"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="16dip"
-                    android:singleLine="true"
-                    android:text="photo"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/button9"
-                    android:layout_width="match_parent"
-                    android:layout_height="@android:dimen/notification_large_icon_height"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_action_name"
-                    android:drawablePadding="2dip"
-                    android:gravity="center"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="16dip"
-                    android:singleLine="true"
-                    android:text="Person"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_button"
+            android:drawableStart="@drawable/ic_back"
+            android:gravity="center"
+            android:padding="15dp"
+            android:singleLine="true"
+            android:text="Back"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
-            </LinearLayout>
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_button"
 
+            android:drawableStart="@drawable/ic_logout_own"
+            android:gravity="center"
+            android:padding="15dp"
+            android:singleLine="true"
+            android:text="Logout"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="24dp"
-                android:layout_weight="0.5"
-                android:orientation="horizontal">
+    </LinearLayout>
 
-
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@android:dimen/notification_large_icon_height"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_personal_info2_own"
-                    android:drawablePadding="2dip"
-                    android:gravity="center"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="16dip"
-                    android:singleLine="true"
-                    android:text="About me"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/button6"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@android:dimen/notification_large_icon_height"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_timeslots_own"
-                    android:drawablePadding="2dip"
-                    android:gravity="center"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="16dip"
-                    android:singleLine="true"
-                    android:text="time slots"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="24dp"
-                android:layout_weight="0.5"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/button7"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@android:dimen/notification_large_icon_height"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_calendar_own"
-                    android:drawablePadding="2dip"
-                    android:gravity="center"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="16dip"
-                    android:singleLine="true"
-                    android:text="set calendar"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/button8"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@android:dimen/notification_large_icon_height"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_new_worker_own"
-
-                    android:drawablePadding="2dip"
-                    android:gravity="center"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="16dip"
-                    android:singleLine="true"
-
-                    android:text="new worker"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="match_parent"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginTop="56dp"
-                android:layout_weight="0.5"
-                android:background="@drawable/blue_button"
-                android:drawableLeft="@drawable/ic_back"
-                android:drawablePadding="2dip"
-                android:gravity="center"
-                android:paddingLeft="10dip"
-                android:paddingRight="16dip"
-                android:singleLine="true"
-                android:text="Back to Main"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/logoutButton"
-                android:layout_width="match_parent"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/blue_button"
-                android:drawableLeft="@drawable/ic_logout_own"
-
-                android:drawablePadding="2dip"
-                android:gravity="center"
-                android:paddingLeft="10dip"
-                android:paddingRight="16dip"
-                android:singleLine="true"
-
-                android:text="Logout"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="fill_parent"
-                android:layout_height="@android:dimen/notification_large_icon_height"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="56dp"
-                android:layout_weight="0.5"
-                android:background="@drawable/blue_button"
-                android:drawableLeft="@drawable/ic_room_own"
-                android:drawablePadding="2dip"
-                android:gravity="center"
-                android:paddingLeft="10dip"
-                android:paddingRight="16dip"
-                android:singleLine="true"
-                android:text="room"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="24dp"
-                android:layout_weight="0.5"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@android:dimen/notification_large_icon_height"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_email_own"
-                    android:drawablePadding="2dip"
-                    android:gravity="center"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="16dip"
-                    android:singleLine="true"
-                    android:text="email"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="@android:dimen/notification_large_icon_height"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="0.5"
-                    android:background="@drawable/blue_button"
-                    android:drawableLeft="@drawable/ic_phone_own"
-                    android:drawablePadding="2dip"
-                    android:gravity="center"
-                    android:paddingLeft="10dip"
-                    android:paddingRight="16dip"
-                    android:singleLine="true"
-                    android:text="phone number"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

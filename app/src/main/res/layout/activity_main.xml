@@ -13,28 +13,6 @@
         android:orientation="horizontal"
         android:padding="5dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <ImageButton
-
-                android:id="@+id/landingPagePinButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="false"
-                android:layout_gravity="center"
-                android:background="@null"
-                android:clickable="true"
-                android:minWidth="36dp"
-                android:minHeight="36dp"
-                android:src="@drawable/ic_bluetooth" />
-
-
-        </LinearLayout>
-
         <TextView
             android:id="@+id/b1"
             android:layout_width="wrap_content"
