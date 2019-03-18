@@ -1,18 +1,18 @@
 module.exports = async (ctx) => {
-    const workerId = ctx.params.id;
     const timeslot = ctx.request.body;
+    const worker = await ctx.req.user;
 
     console.log("add timeslot: "+timeslot);
 
-    await ctx.workerModel.addTimeslot(timeslot, workerId);
+    await ctx.workerModel.addTimeslot(timeslot, worker.id);
 
-    const worker = await ctx.req.user;
+
 
     const room = worker.room;
 
 
     const messageToTablet = {
-            data: {subject: 'addTimeslot', workerId: workerId},
+            data: {subject: 'addTimeslot', workerId: worker.id},
             topic: room
         };
 

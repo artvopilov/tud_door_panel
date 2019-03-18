@@ -53,6 +53,7 @@ public class MobileApplication extends Application {
     private static final String MyPREFERENCES = "Foxtrot";
     private List<Notification> notificationsList = new ArrayList<Notification>();
     private String workerName;
+    private int workerID;
 
     static final int REQUEST_ACCOUNT_PICKER = 1000;
     static final int REQUEST_AUTHORIZATION = 1001;
@@ -124,8 +125,6 @@ public class MobileApplication extends Application {
     public void setWorkerName(String name) {
         this.workerName = name;
     }
-
-    private int workerID;
 
     private GoogleAccountCredential mCredential;
     private String mCalendar;

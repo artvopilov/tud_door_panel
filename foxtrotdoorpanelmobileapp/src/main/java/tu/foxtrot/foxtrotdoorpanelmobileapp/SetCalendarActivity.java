@@ -193,7 +193,7 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
 
         @Override
         protected void onPostExecute(List<String> output) {
-            mOutputText.setText("found calendars");
+            mOutputText.setText("Found calendars");
             List<CalendarListEntry> items = calendarList.getItems();
             for (CalendarListEntry item : items) {
                 RadioButton radioButton = new RadioButton(context);

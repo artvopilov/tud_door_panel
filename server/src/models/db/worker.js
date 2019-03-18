@@ -13,6 +13,7 @@ const Worker = mongoose.model('Worker', new mongoose.Schema({
     name: String,
     age: Number,
     email: String,
+	image: String,
     timeslots: [EventsSchema],
     password: String,
     status: {
@@ -33,9 +34,10 @@ const Worker = mongoose.model('Worker', new mongoose.Schema({
     },
     summary: {
         type: String,
-        default: "Director of brand marketing, with experience managing global teams and multi-million-dollar campaigns. Her background in brand strategy, visual design, and account management inform her mindful but competitive approach."
+        default: "Director of brand marketing, with experience managing global teams and multi-million-dollar " +
+            "campaigns. Her background in brand strategy, visual design, and account management inform her " +
+            "mindful but competitive approach."
     }
-
 }));
 
 module.exports = Worker;

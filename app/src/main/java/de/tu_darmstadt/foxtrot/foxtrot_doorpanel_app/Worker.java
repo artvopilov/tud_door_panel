@@ -7,6 +7,7 @@ import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Event;
 public class Worker {
     private String name;
     private String email;
+    private String phoneNumber;
     private int age;
     private String room;
     private String position;
@@ -14,6 +15,11 @@ public class Worker {
     private String summary;
     private int id;
     private List<Event> timeslots;
+    private String image;
+
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
 
     public String getRoom() {
         return room;
@@ -88,6 +94,22 @@ public class Worker {
 
     public void setTimeslots(List<Event> timeslots) {
         this.timeslots = timeslots;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void deleteTimeslot(int id) {
+        for (Event slot : this.timeslots){
+            if (slot.getId() == id){
+                this.timeslots.remove(slot);
+            }
+        }
     }
 }
 

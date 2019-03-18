@@ -18,12 +18,26 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.sql.BatchUpdateException;
+import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.List;
+
+import sun.bob.mcalendarview.MCalendarView;
+import sun.bob.mcalendarview.MarkStyle;
+import sun.bob.mcalendarview.listeners.OnDateClickListener;
+import sun.bob.mcalendarview.vo.DateData;
+import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event;
 
 public class WallCalendarFragment extends Fragment {
     private static final String Tag = "WallCalendarFragment";
 
-    private CalendarView mCalendarView;
+    private MCalendarView mCalendarView;
     private ViewPager mViewPager;
+    private List<Event> events;
+
+    public WallCalendarFragment(List<Event> events){
+        this.events = events;
+    }
 
     @Nullable
     @Override
@@ -31,21 +45,38 @@ public class WallCalendarFragment extends Fragment {
         View view = inflater.inflate(R.layout.wall_calendar_fragment, container, false);
         mViewPager = (ViewPager) getActivity().findViewById(R.id.container);
 
-        mCalendarView =(CalendarView) view.findViewById(R.id.wallCalendarObject);
-        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        mCalendarView =(MCalendarView) view.findViewById(R.id.wallCalendarObject);
+        mCalendarView.setOnDateClickListener(new OnDateClickListener() {
             @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                String date = dayOfMonth + "/" + (month + 1) + "/" +year;
+            public void onDateClick(View view, DateData datedata) {
+                int year = datedata.getYear();
+                int month = datedata.getMonth();
+                int dayOfMonth = datedata.getDay();
+                DecimalFormat formatter = new DecimalFormat("00");
+                String date = formatter.format(dayOfMonth) + "/" + formatter.format(month) + "/" +year;
 
-                ListCalendarFragment listCalendarFragment = new ListCalendarFragment();
+                ListCalendarFragment listCalendarFragment = new ListCalendarFragment(events);
                 Bundle bundle = new Bundle();
                 bundle.putString("date", date);
                 listCalendarFragment.setArguments(bundle);
+                ((ViewGroup)getActivity().findViewById(R.id.listCalendarFragment)).removeAllViews();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.listCalendarFragment, listCalendarFragment).commit();
                 mViewPager.setCurrentItem(1);
             }
         });
+
+        mCalendarView.setMarkedStyle(MarkStyle.BACKGROUND);
+        for (Event event : events){
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(event.getStart());
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH);
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            mCalendarView.markDate(year,
+                    month+1,
+                    day);
+        }
         return view;
     }
 }

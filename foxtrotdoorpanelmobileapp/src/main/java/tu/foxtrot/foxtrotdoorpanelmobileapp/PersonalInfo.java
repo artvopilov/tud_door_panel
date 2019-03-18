@@ -20,40 +20,27 @@ public class PersonalInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
 
-        submitInfo();
+        (findViewById(R.id.personal_info_button)).setOnClickListener(this::onClick);
 
     }
 
-    public void submitInfo() {
-        submitButton = (Button) findViewById(R.id.button7);
-        submitButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                TextInputEditText phoneInput = findViewById(R.id.current_room);
-                String phone = phoneInput.getText() == null ? "" : phoneInput.getText().toString();
-                SharedPreferences sharedPreferences = getSharedPreferences(
-                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                String token = sharedPreferences.getString("token", null);
-                Utils.updateWorkerPhone(getApplicationContext(), token, phone);
+    public void onClick(View view) {
+        TextInputEditText roomInput = findViewById(R.id.pers_current_room);
+        TextInputEditText emailInput = findViewById(R.id.pers_current_email);
+        TextInputEditText phoneInput = findViewById(R.id.pers_current_phone);
+        String room = roomInput.getText() == null ? "" : roomInput.getText().toString().trim();
+        String email = roomInput.getText() == null ? "" : emailInput.getText().toString().trim();
+        String phone = roomInput.getText() == null ? "" : phoneInput.getText().toString().trim();
 
-                TextInputEditText emailInput = findViewById(R.id.current_email);
-                String email = emailInput.getText() == null ? "" : emailInput.getText().toString();
-                sharedPreferences = getSharedPreferences(
-                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                token = sharedPreferences.getString("token", null);
-                Utils.updateWorkerEmail(getApplicationContext(), token, email);
+        SharedPreferences sharedPreferences = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        if (email.equals("") && phone.equals("") && room.equals("")) {
+            return;
+        }
+        Utils.updatePersonalInfo(getApplicationContext(), token, phone, email, room);
 
-                TextInputEditText roomInput = findViewById(R.id.current_room);
-                String room = roomInput.getText() == null ? "" : roomInput.getText().toString();
-                sharedPreferences = getSharedPreferences(
-                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                token = sharedPreferences.getString("token", null);
-                Utils.updateWorkerRoom(getApplicationContext(), token, room);
-
-
-                Intent intent = new Intent(PersonalInfo.this, Settings.class);
-                startActivity(intent);
-            }
-        });
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

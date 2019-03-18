@@ -1,8 +1,11 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -46,6 +49,8 @@ public class BookingActivity extends AppCompatActivity {
 
     private com.google.api.services.calendar.Calendar mService = null;
 
+    private BookingNotification notification;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +75,7 @@ public class BookingActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int notificationID = intent.getIntExtra("notificationID",0);
-        BookingNotification notification = (BookingNotification) ((MobileApplication)getApplicationContext()).getNotificationsList().get(notificationID);
+        notification = (BookingNotification) ((MobileApplication)getApplicationContext()).getNotificationsList().get(notificationID);
         slotID = notification.getTimeslot();
 
 
@@ -112,7 +117,11 @@ public class BookingActivity extends AppCompatActivity {
 
                 int myID = ((MobileApplication)getApplicationContext()).getWorkerID();
 
-                Call<String> call = workersApi.removeWorkerTimeslot(myID, notification.getTimeslot());
+
+                SharedPreferences sharedPreferences = getSharedPreferences(
+                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                String token = sharedPreferences.getString("token", null);
+                Call<String> call = workersApi.removeWorkerTimeslot(token, myID, notification.getTimeslot());
 
                 call.enqueue(new Callback<String>() {
                     @Override
@@ -154,7 +163,7 @@ public class BookingActivity extends AppCompatActivity {
             protected String doInBackground (Void...voids){
                 try {
                     timeslot = mService.events().get(timeslotCalendarId,slotID).execute();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 return null;
@@ -166,6 +175,8 @@ public class BookingActivity extends AppCompatActivity {
                 if (timeslot != null) {
                     eventStart.setText("starts " + timeslot.getStart().getDateTime().toString());
                     eventEnd.setText("ends " + timeslot.getEnd().getDateTime().toString());
+                } else {
+                    showErrorDialog();
                 }
                 //getResultsFromApi();
             }
@@ -215,5 +226,40 @@ public class BookingActivity extends AppCompatActivity {
                     .build();
             getEventAsync(slotID);
         }
+    }
+
+    private void showErrorDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(BookingActivity.this);
+        dialog.setMessage("It seems that you didn't set up your calendars correctly. Do you want to set up your calendars or inform the visitor?");
+        dialog.setPositiveButton("set calendars", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(BookingActivity.this, SetCalendarActivity.class);
+                startActivity(intent);
+            }
+        });
+        dialog.setNegativeButton("inform visitor", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent gmail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto",notification.getEmail(), null));
+                //gmail.setClassName("com.google.android.gm","com.google.android.gm.ComposeActivityGmail");
+                gmail.putExtra(Intent.EXTRA_EMAIL, new String[] { notification.getEmail() });
+                //gmail.setData(Uri.parse(notification.getEmail()));
+                gmail.putExtra(Intent.EXTRA_SUBJECT, "Your booking");
+                //gmail.setType("plain/text");
+                gmail.putExtra(Intent.EXTRA_TEXT, "hello "+notification.getName()+"\n"+
+                        "I regret to inform you, that there was a problem with your booking. Please contacct me for further information");
+                startActivity(Intent.createChooser(gmail, "Send Email"));
+            }
+        });
+        dialog.setNeutralButton("cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        dialog.show();
     }
 }

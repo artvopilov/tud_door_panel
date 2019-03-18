@@ -8,8 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Base64;
+
+import net.glxn.qrgen.android.QRCode;
+import net.glxn.qrgen.core.scheme.VCard;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,6 +27,8 @@ import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.Worke
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class BioActivity extends AppCompatActivity {
 
@@ -42,12 +49,38 @@ public class BioActivity extends AppCompatActivity {
         if (worker != null) {
             TextView nameView = findViewById(R.id.b19);
             nameView.setText(worker.getName());
-            TextView positionView = findViewById(R.id.b20);
-            positionView.setText(worker.getPosition());
-            TextView statusView = findViewById(R.id.b21);
-            statusView.setText(worker.getStatus());
             TextView summaryView = findViewById(R.id.summaryView);
             summaryView.setText(worker.getSummary());
+            String email = worker.getEmail() == null || worker.getEmail().equals("") ? "no email"
+                    : worker.getEmail();
+            String phone = worker.getPhoneNumber() == null ||
+                    worker.getPhoneNumber().equals("") ? "no phone" : worker.getPhoneNumber();
+            String position = worker.getPosition() == null ||
+                    worker.getPosition().equals("") ? "Research assistant" : worker.getPosition();
+            ((TextView)findViewById(R.id.bio_position)).setText(position);
+            ((TextView)findViewById(R.id.bio_email_phone)).setText(String.format(
+                    "Contact information: %s, %s", email, phone));
+
+            ImageView img= findViewById(R.id.landingPagePinButton8);
+            if((worker.getImage())!= null) {
+                final String encodedString = worker.getImage();
+                final String pureBase64Encoded = encodedString.substring(encodedString.indexOf(",") + 1);
+                final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+                img.setImageBitmap(decodedBitmap);
+            }
+
+
+
+
+
+            //QR-Code
+            VCard vcard = new VCard(worker.getName())
+                    .setEmail(worker.getEmail());
+
+            ImageView qrView = findViewById(R.id.qrCode);
+            qrView.setImageBitmap(QRCode.from(vcard).bitmap());
+
         }
 
         Button sendButton = findViewById(R.id.button_send);

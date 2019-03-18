@@ -1,5 +1,7 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -28,31 +30,39 @@ public interface WorkersAPI {
                                     @Field("status") String status);
 
     @FormUrlEncoded
-    @POST("workers/room")
-    Call<String> updateWorkerRoom(@Header("Authorization") String token,
-                                  @Field("room") String room);
+    @POST("workers/personal-info")
+    Call<String> updatePersonalInfo(@Header("Authorization") String token,
+                                    @Field("phone") String phone, @Field("email") String email,
+                                    @Field("room") String room);
 
     @FormUrlEncoded
-    @POST("workers/phone")
-    Call<String> updateWorkerPhone(@Header("Authorization") String token,
-                                  @Field("phone") String phone);
+    @POST("workers/photo")
+    Call<String> updateWorkerPhoto(@Header("Authorization") String token,
+                                  @Field("image") String image);
 
-    @FormUrlEncoded
-    @POST("workers/phone")
-    Call<String> updateWorkerEmail(@Header("Authorization") String token,
-                                   @Field("email") String email);
+
 
     @POST("workers/{id}/timeslot")
-    Call<String> addWorkerTimeslot(@Header("Authorization") String token, @Path("id") int workerId, @Body Event timeslot);
+    Call<String> addWorkerTimeslot(@Header("Authorization") String token,
+                                   @Path("id") int workerId, @Body Event timeslot);
+
+    @GET("workers/timeslots")
+    Call<List<Event>> getTimeslots(@Header("Authorization") String token);
 
     @FormUrlEncoded
     @HTTP(method = "DELETE",path = "workers/{id}/timeslot", hasBody = true)
-    Call<String> removeWorkerTimeslot(@Path("id") int workerId, @Field("timeslot") String timeslot);
+    Call<String> removeWorkerTimeslot(@Header("Authorization") String token,
+                                      @Path("id") int workerId, @Field("timeslot") String timeslot);
 
 
     @FormUrlEncoded
     @POST("workers/login/")
     Call<LoginResponse> login(@Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("workers/summary")
+    Call<String> updateWorkerSummary(@Header("Authorization") String token,
+                                     @Field("summary") String summary);
 }
 
 
