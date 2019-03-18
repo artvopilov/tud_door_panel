@@ -13,6 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Base64;
 
+import net.glxn.qrgen.android.QRCode;
+import net.glxn.qrgen.core.scheme.VCard;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -63,6 +66,14 @@ public class BioActivity extends AppCompatActivity {
 
 
 
+
+
+            //QR-Code
+            VCard vcard = new VCard(worker.getName())
+                    .setEmail(worker.getEmail());
+
+            ImageView qrView = findViewById(R.id.qrCode);
+            qrView.setImageBitmap(QRCode.from(vcard).bitmap());
 
         }
 
