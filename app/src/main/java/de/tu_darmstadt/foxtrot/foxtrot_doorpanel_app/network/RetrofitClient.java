@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://foxtrot-doorpanel-new-foxtrot-doorpanel-server.7e14.starter-us-west-2.openshiftapps.com"; // 192.168.2.118
+    private static final String BASE_URL = "http://foxtrot-doorpanel-foxtrot-doorpanel-server.7e14.starter-us-west-2.openshiftapps.com/"; // 192.168.2.118
 
     public static Retrofit getRetrofitInstance() {
         Gson gson = new GsonBuilder()
