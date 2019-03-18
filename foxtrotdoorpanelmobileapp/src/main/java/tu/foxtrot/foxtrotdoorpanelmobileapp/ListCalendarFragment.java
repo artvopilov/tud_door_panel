@@ -2,6 +2,7 @@ package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -141,7 +142,10 @@ public class ListCalendarFragment extends Fragment {
 
         int myID = ((MobileApplication)getActivity().getApplicationContext()).getWorkerID();
 
-        Call<String> call = workersApi.removeWorkerTimeslot(myID, Integer.toString(event.getId()));
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        Call<String> call = workersApi.removeWorkerTimeslot(token, myID, Integer.toString(event.getId()));
 
         call.enqueue(new Callback<String>() {
             @Override
