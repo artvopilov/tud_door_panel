@@ -58,6 +58,7 @@ dependencies {
     }
 
     implementation 'com.android.support:multidex:1.0.3'
+    compile 'com.github.kenglxn.QRGen:android:2.5.0'
 
 
 }

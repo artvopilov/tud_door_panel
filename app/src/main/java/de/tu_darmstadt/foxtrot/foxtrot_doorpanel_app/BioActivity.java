@@ -8,8 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import net.glxn.qrgen.android.QRCode;
+import net.glxn.qrgen.core.scheme.VCard;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -48,6 +52,14 @@ public class BioActivity extends AppCompatActivity {
             statusView.setText(worker.getStatus());
             TextView summaryView = findViewById(R.id.summaryView);
             summaryView.setText(worker.getSummary());
+
+            //QR-Code
+            VCard vcard = new VCard(worker.getName())
+                    .setEmail(worker.getEmail());
+
+            ImageView qrView = findViewById(R.id.qrCode);
+            qrView.setImageBitmap(QRCode.from(vcard).bitmap());
+
         }
 
         Button sendButton = findViewById(R.id.button_send);
