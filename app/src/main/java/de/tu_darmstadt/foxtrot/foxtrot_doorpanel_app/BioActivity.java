@@ -8,8 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Base64;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,6 +24,8 @@ import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.interfacesApi.Worke
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class BioActivity extends AppCompatActivity {
 
@@ -48,6 +52,18 @@ public class BioActivity extends AppCompatActivity {
             statusView.setText(worker.getStatus());
             TextView summaryView = findViewById(R.id.summaryView);
             summaryView.setText(worker.getSummary());
+            ImageView img= findViewById(R.id.landingPagePinButton8);
+            if((worker.getImage())!= null) {
+                final String encodedString = worker.getImage();
+                final String pureBase64Encoded = encodedString.substring(encodedString.indexOf(",") + 1);
+                final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+                img.setImageBitmap(decodedBitmap);
+            }
+
+
+
+
         }
 
         Button sendButton = findViewById(R.id.button_send);

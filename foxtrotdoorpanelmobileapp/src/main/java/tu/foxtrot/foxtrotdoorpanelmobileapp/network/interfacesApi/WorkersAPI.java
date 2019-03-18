@@ -42,6 +42,13 @@ public interface WorkersAPI {
     Call<String> updateWorkerEmail(@Header("Authorization") String token,
                                    @Field("email") String email);
 
+    @FormUrlEncoded
+    @POST("workers/photo")
+    Call<String> updateWorkerPhoto(@Header("Authorization") String token,
+                                  @Field("image") String image);
+
+
+
     @POST("workers/{id}/timeslot")
     Call<String> addWorkerTimeslot(@Header("Authorization") String token, @Path("id") int workerId, @Body Event timeslot);
 

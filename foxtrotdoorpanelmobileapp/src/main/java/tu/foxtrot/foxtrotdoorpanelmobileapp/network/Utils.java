@@ -1,6 +1,7 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp.network;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -56,6 +57,24 @@ public class Utils {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Log.d(TAG, "Room update error: " + t.getMessage());            }
+        });
+    }
+
+    public static void updateWorkerPhoto(Context context, String token, String image) {
+        Call<String> call = workersApi.updateWorkerPhoto("Bearer " + token, image);
+        Log.d(TAG, "Photo update request sent ");
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String newRoom = response.body();
+                Log.d(TAG, "Photo updated ");
+                Toast.makeText(context, "photo updated:" + newRoom, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d(TAG, "Photo update error: " + t.getMessage());            }
         });
     }
 
