@@ -49,7 +49,7 @@ public class WorkerAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.content_worker, null);
         TextView tv1= linearLayout.findViewById(R.id.b19);
-        TextView tv2= linearLayout.findViewById(R.id.b20);
+        TextView tv2= linearLayout.findViewById(R.id.bio_position);
         TextView tv3= linearLayout.findViewById(R.id.b21);
         ImageButton calendarButton = linearLayout.findViewById(R.id.calendarButton);
         ImageView ppicture = linearLayout.findViewById(R.id.landingPagePinButton8);
