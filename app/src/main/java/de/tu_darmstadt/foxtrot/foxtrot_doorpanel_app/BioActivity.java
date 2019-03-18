@@ -59,7 +59,7 @@ public class BioActivity extends AppCompatActivity {
                     worker.getPosition().equals("") ? "Research assistant" : worker.getPosition();
             ((TextView)findViewById(R.id.bio_position)).setText(position);
             ((TextView)findViewById(R.id.bio_email_phone)).setText(String.format(
-                    "Contact information: %s, %s", email, phone));
+                    "%s, %s", email, phone));
 
             ImageView img= findViewById(R.id.landingPagePinButton8);
             if((worker.getImage())!= null) {
