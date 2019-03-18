@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listCalendarFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,7 +10,7 @@
         android:id="@+id/listCalendarLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:gravity="start"
         android:orientation="vertical">
 
         <TextView
@@ -25,10 +26,13 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="25dp"
         android:clickable="true"
-        app:srcCompat="@drawable/ic_check_square" />
+        app:backgroundTint="@color/colorPrimary"
+        app:srcCompat="@drawable/ic_action_plus" />
 
 
 </FrameLayout>
