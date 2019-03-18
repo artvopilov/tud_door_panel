@@ -14,6 +14,7 @@ const changeWorkerStatusController = require('./controllers/workers/change-statu
 const sendWorkerMessageController = require('./controllers/workers/send-message');
 const getWorkerByIdController = require('./controllers/workers/get-by-id');
 const changeWorkerRoomController = require('./controllers/workers/change-room');
+const changeWorkerPhotoController = require('./controllers/workers/change-photo');
 const addWorkerTimeslotController = require('./controllers/workers/add-timeslot');
 const removeWorkerTimeslotController = require('./controllers/workers/remove-timeslot');
 const bookWorkerTimeslotController = require('./controllers/workers/book-timeslot');
@@ -46,7 +47,7 @@ admin.initializeApp({
 const app = new Koa();
 require('./passport');
 app.use(passport.initialize());
-
+console.log("console print working");
 router.param('id', (id, ctx, next) => next());
 router.param('room', (room, ctx, next) => next());
 
@@ -62,6 +63,9 @@ router.post('/workers/room', passport.authenticate('jwt', {session: false}),
 router.post('/workers/:id/timeslot', passport.authenticate('jwt', {session: false}),
     addWorkerTimeslotController);
 router.delete('/workers/:id/timeslot', removeWorkerTimeslotController);
+router.post('/workers/photo', passport.authenticate('jwt', {session: false}),
+    changeWorkerPhotoController);
+router.post('/workers/:id/timeslot', addWorkerTimeslotController);
 router.post('/workers/:id/book', bookWorkerTimeslotController);
 router.post('/workers/login/', authenticateWorkerController);
 router.get('/test-worker-token/', passport.authenticate('jwt', {session: false}),

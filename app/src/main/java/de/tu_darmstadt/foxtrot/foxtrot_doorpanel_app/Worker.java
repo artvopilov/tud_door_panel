@@ -14,6 +14,11 @@ public class Worker {
     private String summary;
     private int id;
     private List<Event> timeslots;
+    private String image;
+
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
 
     public String getRoom() {
         return room;

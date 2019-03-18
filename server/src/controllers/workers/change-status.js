@@ -1,6 +1,7 @@
 module.exports = async (ctx) => {
-    const {status} = ctx.request.body;
-
+    console.log("request received");
+	const {status} = ctx.request.body;
+    console.log("status change request received");
     const worker = await ctx.req.user;
     await ctx.workerModel.changeStatus(status, worker.id);
 

@@ -9,6 +9,11 @@ public class Worker {
     private String phoneNumber;
     private String status;
     private String password;
+    private String image;
+
+    public String getImage() { return image; }
+
+    public void setImage(String image) { this.image = image; }
     private String position;
     private String summary;
 

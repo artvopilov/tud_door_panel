@@ -27,15 +27,14 @@ class Workers extends DbModel {
     async changeRoom(room, id) {
         await this._updateById(id, {room})
     }
-
-    async addTimeslot(event, id) {
-        console.log(id);
-        await this._MongooseModel.updateOne({id}, {$addToSet:{timeslots:event}});
+    
+	async changePhoto(image, id) {
+        await this._updateById(id, {image})
     }
 
-    async removeTimeslot(eventId, id) {
-        console.log(eventId)
-        await this._MongooseModel.updateOne({id}, {$pull:{timeslots:{id:eventId}}});
+    async addTimeslot(event, id) {
+    console.log(id)
+        await this._MongooseModel.updateOne({id}, {$addToSet:{timeslots:event}});
     }
 
 }

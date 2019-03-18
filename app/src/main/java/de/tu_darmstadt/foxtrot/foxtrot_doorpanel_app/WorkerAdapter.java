@@ -7,10 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.util.Base64;
 import java.util.List;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 
 public class WorkerAdapter extends BaseAdapter {
 
@@ -48,11 +52,22 @@ public class WorkerAdapter extends BaseAdapter {
         TextView tv2= linearLayout.findViewById(R.id.b20);
         TextView tv3= linearLayout.findViewById(R.id.b21);
         ImageButton calendarButton = linearLayout.findViewById(R.id.calendarButton);
+        ImageView ppicture = linearLayout.findViewById(R.id.landingPagePinButton8);
+
+          if((worker.getImage())!= null) {
+              final String encodedString = worker.getImage();
+               final String pureBase64Encoded = encodedString.substring(encodedString.indexOf(",") + 1);
+             final byte[] decodedBytes = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+             Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+              ppicture.setImageBitmap(decodedBitmap);
+          }
 
         // set some properties of rowTextView or something
         tv1.setText(worker.getName());
         tv2.setText(worker.getPosition());
         tv3.setText(worker.getStatus());
+
+
 
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override

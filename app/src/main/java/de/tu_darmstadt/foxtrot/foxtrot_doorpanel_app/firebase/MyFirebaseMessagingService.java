@@ -23,9 +23,14 @@ import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.network.models.Tablet;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import java.util.Date;
 
+import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import static android.app.Notification.VISIBILITY_PUBLIC;
 import static java.lang.Integer.parseInt;
+import android.text.format.DateUtils;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
@@ -35,6 +40,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        final long ONE_MINUTE_IN_MILLIS = 60000;//millisecs
+
+        Date date1 = new Date();
+        long curTimeInMs = date1.getTime();
+        Date date_f = new Date(curTimeInMs + (5 * ONE_MINUTE_IN_MILLIS));
+        String strDateFormat = "hh:mm:ss a";
+        DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+        String formattedDate= dateFormat.format(date_f);
+
         Log.d(TAG, "From: " + remoteMessage.getFrom());
         Map<String, String> payload = remoteMessage.getData();
         if (payload != null) {
@@ -43,7 +57,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             switch (payload.get("subject")) {
                 case "changeStatus":
                     String status = payload.get("status");
+                    if(status.equals("Back in 5 min")){status="Would be back untill "+formattedDate;}
                     Log.d(TAG, "Message status: " + status);
+
                     String id = payload.get("workerId");
                     Log.d(TAG, "worker id: " + id);
 
@@ -60,6 +76,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     tabletApplication.excludeWorker(workerId);
                     break;
                 case "workerInRoom":
+                    tabletApplication.pullWorkers();
+                    break;
+                case "workerPhoto":
                     tabletApplication.pullWorkers();
                     break;
                 case "addTimeslot":
@@ -126,5 +145,23 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, "Refreshed token: " + token);
         // from now we don't use tokens, but topics for Cloud Messaging
         // sendRegistrationToServer(token);
+    }
+
+    private void sendRegistrationToServer(String token) {
+        TabletsAPI tabletsAPI = RetrofitClient.getRetrofitInstance().create(TabletsAPI.class);
+        Call<String> call = tabletsAPI.registerTablet(1, token);
+        call.enqueue(new Callback<String>() {
+
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                String resp = response.body();
+                Log.d(TAG, "Token registration: " + resp);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d(TAG, "Token registration: " + t.getMessage());
+            }
+        });
     }
 }
