@@ -81,14 +81,11 @@ public class LoginActivity extends AppCompatActivity {
                         unsubscribeFromTopic(String.valueOf(previousWorkerId));
                     }
                     subscribeToTopic(String.valueOf(workerId));
-
-                    ((MobileApplication) getApplicationContext()).setWorkerID(workerId);
-
                     String token = loginResponse.getToken();
 
                     updateSubscriptions(workerId);
                     updateSharedPreferences(token, workerId, workerName);
-                    updateApplicatoinData(workerName);
+                    updateApplicatoinData(workerName, workerId);
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -105,9 +102,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateApplicatoinData(String name) {
+    private void updateApplicatoinData(String name, int workerId) {
         MobileApplication mobileApp = (MobileApplication)getApplication();
         mobileApp.setWorkerName(name);
+        mobileApp.setWorkerID(workerId);
         mobileApp.setNotificationsList(new ArrayList<Notification>() {});
         mobileApp.pullNotifications();
     }

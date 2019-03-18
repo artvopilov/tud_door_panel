@@ -10,17 +10,23 @@ import android.util.Log;
 
 public class MainEmptyActivity extends AppCompatActivity {
     private final String TAG = "MainEmptyActivity";
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key),
+                Context.MODE_PRIVATE);
         Intent activityIntent;
 
         // go straight to main if a token is stored
-        if (getToken() != null) {
-            String workerName = getSharedPreferences(getString(R.string.preference_file_key),
-                Context.MODE_PRIVATE).getString("name", "Default");
-            ((MobileApplication)getApplication()).setWorkerName(workerName);
+        int workerId = getWorkerId();
+        String token = getToken();
+        if (token != null && workerId != -1) {
+            String workerName = sharedPreferences.getString("name", "Default");
+            MobileApplication mobileApplication = (MobileApplication)getApplication();
+            mobileApplication.setWorkerName(workerName);
+            mobileApplication.setWorkerID(workerId);
             activityIntent = new Intent(this, MainActivity.class);
         } else {
             activityIntent = new Intent(this, LoginActivity.class);
@@ -32,8 +38,10 @@ public class MainEmptyActivity extends AppCompatActivity {
     }
 
     private String getToken() {
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key),
-                Context.MODE_PRIVATE);
         return sharedPreferences.getString("token", null);
+    }
+
+    private int getWorkerId() {
+        return sharedPreferences.getInt("topic", -1);
     }
 }
