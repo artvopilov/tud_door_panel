@@ -68,7 +68,7 @@ public class CreatingWorkerActivity extends AppCompatActivity {
     private EditText positionEdit;
     private EditText summaryEdit;
     private EditText phoneEdit;
-    private FloatingActionButton createWorkerButton;
+    private Button createWorkerButton;
 
     private Button btn;
     private ImageView imageview;
@@ -91,7 +91,7 @@ public class CreatingWorkerActivity extends AppCompatActivity {
         summaryEdit = findViewById(R.id.newWorkerSummary);
         phoneEdit = findViewById(R.id.newWorkerPhone);
 
-        createWorkerButton = (FloatingActionButton) findViewById(R.id.fab);
+        createWorkerButton = (Button) findViewById(R.id.submitButton);
 
         createWorkerButton.setOnClickListener(new View.OnClickListener() {
             @Override
