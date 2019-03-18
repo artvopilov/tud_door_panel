@@ -54,6 +54,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (payload != null) {
             Log.d(TAG, "Message data payload: " + payload);
             TabletApplication tabletApplication = ((TabletApplication)getApplicationContext());
+            int workerId;
             switch (payload.get("subject")) {
                 case "changeStatus":
                     String status = payload.get("status");
@@ -72,7 +73,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     tabletApplication.pullWorkers();
                     break;
                 case "workerOutRoom":
-                    int workerId = Integer.parseInt(payload.get("workerId"));
+                    workerId = Integer.parseInt(payload.get("workerId"));
                     tabletApplication.excludeWorker(workerId);
                     break;
                 case "workerInRoom":
@@ -83,6 +84,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     break;
                 case "addTimeslot":
                     tabletApplication.pullWorkers();
+                    break;
+                case "removeTimeslot":
+                    workerId = Integer.parseInt(payload.get("workerId"));
+                    int timeslotID = Integer.parseInt(payload.get("timeslotId"));
+                    tabletApplication.getWorkerByID(workerId).deleteTimeslot(timeslotID);
                     break;
                 case "messageFromWorker":
                     String from = payload.get("from_worker");

@@ -103,5 +103,13 @@ public class Worker {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public void deleteTimeslot(int id) {
+        for (Event slot : this.timeslots){
+            if (slot.getId() == id){
+                this.timeslots.remove(slot);
+            }
+        }
+    }
 }
 

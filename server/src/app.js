@@ -14,6 +14,7 @@ const createWorkersController = require('./controllers/workers/create');
 const changeWorkerStatusController = require('./controllers/workers/change-status');
 const sendWorkerMessageController = require('./controllers/workers/send-message');
 const getWorkerByIdController = require('./controllers/workers/get-by-id');
+const changeWorkerRoomController = require('./controllers/workers/change-room');
 const changeWorkerPhotoController = require('./controllers/workers/change-photo');
 const addWorkerTimeslotController = require('./controllers/workers/add-timeslot');
 const removeWorkerTimeslotController = require('./controllers/workers/remove-timeslot');
@@ -35,7 +36,7 @@ const TabletModel = require('./models/tablets');
 const MessageModel = require('./models/messages');
 const BookingModel = require('./models/bookings');
 
-mongoose.connect(("mongodb://Foxtrot_Artem:12345a@ds163103.mlab.com:63103/foxtrot_db"), { useNewUrlParser: true })
+mongoose.connect(config.get('mongo.uri'), { useNewUrlParser: true })
     .then(() => console.log("Successfully connected to db"))
     .catch(err => console.log(`Error while connecting to db: ${err}`));
 mongoose.Promise = global.Promise;
@@ -49,7 +50,7 @@ admin.initializeApp({
 const app = new Koa();
 require('./passport');
 app.use(passport.initialize());
-console.log("console print working");
+
 router.param('id', (id, ctx, next) => next());
 router.param('room', (room, ctx, next) => next());
 
@@ -66,12 +67,14 @@ router.post('/workers/summary', passport.authenticate('jwt', {session: false}),
 router.post('/workers/:id/message', sendWorkerMessageController);
 router.post('/workers/personal-info', passport.authenticate('jwt', {session: false}),
     updatePersonalInfoController);
+router.post('/workers/room', passport.authenticate('jwt', {session: false}),
+    changeWorkerRoomController);
 router.post('/workers/:id/timeslot', passport.authenticate('jwt', {session: false}),
     addWorkerTimeslotController);
-router.delete('/workers/:id/timeslot', removeWorkerTimeslotController);
 router.post('/workers/photo', passport.authenticate('jwt', {session: false}),
     changeWorkerPhotoController);
-router.post('/workers/:id/timeslot', addWorkerTimeslotController);
+router.delete('/workers/:id/timeslot', passport.authenticate('jwt', {session: false}),
+    removeWorkerTimeslotController);
 router.post('/workers/:id/book', bookWorkerTimeslotController);
 router.post('/workers/login/', authenticateWorkerController);
 router.get('/test-worker-token/', passport.authenticate('jwt', {session: false}),
