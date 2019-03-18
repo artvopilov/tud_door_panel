@@ -32,7 +32,7 @@ const TabletModel = require('./models/tablets');
 const MessageModel = require('./models/messages');
 const BookingModel = require('./models/bookings');
 
-mongoose.connect(config.get('mongo.uri'), { useNewUrlParser: true })
+mongoose.connect(("mongodb://Foxtrot_Artem:12345a@ds163103.mlab.com:63103/foxtrot_db"), { useNewUrlParser: true })
     .then(() => console.log("Successfully connected to db"))
     .catch(err => console.log(`Error while connecting to db: ${err}`));
 mongoose.Promise = global.Promise;
