@@ -59,7 +59,7 @@ public class Settings extends AppCompatActivity {
         openSetCalendar();
         openAddWorker();
         logoutWorker();
-        openCreateTimeslot();
+        //openCreateTimeslot();
         backToMainWIndow();
         openPersonalInfo();
 
