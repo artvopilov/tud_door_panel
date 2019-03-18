@@ -9,6 +9,7 @@ const serviceAccount = require('./../foxtrotdoorpanel-firebase-adminsdk.json');
 
 const getWorkersController = require('./controllers/workers/get-workers');
 const getWorkersByRoomController = require('./controllers/workers/get-workers-by-room');
+const getWorkerTimeslots = require('./controllers/workers/get-timeslots');
 const createWorkersController = require('./controllers/workers/create');
 const changeWorkerStatusController = require('./controllers/workers/change-status');
 const sendWorkerMessageController = require('./controllers/workers/send-message');
@@ -53,6 +54,8 @@ router.param('room', (room, ctx, next) => next());
 
 router.get('/workers/', getWorkersController);
 router.get('/workers/room/:room', getWorkersByRoomController);
+router.get('/workers/timeslots/', passport.authenticate('jwt', {session: false}),
+    getWorkerTimeslots);
 router.get('/workers/:id/', getWorkerByIdController);
 router.post('/workers/', createWorkersController);
 router.post('/workers/status', passport.authenticate('jwt', {session: false}),

@@ -1,5 +1,7 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -51,6 +53,9 @@ public interface WorkersAPI {
 
     @POST("workers/{id}/timeslot")
     Call<String> addWorkerTimeslot(@Header("Authorization") String token, @Path("id") int workerId, @Body Event timeslot);
+
+    @GET("workers/timeslots")
+    Call<List<Event>> getTimeslots(@Header("Authorization") String token);
 
     @FormUrlEncoded
     @HTTP(method = "DELETE",path = "workers/{id}/timeslot", hasBody = true)
