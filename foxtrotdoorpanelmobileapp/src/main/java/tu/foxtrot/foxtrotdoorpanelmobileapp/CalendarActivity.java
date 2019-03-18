@@ -72,8 +72,12 @@ public class CalendarActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         CalendarPageAdapter adapter = new CalendarPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new WallCalendarFragment(events), "Calendar");
-        adapter.addFragment(new ListCalendarFragment(events), "List");
+        WallCalendarFragment wallCalendarFragment = new WallCalendarFragment();
+        wallCalendarFragment.setEvents(events);
+        adapter.addFragment(wallCalendarFragment, "Calendar");
+        ListCalendarFragment listCalendarFragment = new ListCalendarFragment();
+        listCalendarFragment.setEvents(events);
+        adapter.addFragment(listCalendarFragment, "List");
         viewPager.setAdapter(adapter);
     }
 }

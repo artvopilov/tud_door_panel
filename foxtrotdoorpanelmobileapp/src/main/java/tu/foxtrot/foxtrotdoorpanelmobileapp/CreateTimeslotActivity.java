@@ -103,7 +103,7 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
 
         startTime = (TimePicker) findViewById(R.id.startTime);
         endTime = (TimePicker) findViewById(R.id.endTime);
-        endDate = (DatePicker) findViewById(R.id.endDate);
+        endDate = startDate;
 
         createEvent = (Button) findViewById(R.id.createEvent);
         cancelEvent = (Button) findViewById(R.id.cancelEvent);
@@ -394,9 +394,7 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
                 startDateString  = i+" , "+i1+" , "+i2;
                 System.out.println(startDateString);
                 break;
-            case R.id.endDate:
-                endDateString  = i+" , "+i1+" , "+i2;
-                System.out.println(endDateString);
+            default:
                 break;
         }
     }

@@ -35,14 +35,18 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event;
 
-public class ListCalendarFragment extends Fragment {
+public class ListCalendarFragment extends Fragment{
     private static final String Tag = "ListCalendarFragment";
 
     private TextView listCalendarText;
 
     private List<Event> events;
 
-    public ListCalendarFragment(List<Event> events){
+    public ListCalendarFragment(){
+        super();
+    }
+
+    public void setEvents (List<Event> events) {
         this.events = events;
     }
 
