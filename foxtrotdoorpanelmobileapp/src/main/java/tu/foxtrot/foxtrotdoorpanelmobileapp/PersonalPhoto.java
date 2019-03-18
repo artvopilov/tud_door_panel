@@ -97,7 +97,7 @@ public class PersonalPhoto extends AppCompatActivity {
 
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap1.compress(Bitmap.CompressFormat.JPEG, 20, baos); //bm is the bitmap object
+                bitmap1.compress(Bitmap.CompressFormat.JPEG, 5, baos); //bm is the bitmap object
                 byte[] b = baos.toByteArray();
 
                 String image = Base64.encodeToString(b , Base64.DEFAULT);
@@ -202,7 +202,7 @@ public class PersonalPhoto extends AppCompatActivity {
 
     public String saveImage(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 5, bytes);
         File wallpaperDirectory = new File(
                 Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
         // have the object build the directory structure, if needed.
