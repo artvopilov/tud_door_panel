@@ -1,5 +1,4 @@
 module.exports = async (ctx) => {
-    const workerId = ctx.params.id;
     const timeslot = ctx.request.body;
 
     console.log("add timeslot: "+timeslot);
@@ -12,7 +11,7 @@ module.exports = async (ctx) => {
 
 
     const messageToTablet = {
-            data: {subject: 'addTimeslot', workerId: workerId},
+            data: {subject: 'addTimeslot', workerId: worker.id},
             topic: room
         };
 
