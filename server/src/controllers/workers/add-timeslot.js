@@ -1,11 +1,12 @@
 module.exports = async (ctx) => {
     const timeslot = ctx.request.body;
+    const worker = await ctx.req.user;
 
     console.log("add timeslot: "+timeslot);
 
     await ctx.workerModel.addTimeslot(timeslot, worker.id);
 
-    const worker = await ctx.req.user;
+
 
     const room = worker.room;
 
