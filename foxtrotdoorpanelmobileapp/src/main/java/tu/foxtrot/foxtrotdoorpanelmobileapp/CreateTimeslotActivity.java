@@ -222,7 +222,7 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
         String token = sharedPreferences.getString("token", null);
         int workerID = ((MobileApplication) getApplicationContext()).getWorkerID();
 
-        Call<String> call = workersApi.addWorkerTimeslot(token, workerID, ourEvent);
+        Call<String> call = workersApi.addWorkerTimeslot("Bearer " + token, workerID, ourEvent);
 
         call.enqueue(new Callback<String>() {
             @Override

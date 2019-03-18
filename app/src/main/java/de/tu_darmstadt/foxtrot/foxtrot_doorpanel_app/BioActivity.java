@@ -49,12 +49,18 @@ public class BioActivity extends AppCompatActivity {
         if (worker != null) {
             TextView nameView = findViewById(R.id.b19);
             nameView.setText(worker.getName());
-            TextView positionView = findViewById(R.id.b20);
-            positionView.setText(worker.getPosition());
-            TextView statusView = findViewById(R.id.b21);
-            statusView.setText(worker.getStatus());
             TextView summaryView = findViewById(R.id.summaryView);
             summaryView.setText(worker.getSummary());
+            String email = worker.getEmail() == null || worker.getEmail().equals("") ? "no email"
+                    : worker.getEmail();
+            String phone = worker.getPhoneNumber() == null ||
+                    worker.getPhoneNumber().equals("") ? "no phone" : worker.getPhoneNumber();
+            String position = worker.getPosition() == null ||
+                    worker.getPosition().equals("") ? "Research assistant" : worker.getPosition();
+            ((TextView)findViewById(R.id.bio_position)).setText(position);
+            ((TextView)findViewById(R.id.bio_email_phone)).setText(String.format(
+                    "Contact information: %s, %s", email, phone));
+
             ImageView img= findViewById(R.id.landingPagePinButton8);
             if((worker.getImage())!= null) {
                 final String encodedString = worker.getImage();
