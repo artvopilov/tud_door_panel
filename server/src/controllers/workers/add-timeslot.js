@@ -3,7 +3,7 @@ module.exports = async (ctx) => {
 
     console.log("add timeslot: "+timeslot);
 
-    await ctx.workerModel.addTimeslot(timeslot, workerId);
+    await ctx.workerModel.addTimeslot(timeslot, worker.id);
 
     const worker = await ctx.req.user;
 
