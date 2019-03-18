@@ -71,7 +71,7 @@ public class PersonalPhoto extends AppCompatActivity {
     private EditText emailEdit;
     private EditText passwordEdit;
     private EditText roomEdit;
-    private FloatingActionButton createWorkerButton;
+    private Button photoButton;
 
     private Button btn;
     private ImageView imageview;
@@ -87,9 +87,9 @@ public class PersonalPhoto extends AppCompatActivity {
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         //nameEdit = findViewById(R.id.newWorkerName);
-        createWorkerButton = (FloatingActionButton) findViewById(R.id.fab);
+        photoButton = (Button) findViewById(R.id.buttonPhoto);
 
-        createWorkerButton.setOnClickListener(new View.OnClickListener() {
+        photoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
