@@ -147,7 +147,8 @@ public class ListCalendarFragment extends Fragment{
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
-        Call<String> call = workersApi.removeWorkerTimeslot(token, Integer.toString(event.getId()));
+        Call<String> call = workersApi.removeWorkerTimeslot("Bearer " + token,
+                Integer.toString(event.getId()));
 
         call.enqueue(new Callback<String>() {
             @Override
