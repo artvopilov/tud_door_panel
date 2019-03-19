@@ -362,8 +362,7 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
         Intent intent;
         switch (view.getId()){
             case R.id.cancelEvent:
-                intent = new Intent(CreateTimeslotActivity.this, Settings.class);
-                startActivity(intent);
+                finish();
                 break;
             case R.id.createEvent:
                 int startTimeHour = startTime.getCurrentHour();
@@ -424,8 +423,7 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
                         insertAutoTimeslot(weekday, length, eventTitle.getText().toString(), eventLocation.getText().toString(), buffer.toString(), start, end, eventAttendeeEmail );
                 }
 
-                intent = new Intent(CreateTimeslotActivity.this, Settings.class);
-                startActivity(intent);
+                finish();
                 break;
         }
     }

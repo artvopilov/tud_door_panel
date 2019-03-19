@@ -51,7 +51,7 @@ public interface WorkersAPI {
     @FormUrlEncoded
     @HTTP(method = "DELETE",path = "workers/{id}/timeslot", hasBody = true)
     Call<String> removeWorkerTimeslot(@Header("Authorization") String token,
-                                      @Path("id") int workerId, @Field("timeslot") String timeslot);
+                                      @Field("timeslot") String timeslot);
 
 
     @FormUrlEncoded

@@ -144,12 +144,10 @@ public class ListCalendarFragment extends Fragment{
     private void deleteEvent(Event event){
         WorkersAPI workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
 
-        int myID = ((MobileApplication)getActivity().getApplicationContext()).getWorkerID();
-
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
-        Call<String> call = workersApi.removeWorkerTimeslot(token, myID, Integer.toString(event.getId()));
+        Call<String> call = workersApi.removeWorkerTimeslot(token, Integer.toString(event.getId()));
 
         call.enqueue(new Callback<String>() {
             @Override
