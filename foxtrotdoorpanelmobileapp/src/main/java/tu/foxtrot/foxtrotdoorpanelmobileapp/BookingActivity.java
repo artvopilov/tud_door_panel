@@ -265,8 +265,8 @@ public class BookingActivity extends AppCompatActivity {
                 //gmail.setData(Uri.parse(notification.getEmail()));
                 gmail.putExtra(Intent.EXTRA_SUBJECT, "Your booking");
                 //gmail.setType("plain/text");
-                gmail.putExtra(Intent.EXTRA_TEXT, "hello "+notification.getName()+"\n"+
-                        "I regret to inform you, that there was a problem with your booking. Please contacct me for further information");
+                gmail.putExtra(Intent.EXTRA_TEXT, "Hello "+notification.getName()+"\n"+
+                        "I regret to inform you, that there was a problem with your booking. Please contact me for further information");
                 startActivity(Intent.createChooser(gmail, "Send Email"));
             }
         });
