@@ -12,7 +12,7 @@ module.exports = async (ctx) => {
     const messageToTablet = {
             data: {subject: 'removeTimeslot', workerId: worker.id.toString(), timeslotId: timeslot},
             topic: room
-        };
+    };
 
     ctx.admin.messaging().send(messageToTablet)
             .then(() => {
