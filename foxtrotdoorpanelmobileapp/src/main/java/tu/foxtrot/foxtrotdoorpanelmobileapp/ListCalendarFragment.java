@@ -134,7 +134,7 @@ public class ListCalendarFragment extends Fragment{
                 s = currentDate.substring(6,10);
                 i = Integer.parseInt(s);
                 intent.putExtra("year", i);
-                startActivity(intent);
+                startActivityForResult(intent,0);
             }
         });
 
@@ -155,6 +155,10 @@ public class ListCalendarFragment extends Fragment{
             public void onResponse(Call<String> call, Response<String> response) {
 
                 Log.d("remove Timeslot", response.message());
+
+                getActivity().finish();
+                Intent intent = new Intent(getActivity(), CalendarActivity.class);
+                startActivity(intent);
             }
 
             @Override

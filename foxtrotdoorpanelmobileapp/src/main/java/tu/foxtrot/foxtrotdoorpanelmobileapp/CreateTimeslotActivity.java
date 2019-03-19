@@ -265,6 +265,8 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
                 Toast toast = Toast.makeText(context, "Status updated: " + newStatus,
                         Toast.LENGTH_SHORT);
                 toast.show();
+
+                finish();
             }
 
             @Override
@@ -423,7 +425,9 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
                         insertAutoTimeslot(weekday, length, eventTitle.getText().toString(), eventLocation.getText().toString(), buffer.toString(), start, end, eventAttendeeEmail );
                 }
 
-                finish();
+                Toast toast = Toast.makeText(getApplicationContext(), "Creating timeslot ",
+                        Toast.LENGTH_SHORT);
+                toast.show();
                 break;
         }
     }

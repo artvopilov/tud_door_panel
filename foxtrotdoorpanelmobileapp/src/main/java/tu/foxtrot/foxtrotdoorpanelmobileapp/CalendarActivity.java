@@ -1,6 +1,7 @@
 package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -80,4 +81,13 @@ public class CalendarActivity extends AppCompatActivity {
         adapter.addFragment(listCalendarFragment, "List");
         viewPager.setAdapter(adapter);
     }
+
+    @Override
+    protected void onActivityResult(
+            int requestCode, int resultCode, Intent data) {
+        finish();
+        Intent intent = new Intent(this, CalendarActivity.class);
+        startActivity(intent);
+    }
+
 }
