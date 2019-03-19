@@ -121,7 +121,7 @@ public class CreatingWorkerActivity extends AppCompatActivity {
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 if (bitmap1 != null) {
-                    bitmap1.compress(Bitmap.CompressFormat.JPEG, 20, baos); //bm is the bitmap object
+                    bitmap1.compress(Bitmap.CompressFormat.JPEG, 5, baos); //bm is the bitmap object
                     byte[] b = baos.toByteArray();
 
                     String image = Base64.encodeToString(b , Base64.DEFAULT);
