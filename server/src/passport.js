@@ -1,4 +1,5 @@
 const passport = require('koa-passport');
+const bcrypt  = require('bcryptjs');
 
 const WorkerModel = require('./models/workers');
 
@@ -14,13 +15,20 @@ const localStrategyOptions = {
 
 passport.use('local', new LocalStrategy(localStrategyOptions, (email, password, done) => {
     const workerModel = new WorkerModel();
-    workerModel.getBy({email, password})
+
+    workerModel.getBy({email})
         .then(users => {
             if (users.length === 0) {
                 return done(null, false, {message: 'bad username or password'})
             }
             const user = users[0];
-            return done(null, user);
+            console.log(user);
+            if (bcrypt.compareSync(password, user.password)) {
+                return done(null, user);
+            } else {
+                return done("Wrong password");
+            }
+
         })
         .catch(err => {
             return done(err);

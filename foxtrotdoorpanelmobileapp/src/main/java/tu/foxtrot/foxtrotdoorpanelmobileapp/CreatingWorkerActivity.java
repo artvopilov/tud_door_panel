@@ -112,15 +112,22 @@ public class CreatingWorkerActivity extends AppCompatActivity {
                 worker.setSummary(summary);
                 worker.setPhoneNumber(phone);
 
-
+                if (name.equals("") || email.equals("") || password.equals("")) {
+                    Toast.makeText(CreatingWorkerActivity.this,
+                            "Name, Email and Password must be provided",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap1.compress(Bitmap.CompressFormat.JPEG, 20, baos); //bm is the bitmap object
-                byte[] b = baos.toByteArray();
+                if (bitmap1 != null) {
+                    bitmap1.compress(Bitmap.CompressFormat.JPEG, 20, baos); //bm is the bitmap object
+                    byte[] b = baos.toByteArray();
 
-                String image = Base64.encodeToString(b , Base64.DEFAULT);
+                    String image = Base64.encodeToString(b , Base64.DEFAULT);
 
-                worker.setImage(image);
+                    worker.setImage(image);
+                }
 
                 createNewWorker(worker);
 
@@ -152,9 +159,18 @@ public class CreatingWorkerActivity extends AppCompatActivity {
         call.enqueue(new Callback<Worker>() {
             @Override
             public void onResponse(Call<Worker> call, Response<Worker> response) {
-                Log.d(TAG, "Successfully created new worker");
-                Toast.makeText(CreatingWorkerActivity.this, "New worker <" +
-                                worker.getName() + "> created", Toast.LENGTH_SHORT).show();
+                Worker workerResponse = response.body();
+
+                if (workerResponse == null) {
+                    Log.d(TAG, "Worker was NOT created");
+                    Toast.makeText(CreatingWorkerActivity.this,
+                            "Error | Worker not created", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d(TAG, "Successfully created new worker");
+                    Toast.makeText(CreatingWorkerActivity.this, "New worker <" +
+                            worker.getName() + "> created", Toast.LENGTH_SHORT).show();
+                }
+
                 Intent intent = new Intent(CreatingWorkerActivity.this,
                         MainActivity.class);
                 startActivity(intent);
