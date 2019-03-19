@@ -34,7 +34,7 @@
                 android:background="@android:color/darker_gray"
                 android:clickable="true"
                 android:minWidth="36dp"
-                android:src="@drawable/seeliger_alexander"
+                android:src="@drawable/ic_user_pic"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

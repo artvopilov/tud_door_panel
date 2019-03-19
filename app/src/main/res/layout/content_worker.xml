@@ -18,7 +18,7 @@
         android:clickable="true"
         android:minWidth="36dp"
         android:minHeight="36dp"
-        android:src="@drawable/seeliger_alexander" />
+        android:src="@drawable/ic_user_pic" />
 
 
     <LinearLayout
