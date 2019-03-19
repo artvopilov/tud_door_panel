@@ -11,7 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * The type Main activity.
+ * Main activity of mobile app.
+ * @author Frank Langoulant, Javier Ochoa Serna, Pramod Pramod, Florian Schunk, Artem Vopilov
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * Open calendar.
+     * Open calendar view.
      *
      * @param view the view
      */
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Open status.
+     * Open status view.
      *
      * @param view the view
      */
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Open notifications.
+     * Open notifications view.
      *
      * @param view the view
      */
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Open settings.
+     * Open settings view.
      *
      * @param view the view
      */

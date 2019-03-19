@@ -12,7 +12,7 @@ import android.widget.Button;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.Utils;
 
 /**
- * The type Personal info.
+ * Activity for personal information.
  */
 public class PersonalInfo extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class PersonalInfo extends AppCompatActivity {
     }
 
     /**
-     * On click.
+     * onClick method.
      *
      * @param view the view
      */

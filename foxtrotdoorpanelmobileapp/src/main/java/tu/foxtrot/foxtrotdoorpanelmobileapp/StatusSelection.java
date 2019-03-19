@@ -22,7 +22,8 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.Utils;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
 /**
- * The type Status selection.
+ * Status Activity for Mobile App.
+ * Allows to change status of worker.
  */
 public class StatusSelection extends AppCompatActivity {
 
@@ -46,7 +47,7 @@ public class StatusSelection extends AppCompatActivity {
     }
 
     /**
-     * Open customized.
+     * Open view to customize status.
      */
     public void openCustomized() {
         statusCustomButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +76,9 @@ public class StatusSelection extends AppCompatActivity {
         }
     }
 
+    /**
+     * Update status.
+     */
     private void updateStatus(Button button) {
         String status = button.getText().toString();
         SharedPreferences sharedPreferences = getSharedPreferences(

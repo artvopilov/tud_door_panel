@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * The type Personal phone.
+ * Activity for personalize phone.
  */
 public class PersonalPhone extends AppCompatActivity {
 
@@ -22,7 +22,7 @@ public class PersonalPhone extends AppCompatActivity {
     }
 
     /**
-     * Submit phone.
+     * Submission of personal email.
      */
     public void submitPhone() {
         submitButton = (Button) findViewById(R.id.button7);

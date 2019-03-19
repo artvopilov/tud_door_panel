@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * The type Personal email.
+ * Activity for personalize email.
  */
 public class PersonalEmail extends AppCompatActivity {
 
@@ -22,7 +22,7 @@ public class PersonalEmail extends AppCompatActivity {
     }
 
     /**
-     * Submit email.
+     * Submission of personal email.
      */
     public void submitEmail() {
         submitButton = (Button) findViewById(R.id.button7);

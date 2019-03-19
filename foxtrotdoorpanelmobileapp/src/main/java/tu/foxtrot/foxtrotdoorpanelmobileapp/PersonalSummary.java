@@ -12,7 +12,7 @@ import android.widget.Button;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.Utils;
 
 /**
- * The type Personal summary.
+ * Activity for personalize summary.
  */
 public class PersonalSummary extends AppCompatActivity {
 
@@ -27,7 +27,7 @@ public class PersonalSummary extends AppCompatActivity {
     }
 
     /**
-     * On click.
+     * onClick method.
      *
      * @param view the view
      */

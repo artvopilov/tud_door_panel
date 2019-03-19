@@ -33,7 +33,8 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
 /**
- * The type Settings.
+ * Settings Activity for Mobile App. Allows to access other activities
+ * to customize your data, set calendar and add new workers.
  */
 public class Settings extends AppCompatActivity {
     private final String TAG = "SettingsActivity";
@@ -97,7 +98,7 @@ public class Settings extends AppCompatActivity {
     }
 
     /**
-     * Open customized photo.
+     * Open view to customize personal photo.
      */
     public void openCustomizedPhoto() {
         photoButton = (Button) findViewById(R.id.button1);
@@ -111,7 +112,7 @@ public class Settings extends AppCompatActivity {
     }
 
     /**
-     * Open customized summary.
+     * Open view to customize personal summary.
      */
     public void openCustomizedSummary() {
         summaryButton = (Button) findViewById(R.id.button5);
@@ -125,7 +126,7 @@ public class Settings extends AppCompatActivity {
     }
 
     /**
-     * Open set calendar.
+     * Open view to set calendar.
      */
     public void openSetCalendar() {
         calendarButton = (Button) findViewById(R.id.button7);
@@ -139,7 +140,7 @@ public class Settings extends AppCompatActivity {
     }
 
     /**
-     * Open add worker.
+     * Open view to add new worker.
      */
     public void openAddWorker() {
         addWorkerButton = (Button) findViewById(R.id.button8);
@@ -153,7 +154,7 @@ public class Settings extends AppCompatActivity {
     }
 
     /**
-     * Open create timeslot.
+     * Open view to create timeslots.
      */
     public void openCreateTimeslot() {
         defTimeSlotsButton = (Button) findViewById(R.id.button6);
@@ -167,7 +168,7 @@ public class Settings extends AppCompatActivity {
     }
 
     /**
-     * Back to main w indow.
+     * Back to Main Activity.
      */
     public void backToMainWIndow() {
         backtomainbutton = (Button) findViewById(R.id.button10);
@@ -181,7 +182,7 @@ public class Settings extends AppCompatActivity {
     }
 
     /**
-     * Open personal info.
+     * Open view to customize personal information.
      */
     public void openPersonalInfo() {
         personalInfoButton = (Button) findViewById(R.id.button9);
