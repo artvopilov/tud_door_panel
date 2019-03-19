@@ -108,6 +108,7 @@ public class Worker {
         for (Event slot : this.timeslots){
             if (slot.getId() == id){
                 this.timeslots.remove(slot);
+                break;
             }
         }
     }
