@@ -38,7 +38,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
                 android:hint="Research Assistant,..."
-                android:inputType="text" />
+                android:inputType="textMultiLine" />
 
         </android.support.design.widget.TextInputLayout>
 

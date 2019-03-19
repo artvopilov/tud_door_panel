@@ -53,7 +53,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:hint="Type message..."
-            android:inputType="text" />
+            android:inputType="textMultiLine" />
 
         <Button
             android:id="@+id/answer_button"
