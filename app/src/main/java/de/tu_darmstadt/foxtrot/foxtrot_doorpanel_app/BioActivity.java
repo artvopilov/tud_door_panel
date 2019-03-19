@@ -76,7 +76,8 @@ public class BioActivity extends AppCompatActivity {
 
             //QR-Code
             VCard vcard = new VCard(worker.getName())
-                    .setEmail(worker.getEmail());
+                    .setEmail(worker.getEmail())
+                    .setPhoneNumber(worker.getPhoneNumber());
 
             ImageView qrView = findViewById(R.id.qrCode);
             qrView.setImageBitmap(QRCode.from(vcard).bitmap());
