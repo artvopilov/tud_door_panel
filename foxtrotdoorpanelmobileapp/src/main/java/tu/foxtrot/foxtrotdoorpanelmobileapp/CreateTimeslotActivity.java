@@ -366,23 +366,36 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
                 startActivity(intent);
                 break;
             case R.id.createEvent:
+                int startTimeHour = startTime.getCurrentHour();
+                int startTimeMinute = startTime.getCurrentMinute();
                 Calendar startCalendar = Calendar.getInstance();
                 startCalendar.set(Calendar.DAY_OF_MONTH, startDate.getDayOfMonth());
                 startCalendar.set(Calendar.MONTH, startDate.getMonth());
                 startCalendar.set(Calendar.YEAR, startDate.getYear());
-                startCalendar.set(Calendar.HOUR_OF_DAY, startTime.getCurrentHour());
-                startCalendar.set(Calendar.MINUTE, startTime.getCurrentMinute());
+                startCalendar.set(Calendar.HOUR_OF_DAY, startTimeHour);
+                startCalendar.set(Calendar.MINUTE, startTimeMinute);
                 Date startDate = startCalendar.getTime();
 
                 DateTime start = new DateTime(startDate);
 
+                int endTimeHour = endTime.getCurrentHour();
+                int endTimeMinute = endTime.getCurrentMinute();
+                if (endTimeHour < startTimeHour) {
+                    Toast.makeText(CreateTimeslotActivity.this,
+                            "Time error | Try again", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (endTimeHour == startTimeHour && endTimeMinute < startTimeMinute) {
+                    Toast.makeText(CreateTimeslotActivity.this,
+                            "Time error | Try again", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Calendar endCalendar = Calendar.getInstance();
                 endCalendar.set(Calendar.DAY_OF_MONTH, endDate.getDayOfMonth());
                 endCalendar.set(Calendar.MONTH, endDate.getMonth());
                 endCalendar.set(Calendar.YEAR, endDate.getYear());
-                endCalendar.set(Calendar.HOUR_OF_DAY, endTime.getCurrentHour());
-                endCalendar.set(Calendar.MINUTE, endTime.getCurrentMinute());
+                endCalendar.set(Calendar.HOUR_OF_DAY, endTimeHour);
+                endCalendar.set(Calendar.MINUTE, endTimeMinute);
                 Date endDate = endCalendar.getTime();
                 DateTime end = new DateTime(endDate);
 
