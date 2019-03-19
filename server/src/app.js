@@ -66,7 +66,7 @@ router.post('/workers/summary', passport.authenticate('jwt', {session: false}),
 router.post('/workers/:id/message', sendWorkerMessageController);
 router.post('/workers/personal-info', passport.authenticate('jwt', {session: false}),
     updatePersonalInfoController);
-router.post('/workers/:id/timeslot', passport.authenticate('jwt', {session: false}),
+router.post('/workers/timeslot', passport.authenticate('jwt', {session: false}),
     addWorkerTimeslotController);
 router.post('/workers/photo', passport.authenticate('jwt', {session: false}),
     changeWorkerPhotoController);

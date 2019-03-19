@@ -42,9 +42,8 @@ public interface WorkersAPI {
 
 
 
-    @POST("workers/{id}/timeslot")
-    Call<String> addWorkerTimeslot(@Header("Authorization") String token,
-                                   @Path("id") int workerId, @Body Event timeslot);
+    @POST("workers/timeslot")
+    Call<String> addWorkerTimeslot(@Header("Authorization") String token, @Body Event timeslot);
 
     @GET("workers/timeslots")
     Call<List<Event>> getTimeslots(@Header("Authorization") String token);

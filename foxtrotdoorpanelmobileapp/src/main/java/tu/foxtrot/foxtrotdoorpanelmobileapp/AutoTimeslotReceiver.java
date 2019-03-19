@@ -219,12 +219,10 @@ public class AutoTimeslotReceiver extends BroadcastReceiver {
         ourEvent.setName(event.getSummary());
         ourEvent.setId(ourEvent.hashCode()); //TODO: this is probably not the best solution
 
-        int workerID = ((MobileApplication) context.getApplicationContext()).getWorkerID();
-
         SharedPreferences sharedPreferences = context.getSharedPreferences(
                 string_preference_file_key, Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
-        Call<String> call = workersApi.addWorkerTimeslot(token, workerID, ourEvent);
+        Call<String> call = workersApi.addWorkerTimeslot(token, ourEvent);
 
         call.enqueue(new Callback<String>() {
             @Override
