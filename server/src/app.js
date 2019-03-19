@@ -70,7 +70,7 @@ router.post('/workers/timeslot', passport.authenticate('jwt', {session: false}),
     addWorkerTimeslotController);
 router.post('/workers/photo', passport.authenticate('jwt', {session: false}),
     changeWorkerPhotoController);
-router.delete('/workers/:id/timeslot', passport.authenticate('jwt', {session: false}),
+router.delete('/workers/timeslot', passport.authenticate('jwt', {session: false}),
     removeWorkerTimeslotController);
 router.post('/workers/:id/book', bookWorkerTimeslotController);
 router.post('/workers/login/', authenticateWorkerController);

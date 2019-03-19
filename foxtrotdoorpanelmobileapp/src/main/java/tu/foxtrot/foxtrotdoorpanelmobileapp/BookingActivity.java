@@ -115,13 +115,11 @@ public class BookingActivity extends AppCompatActivity {
 
                 WorkersAPI workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
 
-                int myID = ((MobileApplication)getApplicationContext()).getWorkerID();
-
-
                 SharedPreferences sharedPreferences = getSharedPreferences(
                         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
                 String token = sharedPreferences.getString("token", null);
-                Call<String> call = workersApi.removeWorkerTimeslot(token, myID, notification.getTimeslot());
+                Call<String> call = workersApi.removeWorkerTimeslot("Bearer " + token,
+                        notification.getTimeslot());
 
                 call.enqueue(new Callback<String>() {
                     @Override
