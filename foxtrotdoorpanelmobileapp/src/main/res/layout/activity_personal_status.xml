@@ -28,7 +28,8 @@
             android:layout_height="80dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:hint="I am at Room A112, Back in 30 minutes,..." />
+            android:hint="I am at Room A112, Back in 30 minutes,..."
+            android:inputType="text" />
 
     </android.support.design.widget.TextInputLayout>
 

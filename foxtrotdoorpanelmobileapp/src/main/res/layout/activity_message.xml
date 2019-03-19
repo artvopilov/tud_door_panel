@@ -52,7 +52,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
-            android:hint="Type message..." />
+            android:hint="Type message..."
+            android:inputType="text" />
 
         <Button
             android:id="@+id/answer_button"

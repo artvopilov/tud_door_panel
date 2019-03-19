@@ -37,7 +37,8 @@
                 android:layout_height="80dp"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:hint="+491234567890,..." />
+                android:hint="+491234567890,..."
+                android:inputType="phone" />
 
         </android.support.design.widget.TextInputLayout>
 

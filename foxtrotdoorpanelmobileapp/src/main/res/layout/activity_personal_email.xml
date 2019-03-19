@@ -36,7 +36,8 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="95dp"
-                android:hint="max@tu.darmstadt.com,..." />
+                android:hint="max@tu.darmstadt.com,..."
+                android:inputType="textEmailAddress" />
 
         </android.support.design.widget.TextInputLayout>
 
