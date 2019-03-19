@@ -69,6 +69,9 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
 
     private String mode;
 
+    private boolean changedEndTime;
+    private boolean changedEndTimeInternal;
+
     private WorkersAPI workersApi;
 
     private com.google.api.services.calendar.Calendar mService = null;
@@ -104,6 +107,36 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
         startTime = (TimePicker) findViewById(R.id.startTime);
         endTime = (TimePicker) findViewById(R.id.endTime);
         endDate = startDate;
+
+        endTime.setCurrentHour(startTime.getCurrentHour()+1);
+        endTime.setCurrentMinute(startTime.getCurrentMinute());
+
+        changedEndTime = false;
+        changedEndTimeInternal = false;
+
+        endTime.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                if (changedEndTimeInternal){
+                    changedEndTimeInternal = false;
+                }else {
+                    changedEndTime = true;
+                }
+            }
+        });
+
+        startTime.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                if (!changedEndTime){
+                    changedEndTimeInternal = true;
+                    endTime.setCurrentHour(startTime.getCurrentHour()+1);
+                    endTime.setCurrentMinute(startTime.getCurrentMinute());
+                }
+            }
+        });
+
+
 
         createEvent = (Button) findViewById(R.id.createEvent);
         cancelEvent = (Button) findViewById(R.id.cancelEvent);
