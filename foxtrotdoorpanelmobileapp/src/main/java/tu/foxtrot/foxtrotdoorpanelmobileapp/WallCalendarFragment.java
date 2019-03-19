@@ -35,7 +35,11 @@ public class WallCalendarFragment extends Fragment {
     private ViewPager mViewPager;
     private List<Event> events;
 
-    public WallCalendarFragment(List<Event> events){
+    public WallCalendarFragment(){
+        super();
+    }
+
+    public void setEvents (List<Event> events) {
         this.events = events;
     }
 
@@ -55,7 +59,8 @@ public class WallCalendarFragment extends Fragment {
                 DecimalFormat formatter = new DecimalFormat("00");
                 String date = formatter.format(dayOfMonth) + "/" + formatter.format(month) + "/" +year;
 
-                ListCalendarFragment listCalendarFragment = new ListCalendarFragment(events);
+                ListCalendarFragment listCalendarFragment = new ListCalendarFragment();
+                listCalendarFragment.setEvents(events);
                 Bundle bundle = new Bundle();
                 bundle.putString("date", date);
                 listCalendarFragment.setArguments(bundle);
