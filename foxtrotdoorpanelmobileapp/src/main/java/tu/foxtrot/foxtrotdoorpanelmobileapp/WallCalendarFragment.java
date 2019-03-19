@@ -26,6 +26,7 @@ import sun.bob.mcalendarview.MCalendarView;
 import sun.bob.mcalendarview.MarkStyle;
 import sun.bob.mcalendarview.listeners.OnDateClickListener;
 import sun.bob.mcalendarview.vo.DateData;
+import sun.bob.mcalendarview.vo.MarkedDates;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event;
 
 public class WallCalendarFragment extends Fragment {
@@ -72,6 +73,9 @@ public class WallCalendarFragment extends Fragment {
         });
 
         mCalendarView.setMarkedStyle(MarkStyle.BACKGROUND);
+        MarkedDates marked = mCalendarView.getMarkedDates();
+        marked.removeAdd();
+
         for (Event event : events){
             Calendar cal = Calendar.getInstance();
             cal.setTime(event.getStart());
