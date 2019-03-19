@@ -25,21 +25,44 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * The type Tablet application.
+ */
 public class TabletApplication extends MultiDexApplication {
     private final String TAG = "TabletApplicationTAG";
 
     private List<Worker> workerList = new ArrayList<Worker>();
     private List<Message> messageList = new ArrayList<>();
 
+    /**
+     * The Update gui filter.
+     */
     final String UPDATE_GUI_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateGUI";
+    /**
+     * The Upd chat filter.
+     */
     final String UPD_CHAT_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateChat";
 
+    /**
+     * The Room.
+     */
     public String room = "80b";
 
+    /**
+     * Gets room.
+     *
+     * @return the room
+     */
     public String getRoom() {
         return room;
     }
 
+    /**
+     * Gets worker.
+     *
+     * @param position the position
+     * @return the worker
+     */
     public Worker getWorker(int position) {
         return workerList.get(position);
     }
@@ -65,6 +88,12 @@ public class TabletApplication extends MultiDexApplication {
         }
     }
 
+    /**
+     * Get worker by id worker.
+     *
+     * @param id the id
+     * @return the worker
+     */
     public Worker getWorkerByID(int id){
         for (Worker worker : workerList){
             if (worker.getId()==id){
@@ -74,11 +103,23 @@ public class TabletApplication extends MultiDexApplication {
         return null;
     }
 
+    /**
+     * Get worker num int.
+     *
+     * @return the int
+     */
     public int getWorkerNum(){
         //TODO: When the server is off, the code below causes error
         return workerList.size();
     }
 
+    /**
+     * Update worker.
+     *
+     * @param id    the id
+     * @param key   the key
+     * @param value the value
+     */
     public void updateWorker(int id, String key, Object value){
         Worker worker = null;
         for (Worker candidate : workerList){
@@ -96,6 +137,11 @@ public class TabletApplication extends MultiDexApplication {
         }
     }
 
+    /**
+     * Exclude worker.
+     *
+     * @param id the id
+     */
     public void excludeWorker(int id) {
         for (Worker candidate: workerList) {
             if (candidate.getId() == id) {
@@ -131,10 +177,20 @@ public class TabletApplication extends MultiDexApplication {
         }
     }
 
+    /**
+     * Gets messages.
+     *
+     * @return the messages
+     */
     public List<Message> getMessages() {
         return messageList;
     }
 
+    /**
+     * Add message.
+     *
+     * @param message the message
+     */
     public void addMessage(Message message) {
         messageList.add(0, message);
         if (messageList.size() > 30) {
@@ -144,6 +200,9 @@ public class TabletApplication extends MultiDexApplication {
         sendBroadcast(intent);
     }
 
+    /**
+     * Pull messages.
+     */
     public void pullMessages() {
         MessagesAPI messagesAPI = RetrofitClient.getRetrofitInstance().create(MessagesAPI.class);
         Call<List<Message>> call = messagesAPI.getRecentMessages(room);
@@ -165,6 +224,9 @@ public class TabletApplication extends MultiDexApplication {
         });
     }
 
+    /**
+     * Pull workers.
+     */
     public void pullWorkers(){
         WorkerAPI workerAPI = RetrofitClient.getRetrofitInstance().create(WorkerAPI.class);
         Call<List<Worker>> call= workerAPI.getAllWorkers(room);

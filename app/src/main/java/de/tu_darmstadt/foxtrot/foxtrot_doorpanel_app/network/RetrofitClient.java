@@ -6,10 +6,18 @@ import com.google.gson.GsonBuilder;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * The type Retrofit client.
+ */
 public class RetrofitClient {
     private static Retrofit retrofit;
     private static final String BASE_URL = "http://foxtrot-doorpanel-foxtrot-doorpanel-server.7e14.starter-us-west-2.openshiftapps.com/"; // 192.168.2.118
 
+    /**
+     * Gets retrofit instance.
+     *
+     * @return the retrofit instance
+     */
     public static Retrofit getRetrofitInstance() {
         Gson gson = new GsonBuilder()
                 .setLenient()

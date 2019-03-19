@@ -12,11 +12,21 @@ import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.model.ScheduledEvents;
 
 import java.util.List;
 
+/**
+ * The type Event list adapter.
+ */
 public class EventListAdapter extends BaseAdapter {
     private Context context;
     private List<ScheduledEvents> scheduledEvents;
     private LayoutInflater inflater;
-   public EventListAdapter(Context context, List<ScheduledEvents> scheduledEvents){
+
+    /**
+     * Instantiates a new Event list adapter.
+     *
+     * @param context         the context
+     * @param scheduledEvents the scheduled events
+     */
+    public EventListAdapter(Context context, List<ScheduledEvents> scheduledEvents){
         this.context = context;
         this.scheduledEvents = scheduledEvents;
         inflater = LayoutInflater.from(this.context);
@@ -60,8 +70,31 @@ public class EventListAdapter extends BaseAdapter {
         return convertView;
     }
     private class EventHolder {
-        TextView eventTitle, eventDes, eventAttendee, eventStart, eventEnd, eventLocation;
+        /**
+         * The Event title.
+         */
+        TextView eventTitle, /**
+         * The Event des.
+         */
+        eventDes, /**
+         * The Event attendee.
+         */
+        eventAttendee, /**
+         * The Event start.
+         */
+        eventStart, /**
+         * The Event end.
+         */
+        eventEnd, /**
+         * The Event location.
+         */
+        eventLocation;
 
+        /**
+         * Instantiates a new Event holder.
+         *
+         * @param item the item
+         */
         public EventHolder(View item) {
             eventTitle = (TextView) item.findViewById(R.id.eventTitle);
             eventDes = (TextView) item.findViewById(R.id.eventDes);

@@ -11,6 +11,9 @@ import android.widget.Button;
 
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.Utils;
 
+/**
+ * Activity for personalize summary.
+ */
 public class PersonalSummary extends AppCompatActivity {
 
     private Button submitButton;
@@ -23,6 +26,11 @@ public class PersonalSummary extends AppCompatActivity {
         (findViewById(R.id.button7)).setOnClickListener(this::onClick);
     }
 
+    /**
+     * onClick method.
+     *
+     * @param view the view
+     */
     public void onClick(View view) {
         TextInputEditText summaryInput = findViewById(R.id.summary_text);
         String summary = summaryInput.getText() == null ? "" :

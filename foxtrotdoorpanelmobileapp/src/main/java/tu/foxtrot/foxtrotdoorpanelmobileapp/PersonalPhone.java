@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Activity for personalize phone.
+ */
 public class PersonalPhone extends AppCompatActivity {
 
     private Button submitButton;
@@ -18,6 +21,9 @@ public class PersonalPhone extends AppCompatActivity {
         submitPhone();
     }
 
+    /**
+     * Submission of personal email.
+     */
     public void submitPhone() {
         submitButton = (Button) findViewById(R.id.button7);
         submitButton.setOnClickListener(new View.OnClickListener(){

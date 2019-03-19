@@ -18,22 +18,53 @@ import java.util.List;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.MessageNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 
+/**
+ * The type Notifications list adapter.
+ */
 public class NotificationsListAdapter extends ArrayAdapter<Notification> {
 
     private Context mContext;
     private int mResource;
     private int lastPosition = -1;
 
+    /**
+     * The type View holder.
+     */
     @SuppressWarnings({"PackageVisibleField", "PackageVisibleInnerClass"})
     static class ViewHolder {
+        /**
+         * The Date.
+         */
         TextView date;
+        /**
+         * The Time.
+         */
         TextView time;
+        /**
+         * The Details.
+         */
         TextView details;
+        /**
+         * The Type.
+         */
         TextView type;
+        /**
+         * The Name.
+         */
         TextView name;
+        /**
+         * The Email.
+         */
         TextView email;
     }
 
+    /**
+     * Instantiates a new Notifications list adapter.
+     *
+     * @param context  the context
+     * @param resource the resource
+     * @param objects  the objects
+     */
     public NotificationsListAdapter(@NonNull Context context, int resource,
                                     @NonNull List<Notification> objects) {
         super(context, resource, objects);

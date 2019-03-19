@@ -29,6 +29,9 @@ import sun.bob.mcalendarview.vo.DateData;
 import sun.bob.mcalendarview.vo.MarkedDates;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event;
 
+/**
+ * The type Wall calendar fragment.
+ */
 public class WallCalendarFragment extends Fragment {
     private static final String Tag = "WallCalendarFragment";
 
@@ -36,10 +39,18 @@ public class WallCalendarFragment extends Fragment {
     private ViewPager mViewPager;
     private List<Event> events;
 
+    /**
+     * Instantiates a new Wall calendar fragment.
+     */
     public WallCalendarFragment(){
         super();
     }
 
+    /**
+     * Sets the list of events to be displayed.
+     *
+     * @param events the list of events to be displayed
+     */
     public void setEvents (List<Event> events) {
         this.events = events;
     }

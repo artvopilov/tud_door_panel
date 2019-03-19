@@ -35,6 +35,9 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event;
 
+/**
+ * The type List calendar fragment.
+ */
 public class ListCalendarFragment extends Fragment{
     private static final String Tag = "ListCalendarFragment";
 
@@ -42,10 +45,18 @@ public class ListCalendarFragment extends Fragment{
 
     private List<Event> events;
 
+    /**
+     * Instantiates a new List calendar fragment.
+     */
     public ListCalendarFragment(){
         super();
     }
 
+    /**
+     * Sets the list of events to be displayed.
+     *
+     * @param events the list of events to be displayed
+     */
     public void setEvents (List<Event> events) {
         this.events = events;
     }

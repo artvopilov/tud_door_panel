@@ -34,6 +34,9 @@ import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
+/**
+ * The type Booking activity.
+ */
 public class BookingActivity extends AppCompatActivity {
 
     private TextView name;
@@ -168,6 +171,11 @@ public class BookingActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Gets event async.
+     *
+     * @param slotID the slot id
+     */
     @SuppressLint("StaticFieldLeak")
     public void getEventAsync(String slotID) {
 
@@ -200,6 +208,11 @@ public class BookingActivity extends AppCompatActivity {
         }.execute();
     }
 
+    /**
+     * Sets event async.
+     *
+     * @param event the event
+     */
     @SuppressLint("StaticFieldLeak")
     public void setEventAsync(Event event) {
 

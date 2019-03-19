@@ -39,13 +39,28 @@ import java.util.List;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
+/**
+ * The type Set calendar activity.
+ */
 public class SetCalendarActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
     private GoogleAccountCredential mCredential;
 
+    /**
+     * The Request account picker.
+     */
     static final int REQUEST_ACCOUNT_PICKER = 1000;
+    /**
+     * The Request authorization.
+     */
     static final int REQUEST_AUTHORIZATION = 1001;
+    /**
+     * The Request google play services.
+     */
     static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
+    /**
+     * The Request permission get accounts.
+     */
     static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
 
     private static final String PREF_ACCOUNT_NAME = "accountName";
@@ -56,6 +71,9 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
     private RadioGroup radioGroupMain;
     private Button submitButton;
 
+    /**
+     * The Calendar list.
+     */
     CalendarList calendarList;
 
     @Override
@@ -148,6 +166,12 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
 
         private Context context;
 
+        /**
+         * Instantiates a new Make request task.
+         *
+         * @param credential the credential
+         * @param context    the context
+         */
         public MakeRequestTask(GoogleAccountCredential credential, Context context) {
             this.context = context;
             HttpTransport transport = AndroidHttp.newCompatibleTransport();
@@ -176,6 +200,9 @@ public class SetCalendarActivity extends AppCompatActivity implements EasyPermis
             return null;
         }
 
+        /**
+         * Gets data from api.
+         */
         protected void getDataFromApi() {
             try {
                 calendarList = mService.calendarList().list().execute();

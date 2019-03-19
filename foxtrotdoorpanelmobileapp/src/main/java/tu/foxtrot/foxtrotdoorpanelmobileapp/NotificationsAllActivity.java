@@ -15,6 +15,9 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.MessageNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.receivers.UpdateNotificationsReceiver;
 
+/**
+ * The type Notifications all activity.
+ */
 public class NotificationsAllActivity extends AppCompatActivity {
     private final String UPD_NOTIF_FILTER = "tu.foxtrot.foxtrotdoorpanelmobileapp.UPDATE_NOTIFICATIONS";
     private BroadcastReceiver updNotificationsReceiver = new UpdateNotificationsReceiver();

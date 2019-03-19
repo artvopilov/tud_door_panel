@@ -24,6 +24,9 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.responseObjects.LoginResponse;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 
+/**
+ * The type Login activity.
+ */
 public class LoginActivity extends AppCompatActivity {
     private final String TAG = "LoginActivityTag";
     private EditText emailInput;

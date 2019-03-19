@@ -70,8 +70,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * The type Make appointment activity.
+ */
 public class MakeAppointmentActivity extends AppCompatActivity {
 
+    /**
+     * The progress-dialog.
+     */
     ProgressDialog mProgress;
 
     private final String TAG = "make appointment";

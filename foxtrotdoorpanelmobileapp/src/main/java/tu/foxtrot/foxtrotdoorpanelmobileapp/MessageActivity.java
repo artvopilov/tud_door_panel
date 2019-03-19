@@ -26,6 +26,9 @@ import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.MessagesAPI;
 
+/**
+ * The type Message activity.
+ */
 public class MessageActivity extends AppCompatActivity {
 
     private final String TAG = "MessageActivity";

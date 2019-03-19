@@ -17,11 +17,21 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.BookingNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.MessageNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.common.Notification;
 
+/**
+ * The type Utils.
+ */
 public class Utils {
     private final static String TAG = "UTILS";
     private static WorkersAPI workersApi = RetrofitClient.getRetrofitInstance().create(WorkersAPI.class);
     private static MessagesAPI messagesApi = RetrofitClient.getRetrofitInstance().create(MessagesAPI.class);
 
+    /**
+     * Update worker status.
+     *
+     * @param context the context
+     * @param token   the token
+     * @param status  the status
+     */
     public static void updateWorkerStatus(Context context, String token, String status) {
         Call<String> call = workersApi.updateWorkerStatus("Bearer " + token, status);
         Log.d(TAG, "Status update request sent");
@@ -43,6 +53,13 @@ public class Utils {
         });
     }
 
+    /**
+     * Update worker photo.
+     *
+     * @param context the context
+     * @param token   the token
+     * @param image   the image
+     */
     public static void updateWorkerPhoto(Context context, String token, String image) {
         Call<String> call = workersApi.updateWorkerPhoto("Bearer " + token, image);
         Log.d(TAG, "Photo update request sent ");
@@ -61,6 +78,12 @@ public class Utils {
         });
     }
 
+    /**
+     * Gets messages.
+     *
+     * @param mobileApplication the mobile application
+     * @param token             the token
+     */
     public static void getMessages(MobileApplication mobileApplication, String token) {
         Call<List<MessageNotification>> call = messagesApi.getMessages("Bearer " + token);
         Log.d(TAG, "Sent request for messages");
@@ -88,6 +111,12 @@ public class Utils {
         });
     }
 
+    /**
+     * Gets bookings.
+     *
+     * @param mobileApplication the mobile application
+     * @param token             the token
+     */
     public static void getBookings(MobileApplication mobileApplication, String token) {
         Call<List<BookingNotification>> call = messagesApi.getBookings("Bearer " + token);
         Log.d(TAG, "Sent request for bookings");
@@ -115,6 +144,15 @@ public class Utils {
         });
     }
 
+    /**
+     * Update personal info.
+     *
+     * @param applicationContext the application context
+     * @param token              the token
+     * @param phone              the phone
+     * @param email              the email
+     * @param room               the room
+     */
     public static void updatePersonalInfo(Context applicationContext, String token, String phone,
                                           String email, String room) {
         Call<String> call = workersApi.updatePersonalInfo("Bearer " + token,
@@ -143,6 +181,13 @@ public class Utils {
         });
     }
 
+    /**
+     * Update worker summary.
+     *
+     * @param context the context
+     * @param token   the token
+     * @param summary the summary
+     */
     public static void updateWorkerSummary(Context context, String token, String summary) {
         Call<String> call = workersApi.updateWorkerSummary("Bearer " + token, summary);
         Log.d(TAG, "Personal summary update request sent");

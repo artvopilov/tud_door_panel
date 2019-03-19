@@ -28,8 +28,9 @@ import retrofit2.Response;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-
-
+/**
+ * The type Main activity.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private final String UPDATE_GUI_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateGUI";

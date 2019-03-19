@@ -47,6 +47,9 @@ import static tu.foxtrot.foxtrotdoorpanelmobileapp.SetCalendarActivity.REQUEST_A
 import static tu.foxtrot.foxtrotdoorpanelmobileapp.SetCalendarActivity.REQUEST_GOOGLE_PLAY_SERVICES;
 import static tu.foxtrot.foxtrotdoorpanelmobileapp.SetCalendarActivity.REQUEST_PERMISSION_GET_ACCOUNTS;
 
+/**
+ * The type Mobile application.
+ */
 public class MobileApplication extends Application {
     private final String UPD_NOTIF_FILTER = "tu.foxtrot.foxtrotdoorpanelmobileapp.UPDATE_NOTIFICATIONS";
 
@@ -55,9 +58,21 @@ public class MobileApplication extends Application {
     private String workerName;
     private int workerID;
 
+    /**
+     * The Request account picker.
+     */
     static final int REQUEST_ACCOUNT_PICKER = 1000;
+    /**
+     * The Request authorization.
+     */
     static final int REQUEST_AUTHORIZATION = 1001;
+    /**
+     * The Request google play services.
+     */
     static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
+    /**
+     * The Request permission get accounts.
+     */
     static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
 
     private static final String PREF_ACCOUNT_NAME = "accountName";
@@ -71,6 +86,11 @@ public class MobileApplication extends Application {
         pullNotifications();
     }
 
+    /**
+     * Gets notifications list.
+     *
+     * @return the notifications list
+     */
     public List<Notification> getNotificationsList() {
         if (!notificationsList.isEmpty()) {
             Collections.sort(notificationsList, (o1, o2) -> {
@@ -95,17 +115,31 @@ public class MobileApplication extends Application {
         }
         return notificationsList;
     }
+
+    /**
+     * Sets notifications list.
+     *
+     * @param notificationsList the notifications list
+     */
     public void setNotificationsList(List<? extends Notification> notificationsList) {
         this.notificationsList = notificationsList != null ? (List<Notification>) notificationsList
                 : new ArrayList<Notification>();
     }
 
+    /**
+     * Add notification.
+     *
+     * @param notification the notification
+     */
     public void addNotification(Notification notification){
         notificationsList.add(0, notification);
         Intent intent = new Intent(UPD_NOTIF_FILTER);
         sendBroadcast(intent);
     }
 
+    /**
+     * Pull notifications.
+     */
     public void pullNotifications() {
         SharedPreferences sharedPreferences = getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -118,10 +152,20 @@ public class MobileApplication extends Application {
     }
 
 
+    /**
+     * Gets worker name.
+     *
+     * @return the worker name
+     */
     public String getWorkerName() {
         return workerName;
     }
 
+    /**
+     * Sets worker name.
+     *
+     * @param name the name
+     */
     public void setWorkerName(String name) {
         this.workerName = name;
     }
@@ -130,37 +174,77 @@ public class MobileApplication extends Application {
     private String mCalendar;
     private String timeslotsCalendar;
 
+    /**
+     * Gets worker id.
+     *
+     * @return the worker id
+     */
     public int getWorkerID() {
         return workerID;
     }
 
+    /**
+     * Sets worker id.
+     *
+     * @param workerID the worker id
+     */
     public void setWorkerID(int workerID) {
         this.workerID = workerID;
     }
 
+    /**
+     * Gets credential.
+     *
+     * @return the credential
+     */
     public GoogleAccountCredential getmCredential() {
         return mCredential;
     }
 
+    /**
+     * Sets credential.
+     *
+     * @param mCredential the m credential
+     */
     public void setmCredential(GoogleAccountCredential mCredential) {
         this.mCredential = mCredential;
     }
 
+    /**
+     * Gets timeslots calendar.
+     *
+     * @return the timeslots calendar
+     */
     public String getTimeslotsCalendar() {
         return getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).getString("timeslotsCalendar",timeslotsCalendar);
     }
 
 
+    /**
+     * Gets calendar.
+     *
+     * @return the calendar
+     */
     public String getmCalendar() {
         return getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).getString("mCalendar",mCalendar);
 
     }
 
+    /**
+     * Sets calendar.
+     *
+     * @param mCalendar the m calendar
+     */
     public void setmCalendar(String mCalendar) {
         getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit().putString("mCalendar",mCalendar).apply();
         this.mCalendar = mCalendar;
     }
 
+    /**
+     * Sets timeslots calendar.
+     *
+     * @param timeslotsCalendar the timeslots calendar
+     */
     public void setTimeslotsCalendar(String timeslotsCalendar) {
         getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit().putString("timeslotsCalendar",timeslotsCalendar).apply();
         this.timeslotsCalendar = timeslotsCalendar;
@@ -169,6 +253,12 @@ public class MobileApplication extends Application {
 
     private boolean isReady;
 
+    /**
+     * Is credential ready boolean.
+     *
+     * @param activity the activity
+     * @return the boolean
+     */
     public boolean isCredentialReady(Activity activity) {
         isReady = false;
         this.activity = activity;
@@ -228,8 +318,7 @@ public class MobileApplication extends Application {
      * Display an error dialog showing that Google Play Services is missing
      * or out of date.
      *
-     * @param connectionStatusCode code describing the presence (or lack of)
-     *                             Google Play Services on this device.
+     * @param connectionStatusCode code describing the presence (or lack of)                             Google Play Services on this device.
      */
     void showGooglePlayServicesAvailabilityErrorDialog(
             final int connectionStatusCode) {
@@ -266,6 +355,14 @@ public class MobileApplication extends Application {
         }
     }
 
+    /**
+     * Process activity result string.
+     *
+     * @param requestCode the request code
+     * @param resultCode  the result code
+     * @param data        the data
+     * @return the string
+     */
     protected String processActivityResult(
             int requestCode, int resultCode, Intent data) {
         String result = "";

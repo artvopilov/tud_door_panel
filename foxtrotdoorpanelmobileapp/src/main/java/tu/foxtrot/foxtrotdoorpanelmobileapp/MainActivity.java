@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Main activity of mobile app.
+ * @author Frank Langoulant, Javier Ochoa Serna, Pramod Pramod, Florian Schunk, Artem Vopilov
+ */
 public class MainActivity extends AppCompatActivity {
 
     private Button calendarButton;
@@ -39,21 +43,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Open calendar view.
+     *
+     * @param view the view
+     */
     public void openCalendar(View view) {
         Intent intent = new Intent(this, CalendarActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Open status view.
+     *
+     * @param view the view
+     */
     public void openStatus(View view) {
         Intent intent = new Intent(this, StatusSelection.class);
         startActivity(intent);
     }
 
+    /**
+     * Open notifications view.
+     *
+     * @param view the view
+     */
     public void openNotifications(View view) {
         Intent intent = new Intent(this, NotificationsAllActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Open settings view.
+     *
+     * @param view the view
+     */
     public void openSettings(View view) {
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);

@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.ListView;
 
+/**
+ * The type Update chat receiver.
+ */
 public class UpdateChatReceiver extends BroadcastReceiver {
 
     @Override

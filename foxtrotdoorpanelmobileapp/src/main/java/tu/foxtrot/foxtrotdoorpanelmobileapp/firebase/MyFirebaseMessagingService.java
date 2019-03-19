@@ -24,6 +24,9 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.R;
 import static android.app.Notification.VISIBILITY_PUBLIC;
 import static java.lang.Integer.parseInt;
 
+/**
+ * The type My firebase messaging service.
+ */
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
     private static final String CHANNEL_ID = "FoxtrottNotifications";
