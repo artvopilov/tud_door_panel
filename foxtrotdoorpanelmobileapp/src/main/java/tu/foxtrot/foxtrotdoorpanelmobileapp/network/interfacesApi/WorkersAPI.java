@@ -49,7 +49,7 @@ public interface WorkersAPI {
     Call<List<Event>> getTimeslots(@Header("Authorization") String token);
 
     @FormUrlEncoded
-    @HTTP(method = "DELETE",path = "workers/{id}/timeslot", hasBody = true)
+    @HTTP(method = "DELETE",path = "workers/timeslot", hasBody = true)
     Call<String> removeWorkerTimeslot(@Header("Authorization") String token,
                                       @Field("timeslot") String timeslot);
 
