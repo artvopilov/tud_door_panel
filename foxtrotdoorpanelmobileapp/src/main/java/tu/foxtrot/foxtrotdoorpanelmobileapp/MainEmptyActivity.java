@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+/**
+ * The type Main empty activity.
+ */
 public class MainEmptyActivity extends AppCompatActivity {
     private final String TAG = "MainEmptyActivity";
     private SharedPreferences sharedPreferences;

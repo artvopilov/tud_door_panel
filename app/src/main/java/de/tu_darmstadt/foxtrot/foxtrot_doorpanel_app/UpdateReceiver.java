@@ -6,6 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.GridView;
 
+/**
+ * The type Update receiver.
+ */
 public class UpdateReceiver extends BroadcastReceiver {
 
     @Override

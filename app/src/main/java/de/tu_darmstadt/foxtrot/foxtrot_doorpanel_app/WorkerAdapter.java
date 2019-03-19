@@ -16,14 +16,28 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 
+/**
+ * The type Worker adapter.
+ */
 public class WorkerAdapter extends BaseAdapter {
 
+    /**
+     * Instantiates a new Worker adapter.
+     *
+     * @param context the context
+     */
     public WorkerAdapter(Context context) {
         this.context = context;
     }
 
     private Context context;
 
+    /**
+     * Instantiates a new Worker adapter.
+     *
+     * @param mainActivity the main activity
+     * @param e            the e
+     */
     public WorkerAdapter(MainActivity mainActivity, List<Worker> e) {
         this.context=mainActivity;
     }

@@ -63,6 +63,9 @@ package tu.foxtrot.foxtrotdoorpanelmobileapp;
 
         import static java.lang.Integer.parseInt;
 
+/**
+ * The type Personal photo.
+ */
 public class PersonalPhoto extends AppCompatActivity {
 
     private final String TAG = "CreatingWorkerActivity";
@@ -78,6 +81,9 @@ public class PersonalPhoto extends AppCompatActivity {
     private static final String IMAGE_DIRECTORY = "/demonuts";
     private int GALLERY = 1, CAMERA = 2;
 
+    /**
+     * The Bitmap 1.
+     */
     Bitmap bitmap1;
 
     @Override
@@ -157,6 +163,9 @@ public class PersonalPhoto extends AppCompatActivity {
         pictureDialog.show();
     }
 
+    /**
+     * Choose photo from gallary.
+     */
     public void choosePhotoFromGallary() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -200,6 +209,12 @@ public class PersonalPhoto extends AppCompatActivity {
         }
     }
 
+    /**
+     * Save image string.
+     *
+     * @param myBitmap the my bitmap
+     * @return the string
+     */
     public String saveImage(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 5, bytes);

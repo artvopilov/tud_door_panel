@@ -14,6 +14,9 @@ import java.util.List;
 
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.model.Message;
 
+/**
+ * The type Chat activity.
+ */
 public class ChatActivity extends AppCompatActivity {
     private final String UPD_CHAT_FILTER = "de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.updateChat";
     private BroadcastReceiver updMessagessReceiver = new UpdateChatReceiver();

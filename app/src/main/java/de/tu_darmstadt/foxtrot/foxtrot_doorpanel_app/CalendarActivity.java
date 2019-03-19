@@ -51,16 +51,37 @@ import java.util.List;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
+/**
+ * The type Calendar activity.
+ */
 public class CalendarActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks, View.OnClickListener {
+    /**
+     * The M credential.
+     */
     GoogleAccountCredential mCredential;
     private TextView mOutputText;
     private ImageButton mCallApiButton;
     private ImageButton scheduleMeeting;
+    /**
+     * The M progress.
+     */
     ProgressDialog mProgress;
     private List<ScheduledEvents> scheduledEventsList = new ArrayList<ScheduledEvents>();
+    /**
+     * The Request account picker.
+     */
     static final int REQUEST_ACCOUNT_PICKER = 1000;
+    /**
+     * The Request authorization.
+     */
     static final int REQUEST_AUTHORIZATION = 1001;
+    /**
+     * The Request google play services.
+     */
     static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
+    /**
+     * The Request permission get accounts.
+     */
     static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
 
 
@@ -272,8 +293,8 @@ public class CalendarActivity extends AppCompatActivity implements EasyPermissio
     /**
      * Display an error dialog showing that Google Play Services is missing
      * or out of date.
-     * @param connectionStatusCode code describing the presence (or lack of)
-     *     Google Play Services on this device.
+     *
+     * @param connectionStatusCode code describing the presence (or lack of)     Google Play Services on this device.
      */
     void showGooglePlayServicesAvailabilityErrorDialog(
             final int connectionStatusCode) {
@@ -300,6 +321,11 @@ public class CalendarActivity extends AppCompatActivity implements EasyPermissio
         private Exception mLastError = null;
         private boolean FLAG = false;
 
+        /**
+         * Instantiates a new Make request task.
+         *
+         * @param credential the credential
+         */
         public MakeRequestTask(GoogleAccountCredential credential) {
             HttpTransport transport = AndroidHttp.newCompatibleTransport();
             JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
@@ -418,6 +444,17 @@ public class CalendarActivity extends AppCompatActivity implements EasyPermissio
             }
         }
     }
+
+    /**
+     * Create event async.
+     *
+     * @param summary        the summary
+     * @param location       the location
+     * @param des            the des
+     * @param startDate      the start date
+     * @param endDate        the end date
+     * @param eventAttendees the event attendees
+     */
     @SuppressLint("StaticFieldLeak")
     public void createEventAsync(final String summary, final String location, final String des, final DateTime startDate, final DateTime endDate, final EventAttendee[]
             eventAttendees) {
@@ -445,7 +482,19 @@ public class CalendarActivity extends AppCompatActivity implements EasyPermissio
             }
         }.execute();
     }
-     void insertEvent(String summary, String location, String des, DateTime startDate, DateTime endDate, EventAttendee[] eventAttendees) throws IOException {
+
+    /**
+     * Insert event.
+     *
+     * @param summary        the summary
+     * @param location       the location
+     * @param des            the des
+     * @param startDate      the start date
+     * @param endDate        the end date
+     * @param eventAttendees the event attendees
+     * @throws IOException the io exception
+     */
+    void insertEvent(String summary, String location, String des, DateTime startDate, DateTime endDate, EventAttendee[] eventAttendees) throws IOException {
         Event event = new Event()
                 .setSummary(summary)
                 .setLocation(location)

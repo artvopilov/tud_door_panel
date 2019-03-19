@@ -20,6 +20,9 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event;
 
+/**
+ * The type Calendar activity.
+ */
 public class CalendarActivity extends AppCompatActivity {
 
     private static final String TAG = "CalendarActivity";

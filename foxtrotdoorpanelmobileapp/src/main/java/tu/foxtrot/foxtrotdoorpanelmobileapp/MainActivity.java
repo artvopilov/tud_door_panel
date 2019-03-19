@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * The type Main activity.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private Button calendarButton;
@@ -39,21 +42,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Open calendar.
+     *
+     * @param view the view
+     */
     public void openCalendar(View view) {
         Intent intent = new Intent(this, CalendarActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Open status.
+     *
+     * @param view the view
+     */
     public void openStatus(View view) {
         Intent intent = new Intent(this, StatusSelection.class);
         startActivity(intent);
     }
 
+    /**
+     * Open notifications.
+     *
+     * @param view the view
+     */
     public void openNotifications(View view) {
         Intent intent = new Intent(this, NotificationsAllActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Open settings.
+     *
+     * @param view the view
+     */
     public void openSettings(View view) {
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);

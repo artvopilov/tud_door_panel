@@ -30,6 +30,9 @@ import retrofit2.Response;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+/**
+ * The type Bio activity.
+ */
 public class BioActivity extends AppCompatActivity {
 
     private WorkerAPI workerApi;

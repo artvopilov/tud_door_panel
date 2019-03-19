@@ -7,7 +7,16 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
+/**
+ * The interface Messages api.
+ */
 public interface MessagesAPI {
+    /**
+     * Gets recent messages.
+     *
+     * @param roomNumber the room number
+     * @return the recent messages
+     */
     @GET("messages/{room}/get")
     Call<List<Message>> getRecentMessages(@Path("room") String roomNumber);
 }

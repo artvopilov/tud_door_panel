@@ -32,6 +32,9 @@ import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
+/**
+ * The type Settings.
+ */
 public class Settings extends AppCompatActivity {
     private final String TAG = "SettingsActivity";
 
@@ -93,6 +96,9 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Open customized photo.
+     */
     public void openCustomizedPhoto() {
         photoButton = (Button) findViewById(R.id.button1);
         photoButton.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +110,9 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Open customized summary.
+     */
     public void openCustomizedSummary() {
         summaryButton = (Button) findViewById(R.id.button5);
         summaryButton.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +124,9 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Open set calendar.
+     */
     public void openSetCalendar() {
         calendarButton = (Button) findViewById(R.id.button7);
         calendarButton.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +138,9 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Open add worker.
+     */
     public void openAddWorker() {
         addWorkerButton = (Button) findViewById(R.id.button8);
         addWorkerButton.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +152,9 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Open create timeslot.
+     */
     public void openCreateTimeslot() {
         defTimeSlotsButton = (Button) findViewById(R.id.button6);
         defTimeSlotsButton.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +166,9 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Back to main w indow.
+     */
     public void backToMainWIndow() {
         backtomainbutton = (Button) findViewById(R.id.button10);
         backtomainbutton.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +180,9 @@ public class Settings extends AppCompatActivity {
         });
     }
 
+    /**
+     * Open personal info.
+     */
     public void openPersonalInfo() {
         personalInfoButton = (Button) findViewById(R.id.button9);
         personalInfoButton.setOnClickListener(new View.OnClickListener() {

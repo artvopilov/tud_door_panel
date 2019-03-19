@@ -11,6 +11,9 @@ import android.widget.Button;
 
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.Utils;
 
+/**
+ * The type Personal info.
+ */
 public class PersonalInfo extends AppCompatActivity {
 
     private Button submitButton;
@@ -24,6 +27,11 @@ public class PersonalInfo extends AppCompatActivity {
 
     }
 
+    /**
+     * On click.
+     *
+     * @param view the view
+     */
     public void onClick(View view) {
         TextInputEditText roomInput = findViewById(R.id.pers_current_room);
         TextInputEditText emailInput = findViewById(R.id.pers_current_email);

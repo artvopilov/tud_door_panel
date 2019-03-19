@@ -35,15 +35,39 @@ import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
+/**
+ * The type Auto timeslot receiver.
+ */
 public class AutoTimeslotReceiver extends BroadcastReceiver {
 
     private static class AutoTimeslot{
+        /**
+         * The Summary.
+         */
         String summary;
+        /**
+         * The Location.
+         */
         String location;
+        /**
+         * The Des.
+         */
         String des;
+        /**
+         * The Start date.
+         */
         DateTime startDate;
+        /**
+         * The End date.
+         */
         DateTime endDate;
+        /**
+         * The Slot length.
+         */
         int slotLength;
+        /**
+         * The Event attendees.
+         */
         EventAttendee[] eventAttendees;
     }
 
@@ -56,7 +80,19 @@ public class AutoTimeslotReceiver extends BroadcastReceiver {
     private static String string_preference_file_key;
 
 
-
+    /**
+     * Set auto timeslot.
+     *
+     * @param weekday             the weekday
+     * @param slotLength          the slot length
+     * @param summary             the summary
+     * @param location            the location
+     * @param des                 the des
+     * @param startDate           the start date
+     * @param endDate             the end date
+     * @param eventAttendees      the event attendees
+     * @param preference_file_key the preference file key
+     */
     public static void setAutoTimeslot(String weekday, int slotLength, final String summary, final String location, final String des, final DateTime startDate, final DateTime endDate, final EventAttendee[]
             eventAttendees, String preference_file_key){
         AutoTimeslot autoTimeslot = new AutoTimeslot();
@@ -135,6 +171,12 @@ public class AutoTimeslotReceiver extends BroadcastReceiver {
     }
 
 
+    /**
+     * Check slot async.
+     *
+     * @param slot    the slot
+     * @param context the context
+     */
     @SuppressLint("StaticFieldLeak")
     public void checkSlotAsync(Event slot, Context context) {
 
@@ -179,6 +221,12 @@ public class AutoTimeslotReceiver extends BroadcastReceiver {
         }.execute();
     }
 
+    /**
+     * Create event async.
+     *
+     * @param event   the event
+     * @param context the context
+     */
     @SuppressLint("StaticFieldLeak")
     public void createEventAsync(Event event, Context context) {
 
@@ -206,10 +254,23 @@ public class AutoTimeslotReceiver extends BroadcastReceiver {
         }.execute();
     }
 
+    /**
+     * The Event.
+     */
     Event event;
+    /**
+     * The Calendar id.
+     */
     String calendarId;
 
 
+    /**
+     * Insert event.
+     *
+     * @param event   the event
+     * @param context the context
+     * @throws IOException the io exception
+     */
     void insertEvent(Event event,Context context) throws IOException {
 
         tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event ourEvent = new tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event();

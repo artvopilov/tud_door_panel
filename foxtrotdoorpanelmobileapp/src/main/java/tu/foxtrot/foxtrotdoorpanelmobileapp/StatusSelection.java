@@ -21,6 +21,9 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.Utils;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
+/**
+ * The type Status selection.
+ */
 public class StatusSelection extends AppCompatActivity {
 
     private final String TAG = "StatusSelectionActivity";
@@ -42,6 +45,9 @@ public class StatusSelection extends AppCompatActivity {
         submitStatus();
     }
 
+    /**
+     * Open customized.
+     */
     public void openCustomized() {
         statusCustomButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +58,9 @@ public class StatusSelection extends AppCompatActivity {
         });
     }
 
+    /**
+     * Submit status.
+     */
     public void submitStatus() {
         for (Button btn : statusButtons) {
             btn.setOnClickListener(new View.OnClickListener() {

@@ -9,6 +9,9 @@ import android.widget.ListView;
 
 import tu.foxtrot.foxtrotdoorpanelmobileapp.R;
 
+/**
+ * The type Update notifications receiver.
+ */
 public class UpdateNotificationsReceiver extends BroadcastReceiver {
 
     @Override

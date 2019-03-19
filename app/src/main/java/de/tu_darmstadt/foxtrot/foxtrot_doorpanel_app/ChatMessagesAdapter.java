@@ -15,6 +15,9 @@ import java.util.List;
 import de.tu_darmstadt.foxtrot.foxtrot_doorpanel_app.model.Message;
 
 
+/**
+ * The type Chat messages adapter.
+ */
 public class ChatMessagesAdapter extends ArrayAdapter<Message> {
     private final String TAG = "ChatMessagesAdapter";
     private Context mContext;
@@ -22,12 +25,31 @@ public class ChatMessagesAdapter extends ArrayAdapter<Message> {
 
     // View lookup cache: for improving performance
     private static class ViewHolder {
+        /**
+         * The Text.
+         */
         TextView text;
+        /**
+         * The Date.
+         */
         TextView date;
+        /**
+         * The Time.
+         */
         TextView time;
+        /**
+         * The Actors.
+         */
         TextView actors;
     }
 
+    /**
+     * Instantiates a new Chat messages adapter.
+     *
+     * @param context  the context
+     * @param resource the resource
+     * @param objects  the objects
+     */
     public ChatMessagesAdapter(Context context, int resource, List<Message> objects) {
         super(context, resource, objects);
         mContext = context;

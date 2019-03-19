@@ -43,6 +43,9 @@ import retrofit2.Response;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
+/**
+ * The type Create timeslot activity.
+ */
 public class CreateTimeslotActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private View eventLengthLayout;
@@ -209,6 +212,16 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
     }
 
 
+    /**
+     * Create event async.
+     *
+     * @param summary        the summary
+     * @param location       the location
+     * @param des            the des
+     * @param startDate      the start date
+     * @param endDate        the end date
+     * @param eventAttendees the event attendees
+     */
     @SuppressLint("StaticFieldLeak")
     public void createEventAsync(final String summary, final String location, final String des, final DateTime startDate, final DateTime endDate, final EventAttendee[]
             eventAttendees) {
@@ -237,10 +250,27 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
         }.execute();
     }
 
+    /**
+     * The Event.
+     */
     Event event;
+    /**
+     * The Calendar id.
+     */
     String calendarId;
 
 
+    /**
+     * Insert event.
+     *
+     * @param summary        the summary
+     * @param location       the location
+     * @param des            the des
+     * @param startDate      the start date
+     * @param endDate        the end date
+     * @param eventAttendees the event attendees
+     * @throws IOException the io exception
+     */
     void insertEvent(String summary, String location, String des, DateTime startDate, DateTime endDate, EventAttendee[] eventAttendees) throws IOException {
 
         tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event ourEvent = new tu.foxtrot.foxtrotdoorpanelmobileapp.network.models.Event();
@@ -317,6 +347,18 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
 
     }
 
+    /**
+     * Insert auto timeslot.
+     *
+     * @param weekday        the weekday
+     * @param slotLength     the slot length
+     * @param summary        the summary
+     * @param location       the location
+     * @param des            the des
+     * @param startDate      the start date
+     * @param endDate        the end date
+     * @param eventAttendees the event attendees
+     */
     void insertAutoTimeslot(String weekday,int slotLength, String summary, String location, String des, DateTime startDate, DateTime endDate, EventAttendee[] eventAttendees) {
         AutoTimeslotReceiver.setAutoTimeslot(weekday, slotLength, summary, location, des, startDate, endDate, eventAttendees, getString(R.string.preference_file_key));
         Intent alarmIntent = new Intent(getApplicationContext(), AutoTimeslotReceiver.class);

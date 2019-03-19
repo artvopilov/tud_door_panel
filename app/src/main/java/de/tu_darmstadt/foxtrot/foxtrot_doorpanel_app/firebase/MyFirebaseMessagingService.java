@@ -32,6 +32,9 @@ import static android.app.Notification.VISIBILITY_PUBLIC;
 import static java.lang.Integer.parseInt;
 import android.text.format.DateUtils;
 
+/**
+ * The type My firebase messaging service.
+ */
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMsgService";
     private final String CHANNEL_ID = "FoxtrotTabletNotifications";

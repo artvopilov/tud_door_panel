@@ -18,6 +18,9 @@ import tu.foxtrot.foxtrotdoorpanelmobileapp.network.RetrofitClient;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.Utils;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.network.interfacesApi.WorkersAPI;
 
+/**
+ * The type Personal status.
+ */
 public class PersonalStatus extends AppCompatActivity {
 
     private final String TAG = "PersonalStatusActivity";
@@ -35,6 +38,9 @@ public class PersonalStatus extends AppCompatActivity {
         submitStatus();
     }
 
+    /**
+     * Submit status.
+     */
     public void submitStatus() {
         submitButton.setOnClickListener(new View.OnClickListener(){
             @Override

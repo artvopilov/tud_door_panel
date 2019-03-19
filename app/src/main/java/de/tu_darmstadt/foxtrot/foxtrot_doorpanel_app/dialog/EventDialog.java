@@ -23,14 +23,26 @@ import java.util.Calendar;
 import java.util.Date;
 
 
+/**
+ * The type Event dialog.
+ */
 public class EventDialog extends DialogFragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 
     private TimePicker startTime;
     private DatePicker startDate;
     private TimePicker endTime;
     private DatePicker endDate;
+    /**
+     * The C.
+     */
     final Calendar c = Calendar.getInstance();
+    /**
+     * The Hour.
+     */
     int hour = c.get(Calendar.HOUR_OF_DAY);
+    /**
+     * The Minute.
+     */
     int minute = c.get(Calendar.MINUTE);
     private Button createEvent;
     private Button cancelEvent;
