@@ -46,6 +46,9 @@ public class BookingActivity extends AppCompatActivity {
     private String calendarId;
     private String timeslotCalendarId;
     private String slotID;
+    private String sname;
+    private String semail;
+    private String stext;
 
     private com.google.api.services.calendar.Calendar mService = null;
 
@@ -74,9 +77,27 @@ public class BookingActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        int notificationID = intent.getIntExtra("notificationID",0);
-        notification = (BookingNotification) ((MobileApplication)getApplicationContext()).getNotificationsList().get(notificationID);
-        slotID = notification.getTimeslot();
+        if (intent.hasExtra("notificationID")) {
+            int notificationID = intent.getIntExtra("notificationID", 0);
+            notification = (BookingNotification) ((MobileApplication) getApplicationContext()).getNotificationsList().get(notificationID);
+            slotID = notification.getTimeslot();
+
+            sname = notification.getName();
+            semail = notification.getEmail();
+            stext = notification.getMessage();
+        } else if (intent.hasExtra("name")
+                &&intent.hasExtra("email")
+                &&intent.hasExtra("message")
+                &&intent.hasExtra("slotID")){
+            sname = intent.getStringExtra("name");
+            semail = intent.getStringExtra("email");
+            stext = intent.getStringExtra("message");
+            slotID = intent.getStringExtra("slotID");
+        }
+
+        name.setText(stext);
+        email.setText(semail);
+        text.setText(stext);
 
 
         if (((MobileApplication) getApplicationContext()).isCredentialReady(this)){
@@ -88,19 +109,17 @@ public class BookingActivity extends AppCompatActivity {
             getEventAsync(slotID);
         }
 
-        name.setText(notification.getName());
-        email.setText(notification.getEmail());
-        text.setText(notification.getMessage());
+
 
         buttonAcceptBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Event event = new Event()
-                        .setSummary("meeting with "+notification.getName())
+                        .setSummary("meeting with "+sname)
                         .setLocation(timeslot.getLocation())
-                        .setDescription("meeting with "+notification.getName()+"\n"
-                        +"message: "+notification.getMessage());
+                        .setDescription("meeting with "+sname+"\n"
+                        +"message: "+stext);
 
                 event.setStart(timeslot.getStart());
 
@@ -119,7 +138,7 @@ public class BookingActivity extends AppCompatActivity {
                         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
                 String token = sharedPreferences.getString("token", null);
                 Call<String> call = workersApi.removeWorkerTimeslot("Bearer " + token,
-                        notification.getTimeslot());
+                        slotID);
 
                 call.enqueue(new Callback<String>() {
                     @Override
@@ -134,13 +153,13 @@ public class BookingActivity extends AppCompatActivity {
                 });
 
                 Intent gmail = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto",notification.getEmail(), null));
+                        "mailto",semail, null));
                 //gmail.setClassName("com.google.android.gm","com.google.android.gm.ComposeActivityGmail");
-                gmail.putExtra(Intent.EXTRA_EMAIL, new String[] { notification.getEmail() });
+                gmail.putExtra(Intent.EXTRA_EMAIL, new String[] { semail });
                 //gmail.setData(Uri.parse(notification.getEmail()));
                 gmail.putExtra(Intent.EXTRA_SUBJECT, "enter something");
                 //gmail.setType("plain/text");
-                gmail.putExtra(Intent.EXTRA_TEXT, "hello "+notification.getName()+"\n"+
+                gmail.putExtra(Intent.EXTRA_TEXT, "hello "+sname+"\n"+
                         "I have accepted your request to meet from "+timeslot.getStart().getDateTime().toString()
                         +" until "+timeslot.getEnd().getDateTime().toString()+" in/at "+ timeslot.getLocation()+"\n"+
                         "Please be on time");

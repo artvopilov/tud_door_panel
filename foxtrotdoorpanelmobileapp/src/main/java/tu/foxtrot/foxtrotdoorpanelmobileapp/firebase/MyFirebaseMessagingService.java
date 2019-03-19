@@ -12,6 +12,7 @@ import com.google.firebase.messaging.RemoteMessage;
 //import tu.foxtrot.foxtrotdoorpanelmobileapp.TabletApplication;
 import java.util.Map;
 
+import tu.foxtrot.foxtrotdoorpanelmobileapp.BookingActivity;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.BookingNotification;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.MessageActivity;
 import tu.foxtrot.foxtrotdoorpanelmobileapp.objects.MessageNotification;
@@ -99,8 +100,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         ((MobileApplication)getApplicationContext()).addNotification(new BookingNotification(date,
                 time, timeslot, message, email, phone, name));
 
-        Intent intent = new Intent(this, NotificationsAllActivity.class);
+        Intent intent = new Intent(this, BookingActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("slotID", data.get("eventId"));
+        intent.putExtra("name",data.get("name"));
+        intent.putExtra("email",data.get("email"));
+        intent.putExtra("message",data.get("message"));
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
