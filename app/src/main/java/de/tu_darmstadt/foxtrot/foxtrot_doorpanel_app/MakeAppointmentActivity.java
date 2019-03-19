@@ -76,7 +76,7 @@ import retrofit2.Response;
 public class MakeAppointmentActivity extends AppCompatActivity {
 
     /**
-     * The M progress.
+     * The progress-dialog.
      */
     ProgressDialog mProgress;
 

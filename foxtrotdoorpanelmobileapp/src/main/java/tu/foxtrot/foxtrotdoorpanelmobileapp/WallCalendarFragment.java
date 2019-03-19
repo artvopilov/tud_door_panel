@@ -46,9 +46,9 @@ public class WallCalendarFragment extends Fragment {
     }
 
     /**
-     * Sets events.
+     * Sets the list of events to be displayed.
      *
-     * @param events the events
+     * @param events the list of events to be displayed
      */
     public void setEvents (List<Event> events) {
         this.events = events;

@@ -217,7 +217,7 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
      *
      * @param summary        the summary
      * @param location       the location
-     * @param des            the des
+     * @param des            the description
      * @param startDate      the start date
      * @param endDate        the end date
      * @param eventAttendees the event attendees
@@ -265,7 +265,7 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
      *
      * @param summary        the summary
      * @param location       the location
-     * @param des            the des
+     * @param des            the descripton
      * @param startDate      the start date
      * @param endDate        the end date
      * @param eventAttendees the event attendees
@@ -354,7 +354,7 @@ public class CreateTimeslotActivity extends AppCompatActivity implements View.On
      * @param slotLength     the slot length
      * @param summary        the summary
      * @param location       the location
-     * @param des            the des
+     * @param des            the description
      * @param startDate      the start date
      * @param endDate        the end date
      * @param eventAttendees the event attendees
